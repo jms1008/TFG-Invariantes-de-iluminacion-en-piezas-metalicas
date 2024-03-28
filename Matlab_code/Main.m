@@ -44,11 +44,11 @@ while not(opcion_correcta)
             tipo2 = '';
             imagen_resultado = PCA(imagen_tres_canales);
         case 2
-            tipo = 'retinex_s_s';
+            tipo = 'Retinex_s_s';
             [tipo2, sigma] = sigma_retinex(1);
             imagen_resultado = single_scale_retinex_propio(imagen_tres_canales, sigma);
         case 3
-            tipo = 'retinex_m_s';
+            tipo = 'Retinex_m_s';
             [tipo2, sigma] = sigma_retinex(2);
             imagen_resultado = multi_scale_retinex_propio(imagen_tres_canales, sigma);
         otherwise
@@ -57,11 +57,37 @@ while not(opcion_correcta)
     end
 end
 
-imagen_resultado_uint8 = uint8(imagen_resultado);
-
 % Muestro la imagen original, la imagen resultado.
 figure()
 subplot(1,2,1); imshow(imagen_tres_canales); title('Imagen original');
-subplot(1,2,2); imshow(imagen_resultado_uint8); title('Imagen resultado');
+subplot(1,2,2); imshow(imagen_resultado); title('Imagen resultado');
 waitforbuttonpress;
 close();
+
+% Completo la ruta donde guardar la imagen y la guardo mediante imwrite
+ruta_completa = fullfile(directorio_destino, tipo);
+imwrite(imagen_resultado_uint8, fullfile(ruta_completa, [nombre_imagen '_' tipo tipo2 extension]));
+
+% Inicio un bucle para permitir al usuario inspeccionar píxeles específicos de la imagen resultado.
+while true
+    revisar = input('¿Quieres ver un píxel de la imagen? (si/no): ', 's');
+    if isempty(revisar) || strcmpi(revisar, 'no')
+        break; % Sale del bucle si el usuario responde 'no' o no introduce nada.
+    end
+    
+    if strcmpi(revisar, 'si')
+        figure()
+        imshow(imagen_resultado); title('Haz clic en un píxel para obtener datos');
+        [x, y] = ginput(1); % Permite al usuario seleccionar un píxel en la imagen.
+        close();
+        % Redondeo las coordenadas para asegurarme de que son enteros.
+        x = round(x); y = round(y);
+        
+        % Muestro el valor del píxel seleccionado.
+        valor = imagen_resultado(y, x, :);
+        disp(['Coordenadas del píxel seleccionado: (' num2str(x) ', ' num2str(y) ')']);
+        disp(['Valor del píxel seleccionado B&N: ' num2str(valor)]);
+    else
+        disp('Opción no reconocida. Por favor, introduce "si" o "no".');
+    end
+end
