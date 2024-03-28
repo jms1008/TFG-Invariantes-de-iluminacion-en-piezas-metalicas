@@ -66,7 +66,7 @@ close();
 
 % Completo la ruta donde guardar la imagen y la guardo mediante imwrite
 ruta_completa = fullfile(directorio_destino, tipo);
-imwrite(imagen_resultado_uint8, fullfile(ruta_completa, [nombre_imagen '_' tipo tipo2 extension]));
+imwrite(imagen_resultado, fullfile(ruta_completa, [nombre_imagen '_' tipo tipo2 extension]));
 
 % Inicio un bucle para permitir al usuario inspeccionar píxeles específicos de la imagen resultado.
 while true
@@ -91,3 +91,20 @@ while true
         disp('Opción no reconocida. Por favor, introduce "si" o "no".');
     end
 end
+
+numClusters = input('Introduce el número de clusters que deseas: ');
+% Preparo una versión de la imagen final en tres canales para el proceso.
+imagen_invariante_tres = cat(3, imagen_resultado, imagen_resultado, imagen_resultado);
+
+% Aplico Fuzzy C-Means tanto a la imagen original como a la invariante.
+[imagen_original_CMeans, centers_original] = segmentar_imagen_KMeans(imagen_tres_canales, numClusters);
+[imagen_invariante_CMeans, centers_invariante] = segmentar_imagen_KMeans(imagen_invariante_tres, numClusters);
+
+% Muestro las imágenes (original e invariante) junto con sus versiones segmentadas.
+figure()
+subplot(2,2,1); imshow(imagen_tres_canales); title('Imagen original');
+subplot(2,2,2); imshow(imagen_resultado); title('Imagen invariante');
+subplot(2,2,3); imshow(imagen_original_CMeans); title('Original C-Means');
+subplot(2,2,4); imshow(imagen_invariante_CMeans); title('Invariante C-Means');
+waitforbuttonpress;
+close();
