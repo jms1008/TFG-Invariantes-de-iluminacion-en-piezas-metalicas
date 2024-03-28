@@ -57,16 +57,24 @@ while not(opcion_correcta)
     end
 end
 
+% Muestro valores máximo y mínimo de la imagen escalada (entre 0 y 1).
+disp(['Valor máximo: ' num2str(max(imagen_resultado(:)))]);
+disp(['Valor mínimo: ' num2str(min(imagen_resultado(:)))]);
+
 % Muestro la imagen original, la imagen resultado.
 figure()
 subplot(1,2,1); imshow(imagen_tres_canales); title('Imagen original');
 subplot(1,2,2); imshow(imagen_resultado); title('Imagen resultado');
+figure()
+subplot(1,1,1); bar(imhist(imagen_resultado)); title('Histograma resultado');
 waitforbuttonpress;
-close();
+close();close();
 
-% Completo la ruta donde guardar la imagen y la guardo mediante imwrite
+% Completo la ruta donde guardar la imagen y la guardo mediante imwrite y
+% save en .mat
 ruta_completa = fullfile(directorio_destino, tipo);
 imwrite(imagen_resultado, fullfile(ruta_completa, [nombre_imagen '_' tipo tipo2 extension]));
+save(fullfile(ruta_completa, [nombre_imagen '_' tipo tipo2 '.mat']), 'imagen_resultado');
 
 % Inicio un bucle para permitir al usuario inspeccionar píxeles específicos de la imagen resultado.
 while true
