@@ -100,19 +100,74 @@ while true
     end
 end
 
-numClusters = input('Introduce el número de clusters que deseas: ');
-% Preparo una versión de la imagen final en tres canales para el proceso.
-imagen_invariante_tres = cat(3, imagen_resultado, imagen_resultado, imagen_resultado);
+% Presento nuevas opciones de algoritmos de agrupamiento al usuario.
+disp('Selecciona una técnica de agrupamiento:');
+disp('1. K-Means');
+disp('2. Fuzzy C-Means');
+disp('3. GMM');
+disp('4. Exit');
 
-% Aplico Fuzzy C-Means tanto a la imagen original como a la invariante.
-[imagen_original_CMeans, centers_original] = segmentar_imagen_KMeans(imagen_tres_canales, numClusters);
-[imagen_invariante_CMeans, centers_invariante] = segmentar_imagen_KMeans(imagen_invariante_tres, numClusters);
-
-% Muestro las imágenes (original e invariante) junto con sus versiones segmentadas.
-figure()
-subplot(2,2,1); imshow(imagen_tres_canales); title('Imagen original');
-subplot(2,2,2); imshow(imagen_resultado); title('Imagen invariante');
-subplot(2,2,3); imshow(imagen_original_CMeans); title('Original C-Means');
-subplot(2,2,4); imshow(imagen_invariante_CMeans); title('Invariante C-Means');
-waitforbuttonpress;
-close();
+% Inicio un bucle para asegurar que se selecciona una opción válida.
+opcion_correcta = false;
+while not(opcion_correcta)
+    opcion = input('Introduce el número de la opción que deseas: ');
+    opcion_correcta = true; % Asume inicialmente que la opción será válida.
+    
+    switch opcion
+        case 1
+            numClusters = input('Introduce el número de clusters que deseas: ');
+            % Preparo una versión de la imagen final en tres canales para el proceso.
+            imagen_invariante_tres = cat(3, imagen_resultado, imagen_resultado, imagen_resultado);
+            
+            % Aplico K-Means tanto a la imagen original como a la invariante.
+            [imagen_original_KMeans, centers_original] = segmentar_imagen_KMeans(imagen_tres_canales, numClusters);
+            [imagen_invariante_KMeans, centers_invariante] = segmentar_imagen_KMeans(imagen_invariante_tres, numClusters);
+            
+            % Muestro las imágenes (original e invariante) junto con sus versiones segmentadas.
+            figure()
+            subplot(2,2,1); imshow(imagen_tres_canales); title('Imagen original');
+            subplot(2,2,2); imshow(imagen_resultado); title('Imagen invariante');
+            subplot(2,2,3); imshow(imagen_original_KMeans); title('Original K-Means');
+            subplot(2,2,4); imshow(imagen_invariante_KMeans); title('Invariante K-Means');
+            waitforbuttonpress;
+            close();
+        case 2
+            numClusters = input('Introduce el número de clusters que deseas: ');
+            % Preparo una versión de la imagen final en tres canales para el proceso.
+            imagen_invariante_tres = cat(3, imagen_resultado, imagen_resultado, imagen_resultado);
+            
+            % Aplico Fuzzy C-Means tanto a la imagen original como a la invariante.
+            [imagen_original_CMeans, centers_original] = segmentar_imagen_fuzzy_CMeans(imagen_tres_canales, numClusters);
+            [imagen_invariante_CMeans, centers_invariante] = segmentar_imagen_fuzzy_CMeans(imagen_invariante_tres, numClusters);
+            
+            % Muestro las imágenes (original e invariante) junto con sus versiones segmentadas.
+            figure()
+            subplot(2,2,1); imshow(imagen_tres_canales); title('Imagen original');
+            subplot(2,2,2); imshow(imagen_resultado); title('Imagen invariante');
+            subplot(2,2,3); imshow(imagen_original_CMeans); title('Original C-Means');
+            subplot(2,2,4); imshow(imagen_invariante_CMeans); title('Invariante C-Means');
+            waitforbuttonpress;
+            close();
+        case 3
+            numClusters = input('Introduce el número de clusters que deseas: ');
+            % Preparo una versión de la imagen final en tres canales para el proceso.
+            imagen_invariante_tres = cat(3, imagen_resultado, imagen_resultado, imagen_resultado);
+            
+            % Aplico GMM tanto a la imagen original como a la invariante.
+            [imagen_original_GMM, centers_original] = segmentar_imagen_GMM(imagen_tres_canales, numClusters);
+            [imagen_invariante_GMM, centers_invariante] = segmentar_imagen_GMM(imagen_invariante_tres, numClusters);
+            
+            % Muestro las imágenes (original e invariante) junto con sus versiones segmentadas.
+            figure()
+            subplot(2,2,1); imshow(imagen_tres_canales); title('Imagen original');
+            subplot(2,2,2); imshow(imagen_resultado); title('Imagen invariante');
+            subplot(2,2,3); imshow(imagen_original_GMM); title('Original GMM');
+            subplot(2,2,4); imshow(imagen_invariante_GMM); title('Invariante GMM');
+            waitforbuttonpress;
+            close();
+        otherwise
+            % Informo al usuario que la opción seleccionada no es válida y repite el bucle.
+            disp('Opción no válida');
+            opcion_correcta = false;
+    end
+end

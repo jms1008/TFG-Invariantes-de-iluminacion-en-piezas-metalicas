@@ -1,9 +1,12 @@
-function [imgResultante, centers] = segmentar_imagen_KMeans(img, numClusters)
+function [imgResultante, centers] = segmentar_imagen_fuzzy_CMeans(img, numClusters)
     [height, width, ~] = size(img);
     datosImg = double(reshape(img, [], 3));
 
-    % Aplico K-Means
-    [membership, centers] = kmeans(datosImg, numClusters);
+    % Aplico Fuzzy C-Means
+    [centers, U] = fcm(datosImg, numClusters);
+
+    % Obtengo la membresía más alta para cada píxel
+    [~, membership] = max(U, [], 1);
 
     % Defino una paleta de colores RGB
     colores = [255, 0, 0; 0, 255, 0; 0, 0, 255; 255, 255, 0; 0, 255, 255; 255, 0, 255; 255, 127, 0; 127, 0, 255; 0, 127, 255; 127, 255, 0];

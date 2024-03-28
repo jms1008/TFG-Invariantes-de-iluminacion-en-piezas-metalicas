@@ -1,9 +1,16 @@
-function [imgResultante, centers] = segmentar_imagen_KMeans(img, numClusters)
+function [imgResultante, centers] = segmentar_imagen_GMM(img, numClusters)
     [height, width, ~] = size(img);
     datosImg = double(reshape(img, [], 3));
 
-    % Aplico K-Means
-    [membership, centers] = kmeans(datosImg, numClusters);
+    % Aplico el Modelo de Mezclas Gaussianas con regularización
+    % y especificando el tipo de covarianza
+    gmm = fitgmdist(datosImg, numClusters, 'RegularizationValue', 1e-5, 'CovarianceType', 'diagonal');
+
+    % Asigno a cada píxel al cluster más probable
+    membership = cluster(gmm, datosImg);
+    
+    % Obtengo los centros (medias) de cada componente gaussiana
+    centers = gmm.mu;
 
     % Defino una paleta de colores RGB
     colores = [255, 0, 0; 0, 255, 0; 0, 0, 255; 255, 255, 0; 0, 255, 255; 255, 0, 255; 255, 127, 0; 127, 0, 255; 0, 127, 255; 127, 255, 0];
