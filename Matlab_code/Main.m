@@ -2,8 +2,9 @@
 %% Jonás Martínez Sanllorente
 
 % Elijo los directorios de origen y destino para las imágenes.
-directorio_origen = '../Imagenes\Imagenes-Piezas\Imagenes-Camara-NikonCoolpixL830/';
+directorio_origen = '../Imagenes\Piezas\Camara-NikonCoolpixL830/';
 directorio_destino = '../Imagenes_resultado';
+directorio_ground_truth = '../Imagenes_ground_truth\Piezas\Camara-NikonCoolpixL830/';
 
 % Abro un cuadro de diálogo para seleccionar una imagen.
 [imagen_seleccionada, ruta] = uigetfile(fullfile(directorio_origen, '*.*'), 'Selecciona una imagen');
@@ -12,6 +13,13 @@ directorio_destino = '../Imagenes_resultado';
 
 % Leo la imagen desde su ruta completa.
 imagen = imread(fullfile(ruta, imagen_seleccionada));
+
+% Preparo la ruta completa hacia la imagen ground truth correspondiente
+ruta_img_ground_truth = fullfile(directorio_ground_truth, [nombre_imagen, extension]);
+
+% Leo la imagen ground truth desde su ruta completa.
+img_ground_truth = imread(ruta_img_ground_truth);
+
 % Proceso la imagen para obtener una versión de tres canales.
 imagen_tres_canales = ImagenTresCanales(imagen);
 
@@ -122,13 +130,16 @@ while not(opcion_correcta)
             % Aplico K-Means tanto a la imagen original como a la invariante.
             [imagen_original_KMeans, centers_original] = segmentar_imagen_KMeans(imagen_tres_canales, numClusters);
             [imagen_invariante_KMeans, centers_invariante] = segmentar_imagen_KMeans(imagen_invariante_tres, numClusters);
+
+            porcentaje_original_KMeans = calcular_coincidencia(imagen_original_KMeans, img_ground_truth);
+            porcentaje_invariante_KMeans = calcular_coincidencia(imagen_invariante_KMeans, img_ground_truth);
             
             % Muestro las imágenes (original e invariante) junto con sus versiones segmentadas.
             figure()
             subplot(2,2,1); imshow(imagen_tres_canales); title('Imagen original');
             subplot(2,2,2); imshow(imagen_resultado); title('Imagen invariante');
-            subplot(2,2,3); imshow(imagen_original_KMeans); title('Original K-Means');
-            subplot(2,2,4); imshow(imagen_invariante_KMeans); title('Invariante K-Means');
+            subplot(2,2,3); imshow(imagen_original_KMeans); title(['Original K-Means ' num2str(porcentaje_original_KMeans) '%']);
+            subplot(2,2,4); imshow(imagen_invariante_KMeans); title(['Invariante K-Means ' num2str(porcentaje_invariante_KMeans) '%']);
             waitforbuttonpress;
             close();
         case 2
@@ -140,12 +151,15 @@ while not(opcion_correcta)
             [imagen_original_CMeans, centers_original] = segmentar_imagen_fuzzy_CMeans(imagen_tres_canales, numClusters);
             [imagen_invariante_CMeans, centers_invariante] = segmentar_imagen_fuzzy_CMeans(imagen_invariante_tres, numClusters);
             
+            porcentaje_original_CMeans = calcular_coincidencia(imagen_original_CMeans, img_ground_truth);
+            porcentaje_invariante_CMeans = calcular_coincidencia(imagen_invariante_CMeans, img_ground_truth);
+
             % Muestro las imágenes (original e invariante) junto con sus versiones segmentadas.
             figure()
             subplot(2,2,1); imshow(imagen_tres_canales); title('Imagen original');
             subplot(2,2,2); imshow(imagen_resultado); title('Imagen invariante');
-            subplot(2,2,3); imshow(imagen_original_CMeans); title('Original C-Means');
-            subplot(2,2,4); imshow(imagen_invariante_CMeans); title('Invariante C-Means');
+            subplot(2,2,3); imshow(imagen_original_CMeans); title(['Original C-Means ' num2str(porcentaje_original_CMeans) '%']);
+            subplot(2,2,4); imshow(imagen_invariante_CMeans); title(['Invariante C-Means ' num2str(porcentaje_invariante_CMeans) '%']);
             waitforbuttonpress;
             close();
         case 3
@@ -157,12 +171,15 @@ while not(opcion_correcta)
             [imagen_original_GMM, centers_original] = segmentar_imagen_GMM(imagen_tres_canales, numClusters);
             [imagen_invariante_GMM, centers_invariante] = segmentar_imagen_GMM(imagen_invariante_tres, numClusters);
             
+            porcentaje_original_GMM = calcular_coincidencia(imagen_original_GMM, img_ground_truth);
+            porcentaje_invariante_GMM = calcular_coincidencia(imagen_invariante_GMM, img_ground_truth);
+
             % Muestro las imágenes (original e invariante) junto con sus versiones segmentadas.
             figure()
             subplot(2,2,1); imshow(imagen_tres_canales); title('Imagen original');
             subplot(2,2,2); imshow(imagen_resultado); title('Imagen invariante');
-            subplot(2,2,3); imshow(imagen_original_GMM); title('Original GMM');
-            subplot(2,2,4); imshow(imagen_invariante_GMM); title('Invariante GMM');
+            subplot(2,2,3); imshow(imagen_original_GMM); title(['Original GMM ' num2str(porcentaje_original_GMM) '%']);
+            subplot(2,2,4); imshow(imagen_invariante_GMM); title(['Invariante GMM ' num2str(porcentaje_invariante_GMM) '%']);
             waitforbuttonpress;
             close();
         otherwise
