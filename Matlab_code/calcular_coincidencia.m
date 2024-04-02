@@ -1,8 +1,8 @@
 function porcentaje_coincidencia = calcular_coincidencia(img1, img2)
-    % Convierto la primera imagen a blanco y negro, incluyendo la detección de bordes.
+    % Convierto las imagenes a blanco y negro, teniedndo en cuenta que el 
+    % color negro va a asignarse a la capa mas predominante en los bordes.
     img1_bnw = convertir_a_blanco_negro_con_bordes(img1);
-    % Convierto la segunda imagen directamente a escala de grises.
-    img2_bnw = rgb2gray(img2);
+    img2_bnw = convertir_a_blanco_negro_con_bordes(img2);
     
     % Me aseguro de que ambas imágenes tengan el mismo tamaño para poder compararlas.
     if all(size(img1_bnw) == size(img2_bnw))

@@ -14,5 +14,6 @@ function img_bnw = convertir_a_blanco_negro_con_bordes(img)
     
     % Convierto la imagen a blanco y negro usando el umbral determinado.
     % Los píxeles por encima del umbral se vuelven blancos, los demás negros.
-    img_bnw = img > umbral;
+    img_bnw = ones(size(img));
+    img_bnw(img == umbral) = 0;
 end
