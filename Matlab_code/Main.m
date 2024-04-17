@@ -158,7 +158,7 @@ disp('Selecciona una técnica de agrupamiento:');
 disp('1. K-Means');
 disp('2. Fuzzy C-Means');
 disp('3. GMM');
-disp('4. Exit');
+disp('4. Comparación');
 
 % Inicio un bucle para asegurar que se selecciona una opción válida.
 opcion_correcta = false;
@@ -172,6 +172,9 @@ while not(opcion_correcta)
             tipo_agrup = 'C-Means';
         case 3
             tipo_agrup = 'GMM';
+        case 4
+            comparacion_agrupamientos(imagen_tres_canales, imagen_resultado, img_ground_truth, nombre_imagen, tipo);
+            error('Fin de la ejecución')
         otherwise
             % Informo al usuario que la opción seleccionada no es válida y repite el bucle.
             disp('Opción no válida');
