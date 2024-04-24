@@ -1,10 +1,13 @@
 %% TFG Invariantes de iluminación
 %% Jonás Martínez Sanllorente
 
+% Añado las finciones
+addpath('functions');
+
 % Elijo los directorios de origen y destino para las imágenes.
-directorio_origen = '../Imagenes\Piezas\Camara-NikonCoolpixL830/';
-directorio_destino = '../Imagenes_resultado';
-directorio_ground_truth = '../Imagenes_ground_truth\Piezas\Camara-NikonCoolpixL830/';
+directorio_origen = '../data/Imagenes\Piezas\Camara-NikonCoolpixL830/';
+directorio_destino = '../results/Imagenes_resultado';
+directorio_ground_truth = '../data/Imagenes_ground_truth\Piezas\Camara-NikonCoolpixL830/';
 
 % Abro un cuadro de diálogo para seleccionar una imagen.
 [imagen_seleccionada, ruta] = uigetfile(fullfile(directorio_origen, '*.*'), 'Selecciona una imagen');
