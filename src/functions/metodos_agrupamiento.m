@@ -15,6 +15,19 @@ function [imagen_final, porcentaje] = metodos_agrupamiento(opcion, imagen, img_g
             [imagen_final, ~] = segmentar_imagen_GMM(imagen, numClusters);
             % Determino cómo de acertada fue la segmentación comparando con el ground truth.
             porcentaje = calcular_coincidencia(imagen_final, img_ground_truth);
+        case 4
+            % Uso HMRF-EM-image de Quan Wang
+            Y = rgb2gray(imagen);
+            Z = edge(Y,'canny',0.75);
+            Y = double(Y);
+            Y = gaussianBlur(Y,3);
+            EM_iter=10; % max num of iterations
+            MAP_iter=10; % max num of iterations
+            [X, mu, sigma] = image_kmeans(Y,numClusters);
+            [X, mu, sigma] = HMRF_EM(X,Y,Z,mu,sigma,numClusters,EM_iter,MAP_iter);
+            imagen_final=(uint8(X*120));
+            % Determino cómo de acertada fue la segmentación comparando con el ground truth.
+            porcentaje = calcular_coincidencia(imagen_final, img_ground_truth);
         otherwise
             % Si la opción no es reconocida, aviso al usuario.
             disp('Opción no válida');

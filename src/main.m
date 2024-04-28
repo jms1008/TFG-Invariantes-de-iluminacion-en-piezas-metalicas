@@ -5,9 +5,9 @@
 addpath('functions');
 
 % Elijo los directorios de origen y destino para las imágenes.
-directorio_origen = '../data/Imagenes\Piezas\Camara-NikonCoolpixL830/';
-directorio_destino = '../results/Imagenes_resultado';
-directorio_ground_truth = '../data/Imagenes_ground_truth\Piezas\Camara-NikonCoolpixL830/';
+directorio_origen = '../data\Imagenes\Piezas\Camara-NikonCoolpixL830';
+directorio_destino = '../results';
+directorio_ground_truth = '../data\Imagenes_ground_truth\Piezas\Camara-NikonCoolpixL830';
 
 % Abro un cuadro de diálogo para seleccionar una imagen.
 [imagen_seleccionada, ruta] = uigetfile(fullfile(directorio_origen, '*.*'), 'Selecciona una imagen');
@@ -161,7 +161,8 @@ disp('Selecciona una técnica de agrupamiento:');
 disp('1. K-Means');
 disp('2. Fuzzy C-Means');
 disp('3. GMM');
-disp('4. Comparación');
+disp('4. HMRF_EM');
+disp('5. Comparación');
 
 % Inicio un bucle para asegurar que se selecciona una opción válida.
 opcion_correcta = false;
@@ -176,6 +177,8 @@ while not(opcion_correcta)
         case 3
             tipo_agrup = 'GMM';
         case 4
+            tipo_agrup = 'HMRF_EM';
+        case 5
             comparacion_agrupamientos(imagen_tres_canales, imagen_resultado, img_ground_truth, nombre_imagen, tipo);
             error('Fin de la ejecución')
         otherwise

@@ -101,7 +101,7 @@ function [] = comparacion_metodos(imagen_tres_canales, img_ground_truth, nombre_
     close();
 
     % Guardo las imagenes invariantes
-    directorio_destino = '../Imagenes_resultado/Comparacion';
+    directorio_destino = '../results/Comparacion';
     imwrite(imagen_tres_canales, fullfile(directorio_destino, [nombre_imagen '_Original.jpg']));
     imwrite(imagen_resultado_PCA, fullfile(directorio_destino, [nombre_imagen '_PCA.jpg']));
     imwrite(imagen_resultado_Retinex_s_s, fullfile(directorio_destino, [nombre_imagen '_Retinex_s_s.jpg']));
