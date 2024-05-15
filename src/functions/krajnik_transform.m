@@ -1,19 +1,18 @@
 function I_Krajnik = krajnik_transform(RGB, theta)
-    % Me aseguro de que la imagen RGB esté en formato double para los cálculos.
+    % Separación de la imagen RGB por canales en double
     R = double(RGB(:,:,1));
     G = double(RGB(:,:,2));
     B = double(RGB(:,:,3));
-
-    % Calculo la cromaticidad logarítmica añadiendo 1 para evitar el logaritmo de cero.
-    logR = log(R + 1); % Agrego 1 para evitar log(0)
+    
+    % Cálculo la cromaticidad logarítmica mas 1 para evitar log(0)
+    logR = log(R + 1);
     logG = log(G + 1);
     logB = log(B + 1);
-
-    % Simplifico el proceso: utilizo directamente logR, logG, y logB como componentes.
-    % Esto sirve como un marcador de posición para el verdadero proceso de proyección que usaría U.
-    psi1 = logR - logG;
-    psi2 = logG - logB;
-
-    % Calculo I_Krajnik usando la fórmula dada con el ángulo theta.
-    I_Krajnik = (psi1 * cos(theta) + psi2 * sin(theta));
+    
+    % Cálculo de x_r y x_g
+    x_r = logR - logG;
+    x_g = logG - logB;
+    
+    % Transformación invariante
+    I_Krajnik = x_r * cos(theta) + x_g * sin(theta);
 end
