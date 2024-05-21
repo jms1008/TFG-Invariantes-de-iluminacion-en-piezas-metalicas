@@ -352,12 +352,12 @@
   }
 \makeatother
 
-\newcommand{\nombre}{Nombre del alumno} %%% cambio de comando
+\newcommand{\nombre}{Jonás Martínez Sanllorente} %%% cambio de comando
 
 % Datos de portada
-\title{título del TFG}
+\title{Transformaciones invariantes a la iluminación para mejora de la segmentación en imágenes. Aplicación a piezas metálicas.}
 \author{\nombre}
-\tutor{nombre tutor}
+\tutor{Dr. Carlos Lopez Nozal \\y Dr. Pedro Latorre Carmona}
 \date{\today}
 
 \begin{document}
@@ -374,11 +374,11 @@
 
 \noindent\includegraphics[width=\textwidth]{cabecera}\vspace{1cm}
 
-\noindent D. nombre tutor, profesor del departamento de nombre departamento, área de nombre área.
+\noindent D. Carlos Lopez Nozal y D. Pedro Latorre Carmona, profesores del departamento de Ingeniería Informática, área de Lenguajes y Sistemas Informáticos.
 
 \noindent Expone:
 
-\noindent Que el alumno D. \nombre, con DNI dni, ha realizado el Trabajo final de Grado en Ingeniería Informática titulado título de TFG. 
+\noindent Que el alumno D. \nombre, con DNI 71363040C, ha realizado el Trabajo final de Grado en Ingeniería Informática titulado ``Aplicación de transformaciones invariantes a la iluminación para mejora de la segmentación en imágenes. Aplicación a piezas metálicas''. 
 
 \noindent Y que dicho trabajo ha sido realizado por el alumno bajo la dirección del que suscribe, en virtud de lo cual se autoriza su presentación y defensa.
 
@@ -392,14 +392,14 @@ En Burgos, {\large \today}
 \begin{minipage}{0.45\textwidth}
 \begin{flushleft} %\large
 Vº. Bº. del Tutor:\\[2cm]
-D. nombre tutor
+D. Carlos Lopez Nozal
 \end{flushleft}
 \end{minipage}
 \hfill
 \begin{minipage}{0.45\textwidth}
 \begin{flushleft} %\large
 Vº. Bº. del co-tutor:\\[2cm]
-D. nombre co-tutor
+D. Pedro Latorre Carmona
 \end{flushleft}
 \end{minipage}
 \hfill
@@ -422,12 +422,20 @@ D. nombre co-tutor
 % Abstract en castellano
 \renewcommand*\abstractname{Resumen}
 \begin{abstract}
-En este primer apartado se hace una \textbf{breve} presentación del tema que se aborda en el proyecto.
+Al identificar piezas metálicas en imágenes, el resultado final se ve significativamente influenciado por las condiciones de iluminación en las que se tomó la fotografía. Dado que el metal es un material que refleja la luz, se producen tanto sombras como reflexiones las cuales son ocasionadas por la interacción de la luz con las superficies irregulares y los bordes del objeto \cite{ReflexiónLuzWikipedia}.
+
+Esto en gran parte de los casos se traduce en que tras aplicar métodos de segmentación se produzcan identificaciones erróneas de las piezas debido a que obtener imágenes en condiciones idóneas donde no se encuentren ni reflexiones ni sombras es muy complicado y tratar de replicar un escenario del estilo puede suponer un gran costo.
+
+Es por esto que mediante la aplicación de métodos de preprocesado de las imágenes que se toman de las piezas, se puede obtener un resultado que tenga dichas reflexiones, sombras y demás defectos de imagen mitigados por lo cual al segmentar posteriormente la imagen, el resultado será de una calidad mayor.
+
+Este trabajo propone la demostración de un mejor resultado a la hora de segmentar tras haber aplicado métodos invariantes sobre la imagen inicial.
+
+Además, se creara una aplicación / aplicación web para que el usuario sin tener que instalar nada pueda aplicar los distintos algoritmos de una forma intuitiva, rápida y cómoda.
 \end{abstract}
 
 \renewcommand*\abstractname{Descriptores}
 \begin{abstract}
-Palabras separadas por comas que identifiquen el contenido del proyecto Ej: servidor web, buscador de vuelos, android \ldots
+Piezas metálicas, reflexión metálica, identificación de piezas, métodos invariantes, segmentación de imágenes, aplicación web
 \end{abstract}
 
 \clearpage
@@ -435,12 +443,20 @@ Palabras separadas por comas que identifiquen el contenido del proyecto Ej: serv
 % Abstract en inglés
 \renewcommand*\abstractname{Abstract}
 \begin{abstract}
-A \textbf{brief} presentation of the topic addressed in the project.
+Reflections on metal parts and the shadows that can be caused are a very common problem when it comes to correctly identifying the limits of a part.
+
+In most cases, this means that after applying segmentation methods, erroneous identification of the parts is produced due to the fact that obtaining images in ideal conditions where neither reflections nor shadows are found is very complicated and trying to replicate a scenario of this kind can be very costly.
+
+This is why by applying pre-processing methods to the images taken of the pieces, it is possible to obtain a result that has these reflections, shadows and other image defects mitigated so that when the image is subsequently segmented, the result will be of a higher quality.
+
+This work proposes the demonstration of a better result when segmenting after having applied invariant methods to the initial image.
+
+In addition, an application / web application will be created so that the user, without having to install anything, can apply the different algorithms in an intuitive, fast and comfortable way.
 \end{abstract}
 
 \renewcommand*\abstractname{Keywords}
 \begin{abstract}
-keywords separated by commas.
+Metallic parts, metallic reflection, part identification, invariant methods, image segmentation, web application
 \end{abstract}
 
 \clearpage
