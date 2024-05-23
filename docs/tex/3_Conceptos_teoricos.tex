@@ -8,76 +8,563 @@
 
 \subsection{Eliminación del canal alpha}\label{eliminación-del-canal-alpha}
 
-% Texto
+El canal alpha, que representa la transparencia de los píxeles, no es relevante ya que solo nos interesa la información de color. Al eliminar este canal reducimos la complejidad de los datos, en nuestro caso imágenes para centrarnos únicamente en los tres canales RGB (rojo, verde y azul)
+
+Para eliminar el canal alpha de una imagen con componentes de color $R$, $G$, $B$ y $\alpha$, tan solo hay que guardar en una nueva imagen lo siguiente:
+
+$$\text{imagen\_sin\_alpha}(i, j) = 
+\begin{bmatrix} R(i, j) \\ G(i, j) \\ B(i, j)\end{bmatrix}$$
+
+donde:
+
+\begin{itemize}
+  \item $R(i, j)$ es el valor del canal rojo en el píxel $(i, j)$
+  \item $G(i, j)$ es el valor del canal verde en el píxel $(i, j)$
+  \item $B(i, j)$ es el valor del canal azul en el píxel $(i, j)$
+\end{itemize}
+
+Eliminamos el canal alpha $\alpha(i, j)$, que representa la transparencia, ya que no es necesario en este caso.
 
 \section{Métodos de transformación invariante}\label{metodos-de-transformación-invariante}
 
-% Texto
+Los métodos de transformación invariante son distintos algoritmos utilizados para mitigar o incluso eliminar las variaciones en la iluminación en una imagen. Aunque comúnmente suelen ser usados para obtener resultados similares en un mismo escenario pero variando la cantidad de luz ambiental o la cantidad de focos de luz, también son muy útiles para mitigar los efectos de las sombras y reflejos que comúnmente se ocasionan al fotografiar piezas metálicas. 
 
-\subsection{Alvarez}\label{alvarez}
-\cite{alvarez2011}
-% Texto
+A continuación hay cinco métodos distintos de transformación invariante para poder comparar los resultados.
+
+\subsection{Álvarez}\label{alvarez}
+La transformación invariante de Álvarez y López \cite{alvarez2011} es un método para obtener una imagen que sea robusta a variaciones de iluminación, como sombras y cambios en la intensidad de luz. Esto se logra mediante la conversión de los valores de los píxeles al espacio logarítmico-cromático y la proyección sobre una dirección específica.
+
+El funcionamiento básico de la transformación invariante de Álvarez y López es el siguiente:
+
+\subsubsection{1. Conversión al espacio logarítmico-cromático}
+
+Cada píxel de la imagen $RGB$ se convierte al espacio logarítmico-cromático utilizando la siguiente fórmula:
+
+$$r=\log \frac{R}{G},~~b=\log \frac{B}{G}$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $R$, $G$, y $B$ son los valores de los canales de color rojo, verde y azul, respectivamente. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{2. Proyección en la dirección Invariante}
+
+Se determina el ángulo invariante $\theta$ minimizando la entropía de la imagen proyectada. El valor de $\theta$ se obtiene resolviendo el siguiente problema de optimización:
+
+$$E_{\alpha } =-\sum_{i=1}^L H_{\alpha } (i)\log H_{\alpha } (i)$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $H_{\alpha }$ es el histograma de proyección en una dirección de pendiente $\alpha$. \end{flushleft}}
+\end{itemize}
+
+Una vez obtenido el ángulo invariante, se proyectan los valores cromáticos en la dirección $\theta$ para obtener la imagen invariante:
+
+$$I=r\cos \theta +b\sin \theta$$
+
+En la imagen \ref{fig:img_ori_alv} se puede ver el resultado de aplicar este método invariante
+\imagen{img_ori_alv}{Resultado de aplicar Álvarez}{1}
 
 \subsection{Maddern}\label{maddern}
-\cite{maddern2014}
-% Texto
 
-\subsection{Krajnk}\label{krajnk}
-\cite{krajník2015}
-% Texto
+La transformación invariante de Maddern \cite{maddern2014} es un método que genera imágenes invariantes a cambios en la iluminación, reduciendo la influencia de sombras y variaciones en la intensidad de la luz. Se basa en un modelo de espectro del sensor de la cámara y la luz incidente.
 
-\subsection{Upcrof}\label{upcrof}
-\cite{upcroft2014}
-% Texto
+El funcionamiento básico de la transformación invariante de Maddern es el siguiente:
 
-\subsection{MaddLightNav}\label{madd-light-nav}
-[A modificar]
-% Revisando las fuentes me he dado cuenta de que apunta al mismo paper que el de Maddern unicamente modificando en vez de hacer todo en dos pasos, en uno. 
-% En los proximos dias buscare otro algoritmo para remplazar a este
-% Texto
+\subsubsection{1. Relación entre canales de color}
+
+Dada una cámara con sensibilidad espectral $F(\lambda )$, el modelo de respuesta de un canal específico $R$ a la luz de una longitud de onda particular $\lambda$ se define como:
+
+$$R^{x,E} =a^x \cdot n^x \cdot I^x \int S^x (\lambda )E(\lambda )F(\lambda )d\lambda$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $a^x$ y $n^x$: vectores que representan la dirección de la luz y la normal de la superficie. \end{flushleft}}
+   \item{\begin{flushleft} $I^x$: intensidad de la luz en el punto $x$. \end{flushleft}}
+   \item{\begin{flushleft} $S^x (\lambda )$: reflectancia espectral de la superficie. \end{flushleft}}
+   \item{\begin{flushleft} $E(\lambda )$: espectro de la fuente de luz. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{2. Espacio logarítmico-cromático}
+
+Se transforman las relaciones de los canales de color al espacio logarítmico-cromático tomando el logaritmo de la respuesta espectral:
+
+$$\log (R^{x,E} )=\log (G^x I^x )+\log S^x (\lambda_i )+\log E^x (\lambda_i )$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $G^x =a^x \cdot n^x$ representa la geometría entre la luz y la escena. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{3. Proyección invariante}
+
+Se proyectan las respuestas espectrales en una dirección específica que elimina el componente de iluminación. La proyección final en la dirección $\alpha$ se realiza utilizando:
+
+$$I=\log (R_2 )-\alpha \log (R_1 )-(1-\alpha )\log (R_3 )$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $R_1 ,R_2 ,R_3$: respuestas espectrales de tres canales de color (e.g. $R,G,B$). \end{flushleft}}
+   \item{\begin{flushleft} $\alpha$: parámetro determinado por las sensibilidades espectrales de los canales. \end{flushleft}}
+\end{itemize}
+
+$$I=\log (R_2 )-\alpha \log (R_1 )-(1-\alpha )\log (R_3 )$$
+
+\subsubsection{4. Cálculo del parámetro $\alpha$}
+
+El parámetro $\alpha$ se calcula para garantizar que la proyección sea independiente de la temperatura de color $T$ de la luz:
+
+$$\frac{1}{\lambda_2 }=\frac{\alpha }{\lambda_1 }+\frac{1-\alpha }{\lambda_3 }$$
+
+\subsubsection{5. Transformación invariante de Maddern}
+
+Finalmente, se aplica la siguiente transformación para obtener una imagen invariante:
+
+$$I_{Maddern} =0.5+\log (G)-\alpha \log (B)-(1-\alpha )\log (R)$$
+
+En la imagen \ref{fig:img_ori_mad} se puede ver el resultado de aplicar este método invariante
+\imagen{img_ori_mad}{Resultado de aplicar Maddern}{1}
+
+\subsection{Krajník}\label{krajník}
+
+La transformación invariante de Krajník \cite{krajník2015} es un método para obtener imágenes invariantes a cambios de iluminación. Se basa en el uso de imágenes intrínsecas, que separan las propiedades intrínsecas de la superficie (reflectancia) de las propiedades extrínsecas (iluminación). Este enfoque permite reducir la influencia de sombras y variaciones de iluminación en la imagen.
+
+El funcionamiento básico de la transformación invariante de Krajník es el siguiente:
+
+\subsubsection{1. Modelo Espectral $RGB$}
+
+La respuesta espectral de un canal específico $\rho_k$ (con $k=\lbrace r,g,b\rbrace$) se define como:
+
+$$\rho_k =\sigma \int E(\lambda )S(\lambda )Q_k (\lambda )d\lambda$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $\sigma$: factor constante que denota el sombreado de Lambert. \end{flushleft}}
+   \item{\begin{flushleft} $E(\lambda )$: iluminación incidente en el elemento de superficie percibida. \end{flushleft}}
+   \item{\begin{flushleft} $S(\lambda )$: reflectancia espectral de la superficie. \end{flushleft}}
+   \item{\begin{flushleft} $Q(\lambda )$: sensibilidad espectral del canal $k$. \end{flushleft}}
+   \item{\begin{flushleft} $\lambda$: longitud de onda. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{2. Transformación Logarítmica}
+
+Se transforma el modelo a un espacio logarítmico para hacer que sea invariante a la iluminación. Esto se realiza calculando el logaritmo de la respuesta espectral relativa a un canal de referencia (e.g., azul):
+
+$$\chi_{k,g} =\log \frac{\rho_{r,g} }{\rho_b }$$
+
+\subsubsection{3. Proyección a un Espacio Invariante}
+
+Se proyecta el espacio logarítmico-cromático en una dirección $\theta$ para obtener la imagen invariante.
+
+$$I_{\theta } =\chi_r \cos \theta +\chi_g \sin \theta$$
+
+\subsubsection{4. Minimización de la Entropía}
+
+Se determina el ángulo $\theta$ que minimiza la entropía de la imagen proyectada, para que sea lo más invariante posible a la iluminación.
+
+$$E_{\theta } =-\sum_i H_{\theta } (i)\log H_{\theta } (i)$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $H_{\theta } (i)$: histograma proyectado en una dirección $\theta$. \end{flushleft}}
+\end{itemize}
+
+En la imagen \ref{fig:img_ori_kra} se puede ver el resultado de aplicar este método invariante
+\imagen{img_ori_kra}{Resultado de aplicar Krajník}{1}
+
+\subsection{Upcroft}\label{upcrof}
+
+La transformación invariante de Upcroft \cite{upcroft2014} es un método que genera imágenes robustas a variaciones en la iluminación, incluyendo sombras y cambios de intensidad. El método se basa en la relación logarítmica entre los canales de color y se utiliza para mejorar la clasificación de escenas urbanas en entornos cambiantes.
+
+El funcionamiento básico de la transformación invariante de Upcroft es el siguiente:
+
+\subsubsection{1. Modelo espectral $RGB$}
+
+Aunque no aparece explícitamente en el artículo, se menciona que el método de transformación invariante se basa en la relación logarítmica entre los canales $RGB$ y hace referencia a trabajos anteriores como los de Ratnasingam y Collins. La respuesta espectral de un canal específico $\rho_k$ (con $k=\{r,g,b\}$) se define como:
+
+$$\rho_k =\sigma \int E(\lambda )S(\lambda )Q_k (\lambda )d\lambda$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $\sigma$: factor constante que denota el sombreado de Lambert. \end{flushleft}}
+   \item{\begin{flushleft} $E(\lambda )$: iluminación incidente en el elemento de superficie percibida. \end{flushleft}}
+   \item{\begin{flushleft} $S(\lambda )$: reflectancia espectral de la superficie. \end{flushleft}}
+   \item{\begin{flushleft} $Q(\lambda )$: sensibilidad espectral del canal $k$. \end{flushleft}}
+   \item{\begin{flushleft} $\lambda$: longitud de onda. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{2. Transformación logarítmica}
+
+La transformación invariante utiliza la relación logarítmica entre los canales $RGB$ para minimizar la variabilidad causada por la geometría, la intensidad y el espectro de la fuente de luz.
+
+$$F=\log (G)-\alpha \log (B)-(1-\alpha )\log (R)$$
+
+\subsubsection{3. Cálculo del parámetro $\alpha$}
+
+El parámetro $\alpha$ se calcula para minimizar la variabilidad de la fuente de luz. Esto se logra utilizando las longitudes de onda pico de los sensores:
+
+$$\frac{1}{\lambda_G }=\frac{\alpha }{\lambda_B }+\frac{1-\alpha }{\lambda_R }$$
+
+En la imagen \ref{fig:img_ori_upc} se puede ver el resultado de aplicar este método invariante
+\imagen{img_ori_upc}{Resultado de aplicar Upcroft}{1}
 
 \subsection{PCA}\label{pca}
-\cite{pca2017}
-% Texto
+El método basado en PCA (Análisis de Componentes Principales) \cite{pca2017} propuesto por Kim genera un espacio invariante a la iluminación que permite reducir el efecto de sombras y variaciones en la intensidad de la luz. El algoritmo busca la proyección óptima en el espacio logarítmico-cromático para minimizar la variabilidad causada por la iluminación.
 
-\section{Métodos de segmentación de imágenes}\label{metodos-de-segmentacion-de-imagenes}
+El funcionamiento básico de la transformación invariante PCA es el siguiente:
 
-% Texto
+\subsubsection{1. Modelo espectral $RGB$}
+
+La respuesta espectral de un canal específico $\rho_k$ (con $k=\{r,g,b\}$) se define como:
+
+$$\rho_k =\sigma \int E(\lambda )S(\lambda )Q_k (\lambda )d\lambda$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $\sigma$: factor constante que denota el sombreado de Lambert. \end{flushleft}}
+   \item{\begin{flushleft} $E(\lambda )$: iluminación incidente en el elemento de superficie percibida. \end{flushleft}}
+   \item{\begin{flushleft} $S(\lambda )$: reflectancia espectral de la superficie. \end{flushleft}}
+   \item{\begin{flushleft} $Q(\lambda )$: sensibilidad espectral del canal $k$. \end{flushleft}}
+   \item{\begin{flushleft} $\lambda$: longitud de onda. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{2. Transformación logarítmica}
+
+El algoritmo convierte el modelo a un espacio logarítmico para minimizar el efecto de la iluminación. Se calculan las siguientes relaciones logarítmicas:
+
+$$r=\log \frac{R}{(RGB)^{1/3} },~~b=\log \frac{B}{(RGB)^{1/3} }$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $(RGB)^{1/3}$: media geométrica de los tres canales. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{3. Proyección basada en PCA}
+
+Se proyectan los valores en un espacio logarítmico-cromático, donde se encuentra la dirección óptima utilizando PCA:
+
+$$I_{\theta } =r\cos \theta +b\sin \theta$$
+
+Esto se logra aplicando el Análisis de Componentes Principales a los valores calculados.
+
+En la imagen \ref{fig:img_ori_pca} se puede ver el resultado de aplicar este método invariante
+\imagen{img_ori_pca}{Resultado de aplicar PCA}{1}
+
+\section{Métodos de agrupamiento de imágenes}\label{metodos-de-agrupamiento-de-imagenes}
+
+Los métodos de agrupamiento son técnicas de aprendizaje no supervisado que se utilizan para dividir un conjunto de datos en grupos o clústeres, de manera que los datos en el mismo clúster tengan una mayor similitud entre sí que con los datos de otros clústeres. Estos métodos métodos los utilizaremos para separar la pieza metálica del fondo y ver realmente si una transformación invariante previa supone algún cambio significativo.
 
 \subsection{K-Means}\label{k-means}
-\cite{MATLAB:2023bKmeans}
-% Texto
+
+K-Means \cite{MATLAB:2023bKmeans} es un algoritmo de clustering (agrupamiento) utilizado en análisis de datos y aprendizaje automático para dividir un conjunto de datos en un número específico de grupos (o clusters). El objetivo del algoritmo es asignar cada valor de los datos a un grupo de tal manera que la suma de las distancias cuadradas entre los valores de los datos y el centroide de su grupo (el punto medio de todos los valores en ese grupo) sea minimizada. Cada uno de estos grupos es definido por su centroide, que inicialmente es seleccionado al azar y se ajusta iterativamente basándose en los datos asignados al grupo.
+
+Es especialmente útil en aplicaciones de procesamiento de imágenes para la segmentación de imágenes, donde se pueden identificar diferentes regiones basadas en las características de los píxeles. Este método es popular debido a su simplicidad y eficiencia.
+
+Destaca en la segmentación de imágenes, permitiendo dividir la imagen en partes que representan áreas de interés diferentes, facilitando el análisis o procesamiento posterior de esas áreas específicas.
+
+El funcionamiento básico de K-Means es el siguiente:
+
+\subsubsection{1. Inicialización}
+
+Se seleccionan aleatoriamente $k$ centroides.
+
+\subsubsection{2. Asignación}
+
+Cada pixel en el conjunto de datos $x_i$ es asignado al centroide más cercano utilizando la siguiente fórmula
+
+$$C_i =\underset{j\in \lbrace 1,\ldots,k\rbrace }{\arg \min } \|x_i -\mu_j {\|}^2$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $C_i$ es el cluster asignado al punto $x_i$, \end{flushleft}}
+   \item{\begin{flushleft} $x_i$ es el pixel en la imagen, \end{flushleft}}
+   \item{\begin{flushleft} $\mu_j$ es el centroide del cluster $j$, \end{flushleft}}
+   \item{\begin{flushleft} $k$ es el número de clusters. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{3. Actualización de Centroides}
+
+Los centroides se recalculan como el promedio de los valores de todos los píxeles asignados a su cluster.
+
+$$\mu_j =\frac{1}{|C_j |}\sum_{x_i \in C_j } x_i$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $\mu_j$ es el nuevo centroide del cluster $j$, \end{flushleft}}
+   \item{\begin{flushleft} $C_j$ es el conjunto de píxeles asignados al cluster $j$. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{4. Repetición}
+
+Los pasos 2 y 3 se repiten hasta que los centroides no cambian significativamente entre iteraciones, lo que indica que se ha alcanzado la convergencia. Siendo el umbral de convergencia por defecto $\epsilon =1e-4$.
+
+En la imagen \ref{fig:img_ori_kme} se puede ver el resultado de aplicar este método de agrupamiento
+\imagen{img_ori_kme}{Resultado de aplicar K-Means}{1}
 
 \subsection{Fuzzy C-Means}\label{fuzzy-c-means}
-\cite{MATLAB:2023bFuzzy}
-% Texto
+Fuzzy C-Means (FCM) \cite{MATLAB:2023bFuzzy} es un algoritmo de clustering basado en la lógica difusa que permite a un punto de datos pertenecer a más de un grupo (o cluster) con diferentes grados de pertenencia. A diferencia de K-Means, donde cada punto pertenece exclusivamente a un solo cluster, en FCM cada punto tiene un valor de pertenencia para cada cluster, lo que indica el grado con el que un punto pertenece a un cluster específico.
 
-\subsection{Gaussian Mixtures}\label{gaussian-mixtures}
-\cite{MATLAB:2023bGMM}
-% Texto
+FCM es especialmente útil en aplicaciones donde los límites entre las clases no están claramente definidos, lo que ocurre comúnmente en problemas de segmentación de imágenes. De esta forma, al segmentar una imagen que tenga regiones superpuestas con diferentes grados de pertenencia dará un resultado mejor, lo que es útil para segmentar áreas con transiciones suaves.
+
+El funcionamiento básico de Fuzzy C-Means es el siguiente:
+
+\subsubsection{1. Inicialización}
+
+Se establece el número de clusters $c$, el parámetro de difusividad $m$ (usualmente 2), y se inicializa la matriz de pertenencias aleatoriamente, denotando la probabilidad de que cada punto pertenezca a cada cluster.
+
+\subsubsection{2. Cálculo de centroides}
+
+Los centroides se calculan utilizando los valores de pertenencia. El centroide de cada cluster se calcula como: 
+
+$$v_j =\frac{\sum_{i=1}^n (u_{ij} )^m \cdot x_i }{\sum_{i=1}^n (u_{ij} )^m }$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $u_j$ es el centroide del cluster $j$, \end{flushleft}}
+   \item{\begin{flushleft} $u_{ij}$ es el valor de pertenencia del pixel $x_i$ al cluster $j$, \end{flushleft}}
+   \item{\begin{flushleft} $m$ es el parámetro de difusividad, \end{flushleft}}
+   \item{\begin{flushleft} $n$ es el número total de píxeles. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{3. Actualización de valores de pertenencia}
+
+Se actualizan los valores de pertenencia para cada pixel en cada cluster utilizando la siguiente fórmula:
+
+$$u_{ij} =\frac{1}{\sum_{k=1}^c {\left(\frac{\|x_i -v_j \|}{\|x_i -v_k \|}\right)}^{\frac{2}{m-1}} }$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $u_{ij}$ es el valor de pertenencia del pixel $x_i$ al cluster $j$, \end{flushleft}}
+   \item{\begin{flushleft} $v_j$ es el centroide del cluster $j$, \end{flushleft}}
+   \item{\begin{flushleft} $m$ es el parámetro de difusividad, \end{flushleft}}
+   \item{\begin{flushleft} $c$ es el número total de clusters. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{4. Repetición}
+
+Se repiten los pasos 2 y 3 hasta que la diferencia entre las actualizaciones de la matriz de pertenencias en iteraciones sucesivas sea menor que un umbral determinado.
+
+Hay que tener en cuenta que el parámetro $m$ controla la difusividad de los clusters. Si $m$=1, FCM se comporta como K-Means, mientras que valores mayores de $m$ generan clusters más difusos.
+
+En la imagen \ref{fig:img_ori_fcm} se puede ver el resultado de aplicar este método de agrupamiento.
+\imagen{img_ori_fcm}{Resultado de aplicar Fuzzy C-Means}{1}
+
+\subsection{Gaussian Mixtures Models}\label{gaussian-mixtures-models}
+Gaussian Mixture Models (GMM) \cite{MATLAB:2023bGMM} es un algoritmo de clustering basado en la idea de que los datos pueden ser modelados como una combinación de múltiples distribuciones gaussianas. Cada cluster se representa como una distribución gaussiana con su media y varianza propias. GMM es una extensión más flexible de K-Means, ya que permite que los clusters tengan diferentes formas y tamaños.
+
+GMM es útil en aplicaciones donde los datos tienen una estructura más compleja que no puede ser modelada adecuadamente por algoritmos como K-Means. Algunas razones para utilizarlo incluyen:
+
+\begin{enumerate}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} Modelado de Datos Complejos: Es capaz de modelar clusters con formas y tamaños arbitrarios. \end{flushleft}}
+   \item{\begin{flushleft} Identificación de Patrones Multimodales: Puede identificar clusters que tienen múltiples modos. \end{flushleft}}
+   \item{\begin{flushleft} Análisis de Datos Probabilístico: Proporciona una probabilidad para cada punto de pertenecer a cada cluster. \end{flushleft}}
+\end{enumerate}
+
+El funcionamiento básico de Gaussian Mixtures Models es el siguiente:
+
+\subsubsection{1. Inicialización}
+
+Se establece el número de componentes gaussianas $k$, y se inicializan aleatoriamente los parámetros de las distribuciones: media ($\mu_k$), covarianza ($\Sigma_k$), y pesos ($\pi_k$).
+
+\subsubsection{2. Cálculo de probabilidades posteriores ($\gamma_i k$)}
+
+Se calcula la probabilidad de que cada pixel $x_i$ pertenezca al cluster $k$ utilizando la regla de Bayes. Esto se conoce como la responsabilidad del cluster $k$ para el pixel $x_i$:
+
+$$\gamma_{ik} =\frac{\pi_k \cdot \mathcal{N}(x_i \mid \mu_k ,\Sigma_k )}{\sum_{j=1}^k \pi_j \cdot \mathcal{N}(x_i \mid \mu_j ,\Sigma_j )}$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} $\mathcal{N}(x_i \mid \mu_k ,\Sigma_k )$ es la función de densidad de probabilidad de una distribución gaussiana con media $\mu_k$ y covarianza $\Sigma_k$. \end{flushleft}}
+\end{itemize}
+
+\subsubsection{3. Reestimación de parámetros}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+    \item{\begin{flushleft} Medias ($\mu_k$):  \end{flushleft}}
+
+    $$\mu_k =\frac{\sum_{i=1}^n \gamma_{ik} \cdot x_i }{\sum_{i=1}^n \gamma_{ik} }$$
+
+    \item{\begin{flushleft} Covarianzas ($\Sigma_k$): \end{flushleft}}
+
+    $$\Sigma_k =\frac{\sum_{i=1}^n \gamma_{ik} \cdot (x_i -\mu_k )(x_i -\mu_k )^{\top } }{\sum_{i=1}^n \gamma_{ik} }$$
+
+    \item{\begin{flushleft} Pesos ($\pi_k$): \end{flushleft}}
+    
+    $$\pi_k =\frac{\sum_{i=1}^n \gamma_{ik} }{n}$$
+\end{itemize}
+
+\subsubsection{4. Repetición}
+
+Se repiten los pasos 2 y 3 hasta que los cambios en los parámetros sean menores a un umbral dado, o se alcance un número máximo de iteraciones.
+
+En la imagen \ref{fig:img_ori_gmm} se puede ver el resultado de aplicar este método de agrupamiento.
+\imagen{img_ori_gmm}{Resultado de aplicar Gaussian Mixtures Models}{1}
 
 \subsection{Información espacial}\label{informacion-espacial}
-\cite{wang2012hmrf}
-% Texto
+
+El modelo Hidden Markov Random Field (HMRF) \cite{wang2012hmrf} es un modelo probabilístico que combina la teoría de campos aleatorios de Markov con modelos ocultos. Se utiliza ampliamente para problemas de visión computacional, como la segmentación de imágenes. El algoritmo HMRF-EM combina el modelo HMRF con el algoritmo Expectation-Maximization (EM) para la segmentación de imágenes.
+
+El modelo HMRF-EM (Hidden Markov Random Field - Expectation Maximization) es útil en segmentación de imágenes porque :
+
+\begin{enumerate}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} Regulariza la segmentación, reduciendo el ruido. \end{flushleft}}
+   \item{\begin{flushleft} Considera relaciones entre píxeles vecinos para segmentar áreas similares. \end{flushleft}}
+   \item{\begin{flushleft} El algoritmo EM ajusta parámetros para mejorar la precisión. \end{flushleft}}
+   \item{\begin{flushleft} La versión Edge-Prior-Preserving mantiene bordes importantes en la imagen. \end{flushleft}}
+\end{enumerate}
+
+El funcionamiento básico del modelo Hidden Markov Random Field es el siguiente:
+
+\subsubsection{1. Inicialización}
+
+Se establece un conjunto inicial de parámetros $\Theta_0$
+
+$$\Theta_0 =[\mu_{initial} ,\sigma_{initial} ];$$
+
+\subsubsection{2. Cálculo de la Distribución de Verosimilitud}
+
+Se calcula la distribución de verosimilitud $P^{(t)} (y_i |x_i ,\theta_{x_i } )$ en la iteración $t$.
+
+$$P^{(t)} (y_i |x_i ,\theta_{x_i } )=G(y_i ;\theta_{x_i } )=\frac{1}{\sqrt{2\pi \sigma_{x_i }^2 }}\exp \left(-\frac{(y_i -\mu_{x_i } )^2 }{2\sigma_{x_i }^2 }\right)$$
+
+\subsubsection{3. Estimación MAP}
+
+Se estima la configuración de etiquetas mediante el criterio de Máxima A Posteriori (MAP):
+
+$$x^{(t)} =\arg \max_{x\in \chi } \left\lbrace P(y|x,\Theta^{(t)} )P(x)\right\rbrace =\arg \min_{x\in \chi } \left\lbrace U(y|x,\Theta^{(t)} )+U(x)\right\rbrace$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+    \item{\begin{flushleft} $U(y|x,\Theta )$ es la energía de verosimilitud: \end{flushleft}}
+
+    $$U(y|x,\Theta )=\sum_i \left\lbrack \frac{(y_i -\mu_{x_i } )^2 }{2\sigma_{x_i }^2 }+\ln \sigma_{x_i } \right\rbrack$$
+
+    \item{\begin{flushleft} $U(x)$ es la energía prior: \end{flushleft}}
+
+    $$U(x)=\sum_{c\in C} V_c (x)$$
+
+    \item{\begin{flushleft} $V_c (x)$ es el potencial de clique, que en este caso se define para un par de píxeles vecinos: \end{flushleft}}
+
+    $$V_c (x_i ,x_j )=\frac{1}{2}(1-I_{x_i ,x_j } )$$
+    
+    donde:
+    
+    \begin{par}
+    $$I_{x_i ,x_j } =\left\lbrace \begin{array}{cc}
+    0 & \textrm{si}\;x_i \not= x_j \\
+    1 & \textrm{si}\;x_i =x_j 
+    \end{array}\right.$$
+    \end{par}
+\end{itemize}
+
+\subsubsection{4. Actualización de Parámetros (M-step)}
+
+Se actualizan los parámetros $\Theta^{(t+1)}$ usando las distribuciones posteriores.
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item{\begin{flushleft} Media ($\mu_l^{(t+1)}$): \end{flushleft}}
+
+    $$\mu_l^{(t+1)} =\frac{\sum_i P^{(t)} (l|y_i )y_i }{\sum_i P^{(t)} (l|y_i )}$$
+
+   \item{\begin{flushleft} Varianza ($\sigma_l^2$): \end{flushleft}}
+
+    $$(\sigma_l^{(t+1)} )^2 =\frac{\sum_i P^{(t)} (l|y_i )(y_i -\mu_l^{(t+1)} )^2 }{\sum_i P^{(t)} (l|y_i )}$$
+
+   \item{\begin{flushleft} Posteriores ($P^{(t)} (l|y_i )$): \end{flushleft}}
+
+    $$P^{(t)} (l|y_i )=\frac{G(y_i ;\theta_l )P^{(t)} (l|x_{N_i }^{(t)} )}{P^{(t)} (y_i )}$$
+\end{itemize}
+
+\subsubsection{5. Repetición}
+
+Se repiten los pasos 2 a 4 hasta que la función de energía $U(y|x,\Theta )+U(x)$ converja o se alcance el número máximo de iteraciones.
+
+En la imagen \ref{fig:img_ori_spa} se puede ver el resultado de aplicar este método de agrupamiento.
+\imagen{img_ori_spa}{Resultado de aplicar Hidden Markov Random Field}{1}
 
 \section{Clasificación de resultados}\label{clasificacion-de-resultados}
 
-% Texto
+La clasificación de los resultados obtenidos es un paso fundamental ya que gracias a ello podemos ver de una forma objetiva si el si aplicar métodos de transformación invariante mejora los resultados obtenidos. Compararemos las imágenes, tanto la original como la invariante con una imagen ``ground truth'' para de esta forma observar numéricamente el acierto de cada una de ellas.
 
 \subsection{Imágenes ground truth}\label{imagenes-ground-truth}
 
-% Texto
+Las imágenes ``ground truth'' son segmentaciones realizadas manualmente mediante programas de edición de imágenes. Al haber sido segmentadas por un ser humano, representan una segmentación casi perfecta, que sirve como ideal al que aspiramos. Digo "casi perfecta" porque puede haber un mínimo error imperceptible a simple vista, pero que puede afectar matemáticamente, impidiendo alcanzar un 100\% de precisión.
 
-\subsection{Forma de clasificar}\label{forma-de-clasificar}
+En la imagen \ref{fig:img_ori_gt} se puede ver el la imagen original y su correspondiente imagen ``ground truth''.
+\imagen{img_ori_gt}{Resultado de crear la imagen ``ground truth''}{1}
 
-% Texto
+\subsection{Porcentaje de acierto}\label{porcentaje-de-acierto}
+
+El porcentaje de acierto nos permite evaluar la precisión de la segmentación realizada al compararla con una imagen en la que manualmente se ha segmentado la pieza del fondo. La fórmula para calcularlo entre dos imágenes es:
+
+$$\text{coincidencias} = \sum_{i,j} \delta(\text{img1\_bnw}(i,j), \text{img2\_bnw}(i,j))$$
+
+donde:
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+    \item{\begin{flushleft}  $\text{coincidencias}$ es el numero total de píxeles que coinciden entre las dos imágenes en blanco y negro. \end{flushleft}}
+    \item{\begin{flushleft} $\sum_{i,j}$ indica que se realiza una suma sobre todos los píxeles de la imagen. \end{flushleft}}
+    \item{\begin{flushleft} $\text{img1\_bnw}(i,j)$ es el valor de cada posición $(i,j)$ de la primera imagen \end{flushleft}}
+    \item{\begin{flushleft} $\text{img2\_bnw}(i,j)$ es el valor de cada posición $(i,j)$ de la segunda imagen \end{flushleft}}
+    \item{\begin{flushleft} $\delta$ es la función delta de Kronecker que se define como:
+
+    $$\delta(a, b) = 
+    \begin{cases} 
+    1 & \text{si } a = b \\
+    0 & \text{si } a \neq b 
+    \end{cases}$$
+    \end{flushleft}}
+\end{itemize}
+
+Finalmente la función con la que se obtiene el porcentaje de acierto entre la dos imágenes es la siguiente.
+
+$$\text{porcentaje\_coincidencia} = \left( \frac{\text{coincidencias}}{\text{numel}(\text{img1\_bnw})} \right) \times 100$$
 
 
+[--------------------------------------------------------------------------------------------
 
 
+A partir de aquí no he modificado nada, pero no lo borro al ser parte de la plantilla
 
 
-
+--------------------------------------------------------------------------------------------]
 
 En aquellos proyectos que necesiten para su comprensión y desarrollo de unos conceptos teóricos de una determinada materia o de un determinado dominio de conocimiento, debe existir un apartado que sintetice dichos conceptos.
 
