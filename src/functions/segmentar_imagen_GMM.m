@@ -1,10 +1,11 @@
-function [imgResultante, centers] = segmentar_imagen_GMM(img, numClusters)
+function [imgResultante, centers] = segmentar_imagen_GMM(img, numClusters, maxIter)
     [height, width, ~] = size(img);
     datosImg = double(reshape(img, [], 3));
 
     % Aplico el Modelo de Mezclas Gaussianas con regularización
     % y especificando el tipo de covarianza
-    gmm = fitgmdist(datosImg, numClusters, 'RegularizationValue', 1e-5, 'CovarianceType', 'diagonal');
+    options = statset('MaxIter', maxIter);
+    gmm = fitgmdist(datosImg, numClusters, 'RegularizationValue', 1e-5, 'CovarianceType', 'diagonal', 'Options', options);
 
     % Asigno a cada píxel al cluster más probable
     membership = cluster(gmm, datosImg);

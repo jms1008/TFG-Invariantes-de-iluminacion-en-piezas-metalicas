@@ -1,9 +1,9 @@
-function [imgResultante, centers] = segmentar_imagen_KMeans(img, numClusters)
+function [imgResultante, centers] = segmentar_imagen_KMeans(img, numClusters, maxIter)
     [height, width, ~] = size(img);
     datosImg = double(reshape(img, [], 3));
 
     % Aplico K-Means
-    [membership, centers] = kmeans(datosImg, numClusters);
+    [membership, centers] = kmeans(datosImg, numClusters, 'MaxIter', maxIter);
 
     % Defino una paleta de colores RGB
     colores = [255, 0, 0; 0, 255, 0; 0, 0, 255; 255, 255, 0; 0, 255, 255; 255, 0, 255; 255, 127, 0; 127, 0, 255; 0, 127, 255; 127, 255, 0];

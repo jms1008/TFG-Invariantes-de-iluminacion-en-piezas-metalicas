@@ -1,9 +1,10 @@
-function [imgResultante, centers] = segmentar_imagen_fuzzy_CMeans(img, numClusters)
+function [imgResultante, centers] = segmentar_imagen_fuzzy_CMeans(img, numClusters, maxIter)
     [height, width, ~] = size(img);
     datosImg = double(reshape(img, [], 3));
 
     % Aplico Fuzzy C-Means
-    [centers, U] = fcm(datosImg, numClusters);
+    options = [NaN, NaN, 0.00001, maxIter];
+    [centers, U] = fcm(datosImg, numClusters, options);
 
     % Obtengo la membresía más alta para cada píxel
     [~, membership] = max(U, [], 1);
