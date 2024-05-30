@@ -6,11 +6,11 @@ function [existe, imagen, porcentaje] = check_cache(tipo, nombre, inv, agrup, ce
     
     % Definir el nombre esperado
     if tipo == 1
-        objetivo = ['1_' nombre '_' inv ext];
+        objetivo = ['1__' nombre '__' inv ext];
     elseif tipo == 2
-        objetivo = ['2_' nombre '_Original_' agrup '_' num2str(cen) '_c'];
+        objetivo = ['2__' nombre '__Original_' agrup '_' num2str(cen) '_c'];
     elseif tipo == 3
-        objetivo = ['3_' nombre '_' inv '_' agrup '_' num2str(cen) '_c'];
+        objetivo = ['3__' nombre '__' inv '_' agrup '_' num2str(cen) '_c'];
     end
 
     % Buscar archivos en la caché
