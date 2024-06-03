@@ -5,7 +5,7 @@ function imagen_resultado = metodos_invariantes_app(opcion, imagen_tres_canales)
         case 2
             imagen_resultado = maddern_transform(imagen_tres_canales, calcular_alpha(620, 540, 470));
         case 3
-            imagen_resultado = krajnik_transform(imagen_tres_canales, calcular_theta_krajnik(app.imagen_tres_canales));
+            imagen_resultado = krajnik_transform(imagen_tres_canales, calcular_theta_krajnik(imagen_tres_canales));
         case 4
             imagen_resultado = upcroft_transform(imagen_tres_canales, calcular_alpha(620, 540, 470));
         case 5
