@@ -1,0 +1,131 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration build-checksum="3351365071" file="C:\Users\Usuario\OneDrive - Universidad de Burgos\Universidad 23-24\TRABAJO FIN DE GRADO\Invariantes de iluminacion\TFG-Jonas-Martinez-Sanllorente\git\app\InvIPM.prj" location="C:\Users\Usuario\OneDrive - Universidad de Burgos\Universidad 23-24\TRABAJO FIN DE GRADO\Invariantes de iluminacion\TFG-Jonas-Martinez-Sanllorente\git\app" name="InvIPM" preferred-package-location="C:\Users\Usuario\OneDrive - Universidad de Burgos\Universidad 23-24\TRABAJO FIN DE GRADO\Invariantes de iluminacion\TFG-Jonas-Martinez-Sanllorente\git\app\InvIPM\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>InvIPM</param.appname>
+    <param.icon>${PROJECT_ROOT}\InvIPM_resources\icon.ico</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\InvIPM_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\InvIPM_resources\icon_32.png</file>
+      <file>${PROJECT_ROOT}\InvIPM_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\InvIPM_resources\icon_16.png</file>
+    </param.icons>
+    <param.version>0.1.0</param.version>
+    <param.authnamewatermark>Jonás Martínez Sanllorente</param.authnamewatermark>
+    <param.email>jms1008@alu.ubu.es</param.email>
+    <param.company>Universidad de Burgos</param.company>
+    <param.summary />
+    <param.description>La calidad del resultado de aplicar un método de segmentación de imágenes depende, en ocasiones, de las condiciones de iluminación de la escena. La presencia de reflexiones especulares o sombras provoca que los métodos de segmentación las identifiquen como parte de los objetos, produciendo resultados erróneos. El objetivo es la aplicación de un conjunto de métodos de pre-procesado que permiten transformar las imágenes originales en otras en las que las reflexiones, sombras, etc., están "mitigadas", lo que permite, a priori, mejorar la calidad de la segmentación.
+
+InvIPM está diseñada para aplicar distintos métodos de transformación invariante sobre imágenes que contengan piezas metálicas para demostrar una mejora en la posterior identificación de las piezas mediante métodos de agrupamiento de imágenes.
+
+Autor: Jonás Martínez Sanllorente
+Tutor: Carlos López Nozal
+Co-tutor: Pedro Latorre Carmona</param.description>
+    <param.screenshot>C:\Users\Usuario\Downloads\imagenApp.jpg</param.screenshot>
+    <param.guid />
+    <param.installpath.string>\Universidad de Burgos\InvIPM\</param.installpath.string>
+    <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
+    <param.logo>C:\Users\Usuario\Downloads\imagenApp.jpg</param.logo>
+    <param.install.notes />
+    <param.target.install.notes />
+    <param.intermediate>${PROJECT_ROOT}\InvIPM\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\InvIPM\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\InvIPM\for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}\InvIPM</param.logdir>
+    <param.enable.clean.build>false</param.enable.clean.build>
+    <param.user.defined.mcr.options />
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>true</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <param.native.matlab>false</param.native.matlab>
+    <param.checkbox>false</param.checkbox>
+    <param.example />
+    <param.help.text>Syntax 
+	  -? 
+	 
+ Input Arguments 
+	 -?  print help on how to use the application 
+	 input arguments</param.help.text>
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.summary />
+      <param.guid />
+      <param.installpath.string />
+      <param.installpath.combo />
+      <param.install.notes />
+      <param.target.install.notes />
+      <param.intermediate />
+      <param.files.only />
+      <param.output />
+      <param.logdir />
+      <param.enable.clean.build />
+      <param.user.defined.mcr.options />
+      <param.target.type />
+      <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.web.mcr.name />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+      <param.native.matlab />
+      <param.checkbox />
+      <param.example />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\InvIPM.mlapp</file>
+    </fileset.main>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\src</file>
+    </fileset.resources>
+    <fileset.package>
+      <file>${PROJECT_ROOT}\cache</file>
+      <file>${PROJECT_ROOT}\data</file>
+      <file>${PROJECT_ROOT}\results</file>
+    </fileset.package>
+    <fileset.depfun>
+      <file>C:\Users\Usuario\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\HMRF-EM-image\code\gaussianBlur.m</file>
+      <file>C:\Users\Usuario\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\HMRF-EM-image\code\HMRF_EM.m</file>
+      <file>C:\Users\Usuario\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\HMRF-EM-image\code\image_kmeans.m</file>
+      <file>C:\Users\Usuario\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\HMRF-EM-image\code\ind2ij.m</file>
+      <file>C:\Users\Usuario\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\HMRF-EM-image\code\MRF_MAP.m</file>
+    </fileset.depfun>
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}\InvIPM\for_testing" name="InvIPM.exe" optional="false">C:\Users\Usuario\OneDrive - Universidad de Burgos\Universidad 23-24\TRABAJO FIN DE GRADO\Invariantes de iluminacion\TFG-Jonas-Martinez-Sanllorente\git\app\InvIPM\for_testing\InvIPM.exe</file>
+      <file location="${PROJECT_ROOT}\InvIPM\for_testing" name="readme.txt" optional="true">C:\Users\Usuario\OneDrive - Universidad de Burgos\Universidad 23-24\TRABAJO FIN DE GRADO\Invariantes de iluminacion\TFG-Jonas-Martinez-Sanllorente\git\app\InvIPM\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\InvIPM\for_testing" name="splash.png" optional="false">C:\Users\Usuario\OneDrive - Universidad de Burgos\Universidad 23-24\TRABAJO FIN DE GRADO\Invariantes de iluminacion\TFG-Jonas-Martinez-Sanllorente\git\app\InvIPM\for_testing\splash.png</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2023b</root>
+      <toolboxes />
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
