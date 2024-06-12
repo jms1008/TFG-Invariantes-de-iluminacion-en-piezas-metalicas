@@ -17,6 +17,29 @@ InvIPM está diseñada para aplicar distintos métodos de transformación invari
 - Guardar los correspondientes resultados.
 ![Flujograma](app/src/livescripts/img/flujograma_inicio_2.png)
 
+
+# Guía de Instalación
+
+## 1. Prerrequisitos para la Instalación
+
+Tener instalado MATLAB Runtime (R2023b).
+
+### Verificar la Instalación de MATLAB Runtime
+
+1. Abra MATLAB.
+2. Escriba el siguiente comando:
+
+    ```matlab
+    >> mcrinstaller
+    ```
+
+Si no está instalado, puede descargarlo desde el siguiente enlace: [Descargar MATLAB Runtime R2023b](https://www.mathworks.com/products/compiler/mcr/index.html)
+
+## 2. Archivos Necesarios
+
+- **InvIPM.exe**: El archivo ejecutable principal.
+- **Este archivo README**: Para guiar a los usuarios tanto en la instalación como en el funcionamiento básico de la aplicación.
+
 ## Funcionamiento de la aplicación
 
 1. **Selección de Imagen**
