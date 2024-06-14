@@ -2,7 +2,7 @@
 
 % Introduccion
 
-\section{Preprocesado}\label{preprocesado}
+\section{Preprocesado de imágenes}\label{preprocesado}
 
 % Texto
 
@@ -29,7 +29,7 @@ Eliminamos el canal alpha $\alpha(i, j)$, que representa la transparencia, ya qu
 
 Los métodos de transformación invariante son distintos algoritmos utilizados para mitigar o incluso eliminar las variaciones en la iluminación en una imagen. Aunque comúnmente suelen ser usados para obtener resultados similares en un mismo escenario pero variando la cantidad de luz ambiental o la cantidad de focos de luz, también son muy útiles para mitigar los efectos de las sombras y reflejos que comúnmente se ocasionan al fotografiar piezas metálicas. 
 
-A continuación hay cinco métodos distintos de transformación invariante para poder comparar los resultados.
+A continuación se presentan cinco métodos distintos de transformación invariante para poder comparar los resultados.
 
 \subsection{Álvarez}\label{alvarez}
 La transformación invariante de Álvarez y López \cite{alvarez2011} es un método para obtener una imagen que sea robusta a variaciones de iluminación, como sombras y cambios en la intensidad de luz. Esto se logra mediante la conversión de los valores de los píxeles al espacio logarítmico-cromático y la proyección sobre una dirección específica.
@@ -66,7 +66,7 @@ Una vez obtenido el ángulo invariante, se proyectan los valores cromáticos en 
 
 $$I=r\cos \theta +b\sin \theta$$
 
-En la imagen \ref{fig:img_ori_alv} se puede ver el resultado de aplicar este método invariante
+En la figura \ref{fig:img_ori_alv} se puede ver el resultado de aplicar este método invariante.
 \imagen{img_ori_alv}{Resultado de aplicar Álvarez}{1}
 
 \subsection{Maddern}\label{maddern}
@@ -132,7 +132,7 @@ Finalmente, se aplica la siguiente transformación para obtener una imagen invar
 
 $$I_{Maddern} =0.5+\log (G)-\alpha \log (B)-(1-\alpha )\log (R)$$
 
-En la imagen \ref{fig:img_ori_mad} se puede ver el resultado de aplicar este método invariante
+En la figura \ref{fig:img_ori_mad} se puede ver el resultado de aplicar este método invariante.
 \imagen{img_ori_mad}{Resultado de aplicar Maddern}{1}
 
 \subsection{Krajník}\label{krajník}
@@ -183,7 +183,7 @@ donde:
    \item{\begin{flushleft} $H_{\theta } (i)$: histograma proyectado en una dirección $\theta$. \end{flushleft}}
 \end{itemize}
 
-En la imagen \ref{fig:img_ori_kra} se puede ver el resultado de aplicar este método invariante
+En la figura \ref{fig:img_ori_kra} se puede ver el resultado de aplicar este método invariante
 \imagen{img_ori_kra}{Resultado de aplicar Krajník}{1}
 
 \subsection{Upcroft}\label{upcrof}
@@ -221,7 +221,7 @@ El parámetro $\alpha$ se calcula para minimizar la variabilidad de la fuente de
 
 $$\frac{1}{\lambda_G }=\frac{\alpha }{\lambda_B }+\frac{1-\alpha }{\lambda_R }$$
 
-En la imagen \ref{fig:img_ori_upc} se puede ver el resultado de aplicar este método invariante
+En la figura \ref{fig:img_ori_upc} se puede ver el resultado de aplicar este método invariante.
 \imagen{img_ori_upc}{Resultado de aplicar Upcroft}{1}
 
 \subsection{PCA}\label{pca}
@@ -267,7 +267,7 @@ $$I_{\theta } =r\cos \theta +b\sin \theta$$
 
 Esto se logra aplicando el Análisis de Componentes Principales a los valores calculados.
 
-En la imagen \ref{fig:img_ori_pca} se puede ver el resultado de aplicar este método invariante
+En la figura \ref{fig:img_ori_pca} se puede ver el resultado de aplicar este método invariante.
 \imagen{img_ori_pca}{Resultado de aplicar PCA}{1}
 
 \section{Métodos de agrupamiento de imágenes}\label{metodos-de-agrupamiento-de-imagenes}
@@ -322,7 +322,7 @@ donde:
 
 Los pasos 2 y 3 se repiten hasta que los centroides no cambian significativamente entre iteraciones, lo que indica que se ha alcanzado la convergencia. Siendo el umbral de convergencia por defecto $\epsilon =1e-4$.
 
-En la imagen \ref{fig:img_ori_kme} se puede ver el resultado de aplicar este método de agrupamiento
+En la figura \ref{fig:img_ori_kme} se puede ver el resultado de aplicar este método de agrupamiento.
 \imagen{img_ori_kme}{Resultado de aplicar K-Means}{1}
 
 \subsection{Fuzzy C-Means}\label{fuzzy-c-means}
@@ -374,7 +374,7 @@ Se repiten los pasos 2 y 3 hasta que la diferencia entre las actualizaciones de 
 
 Hay que tener en cuenta que el parámetro $m$ controla la difusividad de los clusters. Si $m$=1, FCM se comporta como K-Means, mientras que valores mayores de $m$ generan clusters más difusos.
 
-En la imagen \ref{fig:img_ori_fcm} se puede ver el resultado de aplicar este método de agrupamiento.
+En la figura \ref{fig:img_ori_fcm} se puede ver el resultado de aplicar este método de agrupamiento.
 \imagen{img_ori_fcm}{Resultado de aplicar Fuzzy C-Means}{1}
 
 \subsection{Gaussian Mixtures Models}\label{gaussian-mixtures-models}
@@ -429,7 +429,7 @@ donde:
 
 Se repiten los pasos 2 y 3 hasta que los cambios en los parámetros sean menores a un umbral dado, o se alcance un número máximo de iteraciones.
 
-En la imagen \ref{fig:img_ori_gmm} se puede ver el resultado de aplicar este método de agrupamiento.
+En la figura \ref{fig:img_ori_gmm} se puede ver el resultado de aplicar este método de agrupamiento.
 \imagen{img_ori_gmm}{Resultado de aplicar Gaussian Mixtures Models}{1}
 
 \subsection{Información espacial}\label{informacion-espacial}
@@ -515,23 +515,23 @@ Se actualizan los parámetros $\Theta^{(t+1)}$ usando las distribuciones posteri
 
 Se repiten los pasos 2 a 4 hasta que la función de energía $U(y|x,\Theta )+U(x)$ converja o se alcance el número máximo de iteraciones.
 
-En la imagen \ref{fig:img_ori_spa} se puede ver el resultado de aplicar este método de agrupamiento.
+En la figura \ref{fig:img_ori_spa} se puede ver el resultado de aplicar este método de agrupamiento.
 \imagen{img_ori_spa}{Resultado de aplicar Hidden Markov Random Field}{1}
 
 \section{Clasificación de resultados}\label{clasificacion-de-resultados}
 
-La clasificación de los resultados obtenidos es un paso fundamental ya que gracias a ello podemos ver de una forma objetiva si el si aplicar métodos de transformación invariante mejora los resultados obtenidos. Compararemos las imágenes, tanto la original como la invariante con una imagen ``ground truth'' para de esta forma observar numéricamente el acierto de cada una de ellas.
+La clasificación de los resultados obtenidos es un paso fundamental ya que gracias a ello podemos ver de una forma objetiva si al aplicar métodos de transformación invariante mejora los resultados obtenidos. Compararemos las imágenes, tanto la original como la invariante con una imagen ``ground truth'' para de esta forma observar numéricamente el acierto de cada una de ellas.
 
 \subsection{Imágenes ground truth}\label{imagenes-ground-truth}
 
 Las imágenes ``ground truth'' son segmentaciones realizadas manualmente mediante programas de edición de imágenes. Al haber sido segmentadas por un ser humano, representan una segmentación casi perfecta, que sirve como ideal al que aspiramos. Digo "casi perfecta" porque puede haber un mínimo error imperceptible a simple vista, pero que puede afectar matemáticamente, impidiendo alcanzar un 100\% de precisión.
 
-En la imagen \ref{fig:img_ori_gt} se puede ver el la imagen original y su correspondiente imagen ``ground truth''.
+En la figura \ref{fig:img_ori_gt} se puede ver el la imagen original y su correspondiente imagen ``ground truth''.
 \imagen{img_ori_gt}{Resultado de crear la imagen ``ground truth''}{1}
 
 \subsection{Porcentaje de acierto}\label{porcentaje-de-acierto}
 
-El porcentaje de acierto nos permite evaluar la precisión de la segmentación realizada al compararla con una imagen en la que manualmente se ha segmentado la pieza del fondo. La fórmula para calcularlo entre dos imágenes es:
+El porcentaje de acierto nos permite evaluar la precisión de la segmentación realizada al compararla con una imagen en la que manualmente se ha segmentado la pieza del fondo (imagen ground truth). La fórmula para calcularlo entre dos imágenes es:
 
 $$\text{coincidencias} = \sum_{i,j} \delta(\text{img1\_bnw}(i,j), \text{img2\_bnw}(i,j))$$
 
@@ -555,95 +555,4 @@ donde:
 
 Finalmente la función con la que se obtiene el porcentaje de acierto entre la dos imágenes es la siguiente.
 
-$$\text{porcentaje\_coincidencia} = \left( \frac{\text{coincidencias}}{\text{numel}(\text{img1\_bnw})} \right) \times 100$$
-
-
-[--------------------------------------------------------------------------------------------
-
-
-A partir de aquí no he modificado nada, pero no lo borro al ser parte de la plantilla
-
-
---------------------------------------------------------------------------------------------]
-
-En aquellos proyectos que necesiten para su comprensión y desarrollo de unos conceptos teóricos de una determinada materia o de un determinado dominio de conocimiento, debe existir un apartado que sintetice dichos conceptos.
-
-Algunos conceptos teóricos de \LaTeX{} \footnote{Créditos a los proyectos de Álvaro López Cantero: Configurador de Presupuestos y Roberto Izquierdo Amo: PLQuiz}.
-
-\section{Secciones}
-
-Las secciones se incluyen con el comando section.
-
-\subsection{Subsecciones}
-
-Además de secciones tenemos subsecciones.
-
-\subsubsection{Subsubsecciones}
-
-Y subsecciones. 
-
-
-\section{Referencias}
-
-Las referencias se incluyen en el texto usando cite~\cite{wiki:latex}. Para citar webs, artículos o libros~\cite{koza92}, si se desean citar más de uno en el mismo lugar~\cite{bortolot2005, koza92}.
-
-
-\section{Imágenes}
-
-Se pueden incluir imágenes con los comandos standard de \LaTeX, pero esta plantilla dispone de comandos propios como por ejemplo el siguiente:
-
-\imagen{escudoInfor}{Autómata para una expresión vacía}{.5}
-
-
-
-\section{Listas de items}
-
-Existen tres posibilidades:
-
-\begin{itemize}
-	\item primer item.
-	\item segundo item.
-\end{itemize}
-
-\begin{enumerate}
-	\item primer item.
-	\item segundo item.
-\end{enumerate}
-
-\begin{description}
-	\item[Primer item] más información sobre el primer item.
-	\item[Segundo item] más información sobre el segundo item.
-\end{description}
-	
-\begin{itemize}
-\item 
-\end{itemize}
-
-\section{Tablas}
-
-Igualmente se pueden usar los comandos específicos de \LaTeX o bien usar alguno de los comandos de la plantilla.
-
-\tablaSmall{Herramientas y tecnologías utilizadas en cada parte del proyecto}{l c c c c}{herramientasportipodeuso}
-{ \multicolumn{1}{l}{Herramientas} & App AngularJS & API REST & BD & Memoria \\}{ 
-HTML5 & X & & &\\
-CSS3 & X & & &\\
-BOOTSTRAP & X & & &\\
-JavaScript & X & & &\\
-AngularJS & X & & &\\
-Bower & X & & &\\
-PHP & & X & &\\
-Karma + Jasmine & X & & &\\
-Slim framework & & X & &\\
-Idiorm & & X & &\\
-Composer & & X & &\\
-JSON & X & X & &\\
-PhpStorm & X & X & &\\
-MySQL & & & X &\\
-PhpMyAdmin & & & X &\\
-Git + BitBucket & X & X & X & X\\
-Mik\TeX{} & & & & X\\
-\TeX{}Maker & & & & X\\
-Astah & & & & X\\
-Balsamiq Mockups & X & & &\\
-VersionOne & X & X & X & X\\
-} 
+$$\text{porcentaje\_coincidencia} = \left( \frac{\text{coincidencias}}{\text{numero\_pixeles}(\text{img1})} \right) \times 100$$
