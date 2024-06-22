@@ -1,4 +1,4 @@
-function imagen_resultado = metodos_invariantes_app(opcion, imagen_tres_canales)
+function imagen_resultado = metodos_invariantes(opcion, imagen_tres_canales)
     switch opcion
         case 1
             imagen_resultado = alvarez_transform(imagen_tres_canales, 45, .5);

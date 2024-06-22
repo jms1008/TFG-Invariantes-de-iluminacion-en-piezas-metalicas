@@ -1,4 +1,4 @@
-function [imagenTresCanales] = ImagenTresCanales(imagenOriginal)
+function [imagenTresCanales] = imagen_tres_canales(imagenOriginal)
 % ImagenTresCanales
 % Devuelve la misma imagen pero únicamente con tres canales.
 % Si la imagen original tiene cuatro canales, elimina el cuarto.
