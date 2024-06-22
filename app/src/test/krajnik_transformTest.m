@@ -1,7 +1,6 @@
 classdef krajnik_transformTest < matlab.unittest.TestCase
     methods (Test)
-        function testBasicRGBImage(testCase)
-            % Imagen RGB simple
+        function testBasico(testCase)
             RGB = cat(3, [1, 2; 3, 4], [5, 6; 7, 8], [9, 10; 11, 12]);
             theta = pi/4;
             logR = log(double(RGB(:,:,1)) + 1);
@@ -14,8 +13,7 @@ classdef krajnik_transformTest < matlab.unittest.TestCase
             testCase.verifyEqual(actualResult, expectedResult, 'AbsTol', 1e-10);
         end
 
-        function testExtremeTheta(testCase)
-            % Valores extremos para theta
+        function testValoresEntremos(testCase)
             RGB = cat(3, [1, 1; 1, 1], [1, 1; 1, 1], [1, 1; 1, 1]);
             theta = 0;
             logR = log(double(RGB(:,:,1)) + 1);
@@ -28,8 +26,7 @@ classdef krajnik_transformTest < matlab.unittest.TestCase
             testCase.verifyEqual(actualResult, expectedResult, 'AbsTol', 1e-10);
         end
 
-        function testUniformImage(testCase)
-            % Imagen con todos los valores iguales
+        function testImagenUniforme(testCase)
             RGB = cat(3, [5, 5; 5, 5], [5, 5; 5, 5], [5, 5; 5, 5]);
             theta = pi/2;
             logR = log(double(RGB(:,:,1)) + 1);
