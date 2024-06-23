@@ -1,11 +1,157 @@
 \apendice{Documentación de usuario}
 
-\section{Introducción}
+\section{Introducción}\label{introducción-manual-usuario}
 
-\section{Requisitos de usuarios}
+Este apéndice está destinado a abordar los temas relacionados con la parte del usuario. Aquí se tratarán los requisitos, la instalación de la aplicación y el manual de uso para el usuario.
 
-\section{Instalación}
+\section{Requisitos de usuarios}\label{requisitos-de-usuario}
 
-\section{Manual del usuario}
+Los requisitos necesarios para poder utilizar la aplicación son:
 
+\begin{itemize}
+    \item Disponer de un ordenador, ya que se trata de una aplicación de escritorio.
+    \item MATLAB 2023b.
+\end{itemize}
 
+\subsection{MATLAB 2023b}\label{matlab-2023b-usuario}
+
+El único programa que es necesario tener para la ejecución de este proyecto es MATLAB, mas concretamente la versión 2023b. Para descargarlo tenemos que ir a la página oficial de MATLAB \cite{matlab2023b}. Una vez iniciada la aplicación nos pedirá introducir una cuenta de MATLAB, la Universidad de Burgos ofrece a los alumnos el acceso con su correo institucional a la versión Academic de MATLAB.
+
+\section{Instalación}\label{instalación-usuario}
+
+No hay un proceso de instalación adicional aparte de las dependencias mencionadas anteriormente, ya que la aplicación es auto contenida. Esto significa que todos los archivos y bibliotecas necesarios ya están incluidos en la carpeta de la versión. Gracias a esto, la instalación y el uso se simplifican considerablemente, permitiendo que incluso los usuarios sin experiencia en MATLAB tengan una experiencia agradable.
+
+El primer paso sera ir al repositorio de GitHub y descargarse la ultima release, esto se puede hacer tal y como se muestra en la figura \ref{fig:app_release} en el menú de la derecha:
+
+\imagen{app_release}{Instalación de la release desde GitHub.}
+
+Una vez descargado el archivo zip tendremos que descomprimirlo. Tras ello, nos quedaran una serie de archivos y carpetas en el directorio deseado. Estas son:
+    \begin{itemize}
+        \item /InvIPM.exe: este es el ejecutable de la aplicación.
+        \item /readme.txt: es un documento de ayuda el cual nos indica los requisitos necesarios además de como ejecutar la aplicación.
+        \item /data: en este directorio se almacenan las imágenes de ejemplo que trae la propia aplicación, estas podrán ser borradas por el usuario si así lo desea.
+        \item /cache: en este directorio se almacenaran las imágenes guardadas en caché.
+        \item /results: este es el directorio que se le ofrece al usuario por defecto cuando quiere guardar los resultados de una ejecución.
+        \item /splash.png: es la imagen que aparece nada mas abrir la aplicación.
+    \end{itemize}
+    
+\section{Manual del usuario}\label{manual-del-usuario}
+
+Sección dedicada a la redacción de un manual sencillo para que el usuario comprenda cómo utilizar la aplicación.
+
+\subsection{Bienvenida}\label{bienvenida}
+
+Nada mas entrar en la aplicación nos encontraremos con una imagen de bienvenida donde nos explica en términos generales el objetivo de la misma además del autor y tutores del proyecto. El contenido de esta pantalla se muestra en la figura \ref{fig:app_bienvenida}
+
+\imagen{app_bienvenida}{Apartado de bienvenida de InvIMP.}
+
+En la parte superior derecha de esta pantalla, se encuentra un selector de idioma entre español e inglés, con sus correspondientes banderas. Esto lo hace más autoexplicativo, permitiendo al usuario identificarlo sin necesidad de leer el texto. Esto es especialmente útil cuando la aplicación está en un idioma diferente al del usuario.
+
+\subsection{Exploración de algoritmos}\label{exploración-de-algoritmos}
+
+En este apartado, es donde el usuario puede cargar, ejecutar y visualizar los resultados de la ejecución.
+
+\imagen{app_exploracion}{Apartado de exploración de algoritmos de InvIMP.}
+
+\subsubsection{Selección de imagen}\label{selección-de-imagen}
+
+Mediante el botón de `Cargar imagen de pieza metálica' podremos seleccionar una imagen proporcionada por el sistema o una propia sobre la cual aplicar mas adelante.
+
+\subsubsection{Selección de imagen ground truth}\label{selección-de-imagen-ground-truth}
+
+En caso de no ser una imagen proporcionada por el sistema se habilitará el botón de `Cargar imagen ground truth (opcional)' para de esta manera poder proporcionar una propia. Esta imagen como indica el texto no es necesaria para la ejecución exceptuando el obtener el porcentaje de acierto.
+
+\subsubsection{Selección de algoritmo invariante}\label{selección-de-algoritmo-invariante}
+
+Se proporcionan los distintos métodos invariantes:
+
+\begin{itemize}
+    \item Álvarez.
+    \item Maddern.
+    \item Krajnık.
+    \item Upcrof.
+    \item PCA.
+\end{itemize}
+
+Estos están ordenados de manera que el primero es el que mejores resultados ofrece según las pruebas realizadas. Por otro lado, PCA, aunque muestra una clara mejoría en muchas situaciones, es un enfoque más clásico que numéricamente no alcanza resultados tan buenos como los demás.
+
+\subsubsection{Selección de algoritmo de agrupamiento}\label{selección-de-algoritmo-de-agrupamiento}
+
+Se proporcionan los distintos métodos de agrupamiento:
+
+\begin{itemize}
+    \item K-Means.
+    \item Fuzzy C-Means.
+    \item Gaussian Mixtures.
+    \item Información espacial, el cual es HMRF\_EM.
+\end{itemize}
+
+Estos están ordenados de manera que el primero es el menos costoso computacionalmente, por lo que ofrecerá mejores tiempos de ejecución. El último, en cambio, tiene tiempos de ejecución más largos, ya que es un algoritmo que no solo considera el color de un píxel en particular, sino también el de los píxeles circundantes.
+
+\subsubsection{Selección de número de centros}\label{selección-de-número-de-centros}
+
+Mediante este cuadro de texto el usuario puede indicar el numero de centros a utilizar en los algoritmos de agrupamiento. Por defecto este numero será 2.
+
+El número de centros ha de cumplir las siguientes condiciones:
+
+\begin{itemize}
+    \item Ser un numero positivo.
+    \item Ser igual o mayor que 2.
+    \item Ser igual o menor que 10.
+\end{itemize}
+
+Esto se debe a que, como mínimo, se necesitan dos centros para poder separar entre pieza y fondo. El máximo se establece porque, a mayor cantidad de centros, aumenta la complejidad computacional, lo cual alargaría considerablemente los tiempos de ejecución.
+
+\subsubsection{Ejecución}\label{ejecución}
+
+Al pulsar el botón de `Ejecutar' se dar'a inicio a la ejecución sobre la imagen seleccionada de los distintos algoritmos elegidos.Durante la ejecución, se proporcionará retroalimentación sobre el porcentaje de progreso y la etapa que se está calculando en ese momento.
+
+\subsubsection{Representación de resultados}\label{representación-de-resultados}
+
+Tras finalizar la ejecución se mostraran en la parte derecha cuatro imágenes, estas serán:
+
+\begin{itemize}
+    \item La imagen original (arriba a la izquierda).
+    \item La imagen original segmentada (arriba a la derecha).
+    \item La imagen invariante (abajo a la izquierda).
+    \item La imagen invariante segmentada (abajo a la derecha).
+\end{itemize}
+
+En el caso de que se haya utilizado una imagen proporcionada por la aplicación o que el usuario haya proporcionado una imagen de referencia (ground truth), el título tanto de la imagen original segmentada como de la imagen invariante segmentada mostrará el porcentaje de acierto. De esta manera, el usuario podrá comparar los resultados no solo visualmente, sino también numéricamente.
+
+\subsection{Histórico de exploraciones}\label{histórico-de-exploraciones}
+
+En este apartado, se nos presenta una tabla en la cual aparecen a forma de lista todas aquellas ejecuciones que hemos realizado tanto en esta sesión como en sesiones previas. El contenido de las columnas de esta tabla es el siguiente:
+
+\begin{itemize}
+    \item \textbf{Nombre del fichero:} este es el nombre del archivo que el usuario seleccionó.
+    \item \textbf{Fecha:} esta es la fecha de la ejecución. Esta está en formato DD-MMM-YYY HH-MM-SS.
+    \item \textbf{Algoritmo invariante:} muestra el nombre del algoritmo invariante aplicado sobre la imagen. En el caso de no haberse aplicado ningún algoritmo invariante muestra `No aplicado'.
+    \item \textbf{Algoritmo de agrupamiento:} muestra el nombre del algoritmo de agrupamiento aplicado sobre la imagen. En el caso de no haberse aplicado ningún algoritmo de agrupamiento muestra `No aplicado'.
+    \item \textbf{Número de centros:} muestra la cantidad de centros utilizados en el algoritmo de agrupamiento aplicado sobre la imagen. En el caso de no haberse aplicado ningún algoritmo de agrupamiento muestra `-'.
+    \item \textbf{Imagen ground truth:} indica mediante `Sí' o `No' el si la ejecución de dicha imagen tenia o bien imagen asociada o el usuario había proporcionado una propia.
+    \item \textbf{Medida de calidad:} indica la tasa de acierto que se ha logrado al comparar la imagen correspondiente a dicha fila con si imagen ground truth. En caso de no tener imagen ground truth esta celda estará en blanco.
+    \item \textbf{Archivo:} muestra un checkbox el cual al pulsar sobre el abre en una nueva ventana la imagen correspondiente a dicha fila. Esta nueva ventana tiene una serie de opciones aparte de la visualización permitiendo que el usuario la guarde o imprima entre otras opciones.
+\end{itemize}
+
+El usuario también puede si lo desea ordenar la tabla por la columna que quiera.
+
+\imagen{app_historico}{Apartado de histórico de exploraciones de InvIMP.}
+
+A parte de la tabla, en la parte inferior hay dos botones, uno para ver las imágenes y otro para borrar el contenido de la memoria cache. 
+
+\subsubsection{Ver imágenes}\label{ver-imágenes}
+
+Al pulsar en este botón se abrirá una ventana nueva donde podremos ver y seleccionar todas aquellas imágenes que están almacenadas en la memoria caché.
+
+\subsubsection{Borrar datos}\label{borrar-datos}
+
+Al pulsar en este botón aparecerá una ventana emergente indicando si realmente queremos borrar de forma irreversible el contenido de la memoria caché. En caso de pulsar en el botón de `Borrar' se borrará su contenido además de actualizarse la tabla ya que dichas imágenes no se encontraran disponibles. Tras esto nos indicará que la memoria cache se ha borrado exitosamente.
+
+\subsection{Ayuda}\label{ayuda}
+
+En este apartado, tal y como se muestra en la figura \ref{fig:app_ayuda}, se puede obtener información sobre el funcionamiento, los algoritmos invariantes, los algoritmos de agrupamiento, la caché y la tasa de acierto. Al estar la propia documentación implementada dentro de la aplicación, resulta muy cómodo buscar información sobre cualquier tema de interés. 
+
+Además, el idioma de la documentación corresponde con el que se ha seleccionado en la bienvenida.
+
+\imagen{app_ayuda}{Apartado de ayuda de InvIMP.}
