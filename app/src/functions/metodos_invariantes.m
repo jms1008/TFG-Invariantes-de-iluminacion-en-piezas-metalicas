@@ -12,5 +12,8 @@ function imagen_resultado = metodos_invariantes(opcion, imagen_tres_canales)
             imagen_resultado = PCA(imagen_tres_canales);
     end
     imagen_resultado(imagen_resultado > 1) = 1;
-    imagen_resultado = uint8(255 * mat2gray(imagen_resultado));
+    min_val = min(imagen_resultado(:));
+    max_val = max(imagen_resultado(:));
+    imagen_normalizada = (imagen_resultado - min_val) / (max_val - min_val);
+    imagen_resultado = uint8(255 * imagen_normalizada );
 end
