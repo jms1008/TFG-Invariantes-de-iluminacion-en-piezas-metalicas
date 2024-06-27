@@ -1,4 +1,4 @@
-# TFG: Aplicación de transformaciones invariantes a la iluminación para mejora de la segmentación en imágenes. Aplicación a piezas metálicas
+# TFG: Transformaciones invariantes a la iluminación para mejora de la segmentación en imágenes. Aplicación a piezas metálicas
 
 ## Participantes
 
