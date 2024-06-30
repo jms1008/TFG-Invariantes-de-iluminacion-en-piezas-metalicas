@@ -2,7 +2,7 @@
 
 \section{Introducción}\label{plan-proyecto-introduccion}
 
-La fase de planificación es esencial en cualquier proyecto. Durante esta etapa se calculan el trabajo, el tiempo y el dinero necesarios para completar el proyecto. Para ello, se analiza detalladamente cada una de las partes que lo componen lo que permite conocer los recursos necesarios para su realización. En este anexo se describe todo este proceso.
+La fase de planificación es esencial en cualquier proyecto. Durante esta etapa, se calculan el trabajo, el tiempo y el dinero necesarios para completar el proyecto. Para ello, se analiza detalladamente cada una de las partes que lo componen, lo que permite conocer los recursos necesarios para su realización. En este anexo se describe todo este proceso.
 
 La fase de planificación se puede dividir en dos partes:
 
@@ -17,118 +17,124 @@ La fase de planificación se puede dividir en dos partes:
 
 \section{Planificación temporal}\label{planificacion-temporal}
 
-En líneas generales, se ha seguido la metodología Scrum, aunque de manera adaptada a mi situación como único desarrollador, he mantenido ciertos principios clave.
+En líneas generales, se ha seguido la metodología Scrum, aunque de manera adaptada a la situación de ser el único desarrollador, manteniendo ciertos principios clave.
 
 \begin{itemize}
   \item Se aplicó una estrategia de desarrollo incremental mediante iteraciones (sprints) y revisiones.
   \item La duración media de los sprints ha sido de dos semanas.
-  \item Aunque no he tenido reuniones diarias, se han realizado revisiones periódicas al final de cada sprint para evaluar el progreso y planificar el siguiente.
+  \item Aunque no se han tenido reuniones diarias, se han realizado revisiones periódicas al final de cada sprint para evaluar el progreso y planificar el siguiente.
   \item Esto ha permitido mantener la esencia de la mejora continua y la entrega incremental de valor.
 \end{itemize}
 
-He de mencionar que no es hasta la reunión de control del 26 de marzo, que empiezo a reflejar el progreso en GitHub añadiendo todas las issues de reuniones anteriores indicando S1, S2 y S3 en el propio nombre de la issue para indicar de que semana habían sido ya que en GitHub aparecen como que todas fueron añadidas entre el 26 y el 28 de marzo. Zube lo comienzo a utilizar para organizar mejor los sprints desde el sprint 4 debido a que Carlos me recomienda utilizar dicha herramienta para tener un mejor control de estos.
+Cabe mencionar que no fue hasta la reunión de control del 26 de marzo cuando se empezó a reflejar el progreso en GitHub, añadiendo todas las issues de reuniones anteriores y etiquetándolas con S1, S2 y S3 en el nombre para indicar la semana correspondiente. Por ello, en GitHub todas las issues aparecen como añadidas entre el 26 y el 28 de marzo. Zube se comenzó a utilizar para organizar mejor los sprints a partir del sprint 4, debido a la recomendación de Carlos para tener un mejor control de estos.
 
 \subsection{Sprint 0 (04/03/2024 - 11/03/2024)}\label{sprint-0}
 
-La reunión que dio inicio a este sprint marcó el comienzo del proyecto de fin de carrera. Inicialmente, Pedro Latorre me había explicado en qué consistía la idea inicial del proyecto en una reunión previa. Esta idea la profundizamos un poco más, además de indicarme unas pautas a seguir a la hora de buscar el estado del arte en esta área y plantear unos objetivos a cumplir durante este primer sprint.
+La reunión que dio inicio a este sprint marcó el comienzo del proyecto de fin de carrera. Inicialmente, Pedro Latorre había explicado en qué consistía la idea inicial del proyecto en una reunión previa. En esta ocasión, se profundizó más en la idea y se indicaron unas pautas a seguir para investigar el estado del arte en esta área y plantear unos objetivos a cumplir durante este primer sprint.
 
-Los objetivos de la reunión del primer sprint fueron: crear un repositorio en GitHub para el proyecto, probar dos métodos de procesamiento de imágenes, específicamente el Análisis de Componentes Principales (PCA) y la Teoría Retinex, y guardar la imagen resultante permitiendo acceder al valor de cada píxel. También se acordó investigar y aplicar métodos de agrupamiento de datos, como K-Means, en la imagen original y en la imagen procesada para comparar los resultados. 
+Los objetivos de la reunión del primer sprint fueron: crear un repositorio en GitHub para el proyecto, probar dos métodos de procesamiento de imágenes, específicamente el Análisis de Componentes Principales (PCA) y la Teoría Retinex, y guardar la imagen resultante permitiendo acceder al valor de cada píxel. También se acordó investigar y aplicar métodos de agrupamiento de datos, como K-Means, en la imagen original y en la imagen procesada para comparar los resultados.
 
-Además, se decidió eliminar el cuarto canal en las imágenes que lo tengan y evaluar críticamente los resultados obtenidos. Se enfatizó que no se esperen resultados inmediatos, sino que se debe evaluar y descartar posibles caminos de manera progresiva.
+Además, se decidió eliminar el cuarto canal en las imágenes que lo tuvieran y evaluar críticamente los resultados obtenidos. Se enfatizó que no se esperaran resultados inmediatos, sino que se debía evaluar y descartar posibles caminos de manera progresiva.
 
-En este momento del proyecto simplemente creaba una serie de tareas a completar antes de la próxima semana por lo que no tengo como tal un registro temporal en Zube de cuando se completo cada tarea. Mas tarde estas tareas las pase el 26/03/2024 a GitHub por recomendación de mi tutor ya que así podía reflejar el trabajo realizado hasta el momento. Estas issues tienen en el nombre [S1].
+En este momento del proyecto, simplemente se crearon una serie de tareas a completar antes de la próxima semana, por lo que no se tiene un registro temporal en Zube de cuándo se completó cada tarea. Más tarde, estas tareas se pasaron a GitHub el 26/03/2024 por recomendación del tutor, ya que así se podía reflejar el trabajo realizado hasta el momento. Estas issues tienen en el nombre [S1].
 
 \subsection{Sprint 1 (11/03/2024 - 25/03/2024)}\label{sprint-1}
 
-Este sprint tuvo como objetivo: mostrar la representación del histograma de los valores de los píxeles de cada canal en la imagen resultante, determinar los valores mínimos y máximos de los píxeles, y visualizar la matriz resultante utilizando imshow. Se discutió que, aunque imshow(M, []) normaliza la imagen para visualización, imwrite guarda la imagen sin normalizar. Se acordó guardar la imagen utilizando el método saveas para conservar el rango dinámico y almacenar la matriz en un archivo .mat con el resultado de la transformación. También se destacó la importancia de guardar una imagen que se pueda visualizar fácilmente y familiarizarse con los resultados de cada método aplicado.
+Este sprint tuvo como objetivos: mostrar la representación del histograma de los valores de los píxeles de cada canal en la imagen resultante, determinar los valores mínimos y máximos de los píxeles, y visualizar la matriz resultante utilizando imshow. Se discutió que, aunque imshow(M, []) normaliza la imagen para visualización, imwrite guarda la imagen sin normalizar. Se acordó guardar la imagen utilizando el método saveas para conservar el rango dinámico y almacenar la matriz en un archivo .mat con el resultado de la transformación. También se destacó la importancia de guardar una imagen que se pueda visualizar fácilmente y familiarizarse con los resultados de cada método aplicado.
 
 Se decidió añadir los métodos de agrupamiento FUZZY C-Means y GMM, y probar otros métodos de agrupamiento que tengan en cuenta el contexto y no solo el valor del píxel. Además, se acordó buscar información sobre Geoffrey Machlachlan para profundizar en el tema.
 
-Al igual que en el sprint 0, simplemente creaba una serie de tareas a completar antes de la próxima semana por lo que no tengo como tal un registro temporal en Zube y en GitHub fueron añadidas el 26/03/2024. Estas issues tienen en el nombre [S2].
+Al igual que en el sprint 0, simplemente se crearon una serie de tareas a completar antes de la próxima semana, por lo que no se tiene un registro temporal en Zube y en GitHub. Las tareas fueron añadidas el 26/03/2024. Estas issues tienen en el nombre [S2].
 
 \subsection{Sprint 2 (25/03/2024 - 04/04/2024)}\label{sprint-2}
 
-Este sprint tuvo como objetivo: parar los algoritmos de agrupamiento de python a MATLAB ya que los tiempos de ejecución en Python el cual era el lenguaje que estaba utilizando hasta ese momento eran muy elevados. Se decidió crear una comparación en la misma ventana dependiendo del número de centros para así poder observar las diferencias de una manera más cómoda y rápida. Además, se acordó agregar 4-5 métodos más de transformación invariante.
+Este sprint tuvo como objetivo: trasladar los algoritmos de agrupamiento de Python a MATLAB, ya que los tiempos de ejecución en Python, el lenguaje utilizado hasta ese momento, eran muy elevados. Se decidió crear una comparación en la misma ventana, dependiendo del número de centros, para así poder observar las diferencias de manera más cómoda y rápida. Además, se acordó agregar 4-5 métodos más de transformación invariante.
 
-También se decidió generar la imagen ground truth y evaluar el resultado mediante una máscara binaria, calculando la tasa de acierto con la fórmula (nº de píxeles que coinciden / nº total de píxeles) * 100, y mostrar en la ventana el valor de esta tasa.
+También se decidió generar la imagen ground truth y evaluar el resultado mediante una máscara binaria, calculando la tasa de acierto con la fórmula  (nº de píxeles que coinciden / nº total de píxeles) * 100, y mostrar en la ventana el valor de esta tasa.
 
-Al igual que en el sprint 0 y sprint 1,  simplemente creaba una serie de tareas a completar antes de la próxima semana por lo que no tengo como tal un registro temporal en Zube y en GitHub fueron añadidas el 26/03/2024. Estas issues tienen en el nombre [S3].
+Al igual que en el sprint 0 y sprint 1, simplemente se crearon una serie de tareas a completar antes de la próxima semana, por lo que no se tiene un registro temporal en Zube. En GitHub, las tareas fueron añadidas el 26/03/2024. Estas issues tienen en el nombre [S3].
 
 \subsection{Sprint 3 (04/04/2024 - 18/04/2024)}\label{sprint-3}
 
-En la reunión de preparación de este sprint es cuando Carlos López se unió como cotutor al proyecto al pedírselo Pedro Latorre, este en un futuro pasaría a ser el tutor del proyecto de fin de grado.
-Este sprint tuvo como objetivo: familiarizarse con Overleaf y comenzar a rellenar los tres primeros apartados del documento. Además, se acordó crear una cuenta en Zube para organizar las tareas en milestones y reorganizar los directorios del proyecto. La nueva estructura incluirá un directorio "doc" con la plantilla de Ubuvirtual y un directorio para el programa MATLAB, el cual contendrá todos aquellos métodos que venía utilizando separados en distintos scripts para que de esta manera se mejora la modularidad, reutilización y mantenibilidad del código.
+En la reunión de preparación de este sprint, Carlos López se unió como cotutor al proyecto a solicitud de Pedro Latorre. En el futuro, Carlos López pasaría a ser el tutor del proyecto de fin de grado.
 
-Otro objetivo fue la integración de MATLAB con una aplicación web, iniciando un pequeño proyecto en GitHub para gestionar esta integración.
-Otro objetivo fue el desarrollo de una pequeña aplicación de escritorio de MATLAB la cual servirá para probar distintos algoritmos sobre diferentes imágenes. De esta manera además de demostrar numéricamente que hay una mejoría notable tras la aplicación de métodos invariantes sobre piezas metálicas, permitirá de una forma sencilla y visual el probar distintos métodos sobre imágenes propias.
+Este sprint tuvo como objetivo familiarizarse con Overleaf y comenzar a rellenar los tres primeros apartados del documento. Además, se acordó crear una cuenta en Zube para organizar las tareas en milestones y reorganizar los directorios del proyecto. La nueva estructura incluirá un directorio "doc" con la plantilla de Ubuvirtual y un directorio para el programa MATLAB, que contendrá todos los métodos utilizados, separados en distintos scripts para mejorar la modularidad, reutilización y mantenibilidad del código.
 
-En el anterior sprint no conseguí encontrar un método de agrupamiento con contexto espacial que suponga una mejora notable en los resultados por lo que esta issue no se cerrará y formara parte también de este cuarto sprint.
+Otro objetivo fue la integración de MATLAB con una aplicación web, iniciando un pequeño proyecto en GitHub para gestionar esta integración. También se planteó el desarrollo de una pequeña aplicación de escritorio de MATLAB, que servirá para probar distintos algoritmos sobre diferentes imágenes. De esta manera, además de demostrar numéricamente que hay una mejora notable tras la aplicación de métodos invariantes sobre piezas metálicas, permitirá probar distintos métodos sobre imágenes propias de forma sencilla y visual.
 
-Al ser este el primer sprint en el que incorpore Zube para gestionar las issues abiertas, aun no terminaba de manejarme bien con la herramienta por lo que aunque me ayudo con la gestión, no cree el sprint en el por lo que no tengo gráfico burndown de este sprint.
+En el sprint anterior, no se logró encontrar un método de agrupamiento con contexto espacial que supusiera una mejora notable en los resultados, por lo que esta issue no se cerrará y formará parte también de este cuarto sprint.
+
+Al ser este el primer sprint en el que se incorporó Zube para gestionar las issues abiertas, aún no se dominaba completamente la herramienta. Aunque ayudó con la gestión, no se creó el sprint en Zube, por lo que no se dispone de un gráfico burndown de este sprint.
 
 \subsection{Sprint 4 (18/04/2024 - 02/05/2024)}\label{sprint-4}
 
-Es en este sprint cuando al fin comienzo a reflejar como tal los distintos sprints en Zube. Gracias a esto, a partir de este momento me ha sido más cómodo trabajar con las issues de cada sprint.
-Este sprint tuvo como objetivo: mejorar las funcionalidades de la aplicación y realizar cambios menores en el texto mostrado al usuario dentro de la aplicación para evitar confusiones y corregir incoherencias. Se acordó cambiar el orden en el que se muestran los resultados de la aplicación. También se discutió la importancia de eliminar las imágenes mostradas de ejecuciones anteriores.
+Es en este sprint cuando se comienza a reflejar formalmente los distintos sprints en Zube. Gracias a esto, a partir de este momento, resultó más cómodo trabajar con las issues de cada sprint.
 
-Añadir un selector para guardar los archivos y su correspondiente mensaje de confirmación indicando que los archivos se han guardado correctamente. Además, de buscar una solución para el problema relacionado con el sistema de directorios donde se guardan los archivos.
+Este sprint tuvo como objetivos: mejorar las funcionalidades de la aplicación y realizar cambios menores en el texto mostrado al usuario dentro de la aplicación para evitar confusiones y corregir incoherencias. Se acordó cambiar el orden en el que se muestran los resultados de la aplicación y se discutió la importancia de eliminar las imágenes mostradas de ejecuciones anteriores.
+
+También se añadió un selector para guardar los archivos y su correspondiente mensaje de confirmación indicando que los archivos se han guardado correctamente. Además, se buscó una solución para el problema relacionado con el sistema de directorios donde se guardan los archivos.
 
 Finalmente, se planteó la creación de otra aplicación para poder probar con imágenes propias. Al tener una imagen ground truth, se podría obtener un porcentaje de acierto de la ejecución, lo que ayudaría a evaluar mejor los resultados obtenidos.
 
 \imagen{sprint4}{Burndown del sprint 4.}
 
-Como se puede ver en el gráfico burndown \ref{fig:sprint4}, las issues de este sprint no es hasta el ultimo día que las marco como completadas ya que en ese momento no era consciente que las tenia que cerrar en vez de dejarlas en revisión y ya cerrarlas tras la reunión. 
+Como se puede ver en el gráfico burndown \ref{fig:sprint4}, las issues de este sprint no fueron marcadas como completadas hasta el último día. En ese momento, no se era consciente de que debían cerrarse en lugar de dejarlas en revisión para cerrarlas después de la reunión.
 
 
 \subsection{Sprint 5 (02/05/2024 - 23/05/2024)}\label{sprint-5}
 
-Este sprint tuvo como objetivo: mejorar la experiencia del usuario y optimizar la funcionalidad de la aplicación. Implementar notificaciones periódicas sobre el estado de la ejecución, indicando que podría tomar mucho tiempo además de añadir la funcionalidad de borrar resultados anteriores. También se plantearon pequeños cambios en la interfaz, como eliminar el "-" de los porcentajes y añadir un botón para guardar imágenes.
+Este sprint tuvo como objetivo mejorar la experiencia del usuario y optimizar la funcionalidad de la aplicación. Se implementaron notificaciones periódicas sobre el estado de la ejecución, indicando que podría tomar mucho tiempo, además de añadir la funcionalidad de borrar resultados anteriores. También se realizaron pequeños cambios en la interfaz, como eliminar el "-" de los porcentajes y añadir un botón para guardar imágenes.
 
-Distintas modificaciones de la estructura de la interfaz, añadiendo menús de ayuda, una lista de nombres de imágenes en caché, un menú de bienvenida y ayuda contextual. Una actualización de los nombres de los archivos de resultados, añadiendo la fecha de ejecución al inicio. Además, de corregir errores en la selección de imágenes desde rutas diferentes a /data y una mejora de la gestión de errores.
+Se realizaron distintas modificaciones en la estructura de la interfaz, añadiendo menús de ayuda, una lista de nombres de imágenes en caché, un menú de bienvenida y ayuda contextual. Se actualizó el nombre de los archivos de resultados, añadiendo la fecha de ejecución al inicio. Además, se corrigieron errores en la selección de imágenes desde rutas diferentes a /data y se mejoró la gestión de errores.
 
-Se llego a la conclusión de agregar una caché de imágenes para almacenar temporalmente los resultados, cargando ejecuciones anteriores con los mismos parámetros para reducir el coste computacional. Al cerrar la aplicación, la caché se borraría. Finalmente, se planteó la corrección de algunos errores detectados en los algoritmos, una mejora de la documentación y el README del proyecto.
+Se llegó a la conclusión de agregar una caché de imágenes para almacenar temporalmente los resultados, cargando ejecuciones anteriores con los mismos parámetros para reducir el coste computacional. Al cerrar la aplicación, la caché se borraría. Finalmente, se planteó la corrección de algunos errores detectados en los algoritmos, así como una mejora de la documentación y el README del proyecto.
 
 \imagen{sprint5}{Burndown del sprint 5.}
 
-Como se puede ver en el gráfico burndown \ref{fig:sprint5}, las issues de este sprint no es hasta el ultimo día que las marco como completadas ya que en ese momento no era consciente que las tenia que cerrar en vez de dejarlas en revisión y ya cerrarlas tras la reunión. 
+Como se puede ver en el gráfico burndown \ref{fig:sprint5}, las issues de este sprint no fueron marcadas como completadas hasta el último día. En ese momento, no se era consciente de que debían cerrarse en lugar de dejarlas en revisión para cerrarlas después de la reunión.
 
 
 \subsection{Sprint 6 (23/05/2024 - 30/05/2024)}\label{sprint-6}
 
-Este sprint tuvo como objetivo: mejorar la funcionalidad y la usabilidad de la aplicación. Se planea realizar diversas mejoras en la documentación en HTML y crear un README en la carpeta de imágenes. Además, se modificará la visualización de los nombres de las imágenes dentro de la aplicación y se añadirán tooltips para una mejor comprensión del usuario.
+Este sprint tuvo como objetivo mejorar la funcionalidad y usabilidad de la aplicación. Se planean diversas mejoras en la documentación en HTML y la creación de un README en la carpeta de imágenes. Además, se modificará la visualización de los nombres de las imágenes dentro de la aplicación y se añadirán tooltips para una mejor comprensión del usuario.
 
-Se establecerán condiciones numéricas en los campos de número de centros y se añadirá un límite de iteraciones máximo en los métodos de agrupamiento. También se trabajará en la caché para hacerla persistente, permitiendo borrar el historial y mejorando su escalabilidad.
+Se establecerán condiciones numéricas en los campos de número de centros y se añadirá un límite máximo de iteraciones en los métodos de agrupamiento. También se trabajará en la caché para hacerla persistente, permitiendo borrar el historial y mejorando su escalabilidad.
 
-En cuanto a la evaluación de la calidad, se incorporará una medida de comparación utilizando la imagen ground truth y se mejorará la nomenclatura de los algoritmos invariantes, reemplazando los nombres vacíos con “no aplicado”. Se abordarán problemas técnicos como la minimización de la app al cargar una imagen, la eliminación de la imagen ground truth al introducir una nueva que no tenga una asociada, y se revisarán soluciones para evitar que la aplicación se detenga por errores. Además, se tratará de introducir concurrencia para manejar tareas como el cancelar la ejecución.
+En cuanto a la evaluación de la calidad, se incorporará una medida de comparación utilizando la imagen ground truth y se mejorará la nomenclatura de los algoritmos invariantes, reemplazando los nombres vacíos con “no aplicado”. Se abordarán problemas técnicos como la minimización de la app al cargar una imagen, la eliminación de la imagen ground truth al introducir una nueva que no tenga una asociada, y se revisarán soluciones para evitar que la aplicación se detenga por errores. Además, se tratará de introducir concurrencia para manejar tareas como cancelar la ejecución.
 
 \imagen{sprint6}{Burndown del sprint 6.}
 
-Como se puede ver en el gráfico burndown \ref{fig:sprint6}, las issues de este sprint si que se fueron cerrando correctamente a medida que se fueron completando.
+Como se puede ver en el gráfico burndown \ref{fig:sprint6}, las issues de este sprint se fueron cerrando correctamente a medida que se completaban.
 
 
 \subsection{Sprint 7 (31/05/2024 - 10/06/2024)}\label{sprint-7}
 
-Este sprint tuvo como objetivo: preparar la primera release oficial de la aplicación. Se realizarán mejoras en la gestión de errores para asegurar una experiencia de usuario más robusta. Además, se tratará aplicar concurrencia para permitir la cancelación de la ejecución, la cual es una tarea que no se logró completar en el sprint anterior.
+Este sprint tuvo como objetivo preparar la primera release oficial de la aplicación. Se realizarán mejoras en la gestión de errores para asegurar una experiencia de usuario más robusta. Además, se tratará de aplicar concurrencia para permitir la cancelación de la ejecución, una tarea que no se logró completar en el sprint anterior.
 
 Se deshabilitarán los botones durante la ejecución de procesos para evitar acciones no deseadas y se revisará el código, actualizando la documentación interna para mantener la coherencia. También se implementará soporte bilingüe, añadiendo opciones en español e inglés para hacer la aplicación accesible a un público más amplio.
 
 \imagen{sprint7}{Burndown del sprint 7.}
 
-Como se puede ver en el gráfico burndown \ref{fig:sprint7}, las issues de este sprint si que se fueron cerrando correctamente a medida que se fueron completando a excepción de una que por falta de tiempo quedo a completar en el siguiente sprint.
+Como se puede ver en el gráfico burndown \ref{fig:sprint7}, las issues de este sprint se fueron cerrando correctamente a medida que se completaban, a excepción de una que, por falta de tiempo, quedó pendiente para completar en el siguiente sprint.
 
 
 \subsection{Sprint 8 (11/06/2024 - 27/06/2024)}\label{sprint-8}
 
-Este sprint tuvo como objetivo: implementar varias mejoras y preparar la aplicación para una release oficial. Se mejorarán los tooltips, especialmente el de centros, explicando que es una agrupación de colores. Además, se añadirá la posibilidad de imprimir y visualizar la imagen seleccionada en la tabla de la caché, y se modificará el texto del botón "Abrir directorio" por "Ver imágenes". También se habilitará la opción de ordenar la caché por filas y se actualizará la imagen de bienvenida para hacerla más atractiva y profesional.
+En este sprint, se implementaron mejoras y se preparó la aplicación para su versión oficial. Se mejoraron los tooltips, especialmente el de centros, y se añadió la opción de imprimir y visualizar imágenes en la caché, además de modificar el botón "Abrir directorio" por "Ver imágenes". Se habilitó la ordenación por filas en la caché y se actualizó la imagen de bienvenida.
 
-Para asegurar la compatibilidad, se adaptará la aplicación para Linux y Mac, y se realizarán pruebas unitarias para garantizar la calidad del software. Se creará un README personalizado que detalle la instalación y ejecución de la aplicación, y se reorganizarán los directorios, eliminando los que ya no se utilizan. Además, se subirá la release de la semana anterior, que incluye mejoras en el tratamiento de errores y la adaptación al inglés.
+Para garantizar compatibilidad, la aplicación se adaptó a Linux y Mac, y se realizaron pruebas unitarias. Se creó un README detallado y se reorganizaron los directorios, eliminando los obsoletos. También se subió la versión anterior con mejoras en el manejo de errores y adaptación al inglés.
 
-En cuanto a la documentación, se incluirán citas en la introducción de la memoria y se revisarán las correcciones en la misma. También se redactará el plan de proyecto software, la especificación de requisitos y la especificación de diseño en los anexos lo cual será la principal tarea de este sprint. 
+En la documentación, se añadieron citas y se revisaron correcciones en la memoria, y se redactaron el plan de proyecto, especificaciones de requisitos y diseño en los anexos.
 
-Finalmente, se realizará la release con todos los cambios implementados en este sprint, consolidando las mejoras de cara a la versión final.
+Finalmente, se realizó la versión con todos los cambios del sprint, consolidando las mejoras para la versión final.
 
-% Imagen + explicación de Zube
-%\imagen{sprint8}{Burndown del sprint 8.}
+\imagen{sprint8}{Burndown del sprint 8.}
+
+Como se puede apreciar en la figura \ref{fig:sprint8}, no se lograron finalizar todas las tareas planificadas para este supuesto sprint final, debido a que la documentación requirió una considerable cantidad de tiempo. Por este motivo, se acordó reunirse a mitad de semana con todas estas tareas finalizadas y con al menos una versión inicial de la documentación completada.
+
+\subsection{Sprint 9 (28/06/2024 - 01/07/2024)}\label{sprint-9}
+
+Este sprint se dedicó completamente a finalizar las tareas pendientes del periodo anterior, incluyendo la elaboración de una primera versión de la documentación, tanto de la memoria como de los anexos. Además, se identificó y resolvió un error en la aplicación.
 
 \subsection{Resumen del tiempo empleado}\label{resumen-del-tiempo-empleado}
 
@@ -148,9 +154,10 @@ A continuación se muestra un resumen del tiempo dedicado a la realización del 
         \textbf{Sprint 5}       & 54    \\
         \textbf{Sprint 6}       & 28    \\
         \textbf{Sprint 7}       & 42    \\
-        \textbf{Sprint 8}       & 25+   \\ % Dejo el + porque esa es la cantidad de tiempo actual
+        \textbf{Sprint 8}       & 71    \\
+        \textbf{Sprint 9}       & 22    \\
         \hline
-        \textbf{Total}          & \textbf{296}\\
+        \textbf{Total}          & \textbf{364}\\
         \hline
     \end{tabular}
     \caption{Desglose de tiempo dedicado al proyecto.}\label{tabla:tiempo-dedicado-al-proyecto}
@@ -158,15 +165,19 @@ A continuación se muestra un resumen del tiempo dedicado a la realización del 
 
 \section{Estudio de viabilidad}\label{estudio-de-viabilidad}
 
+A continuación, se realizará tanto el estudio de viabilidad económica como el de viabilidad legal.
+
 \subsection{Viabilidad económica}\label{viabilidad-economica}
 
-En este apartado se analizaran los costes y beneficios que se estiman de haber sido desarrollado el proyecto en un entorno empresarial. He de mencionar que dichos datos son estimados.
+En este apartado se analizarán los costes y beneficios estimados de haber desarrollado el proyecto en un entorno empresarial. Cabe mencionar que dichos datos son aproximados.
 
 \subsubsection{Costes}\label{costes}
 
+A continuación, se realizará tanto el análisis de costes materiales y beneficios.
+
 \textbf{Costes materiales:}
 
-En este apartado se desglosaran todos aquellos costes materiales, tanto hardware como software necesarios para el correcto desarrollo del proyecto. En ambos casos se considera que se van a amortizar a 5 años y se han utilizado durante los cuatro meses de desarrollo del proyecto.
+En este apartado se desglosarán todos aquellos costes materiales, tanto de hardware como de software, necesarios para el correcto desarrollo del proyecto. En ambos casos, se considera que se amortizarán a 5 años y se han utilizado durante los cuatro meses de desarrollo del proyecto.
 
 El desglose de todos los dispositivos hardware necesarios para la realización del proyecto se encuentra a continuación en la figura \ref{tabla:costes-de-hardware}.
 

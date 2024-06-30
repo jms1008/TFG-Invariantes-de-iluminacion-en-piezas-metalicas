@@ -1,3 +1,58 @@
 \capitulo{6}{Trabajos relacionados}
 
-Este apartado sería parecido a un estado del arte de una tesis o tesina. En un trabajo final grado no parece obligada su presencia, aunque se puede dejar a juicio del tutor el incluir un pequeño resumen comentado de los trabajos y proyectos ya realizados en el campo del proyecto en curso. 
+La utilización de métodos de transformación invariante no es un concepto novedoso, dado que modelos como el Análisis de Componentes Principales (PCA) se desarrollaron a principios del siglo XX. Sin embargo, no fue hasta hace un par de décadas que se han producido avances significativos en este campo, impulsados por el auge de las técnicas de aprendizaje profundo y el aumento en la capacidad de procesamiento computacional. Estos desarrollos han permitido mejorar considerablemente la precisión y eficiencia de los métodos de transformación invariante en diversas aplicaciones científicas y tecnológicas.
+
+\section{Artículos científicos}\label{artículos-científicos}
+
+\subsection{Application of the Karhunen-Loeve Procedure for the Characterization of Human Faces}\label{pca-1}
+
+Se trata del primer artículo publicado sobre el uso del Análisis de Componentes Principales (PCA) en imágenes, fechado en 1991. En el los autores, Kirby y Sirovich, demostraron cómo PCA podía aplicarse para la representación eficiente de rostros humanos. En este trabajo, propusieron un método para reducir la dimensionalidad de imágenes faciales, permitiendo su compresión y reconstrucción con alta fidelidad.
+
+
+\subsection{PCA based Computation of Illumination-Invariant Space for Road Detection}\label{pca-2}
+
+Este artículo describe un método que emplea el Análisis de Componentes Principales (PCA) para transformar imágenes de carreteras en un espacio invariante a la iluminación, facilitando así la detección precisa de las vías. Utilizando PCA, los autores logran minimizar los efectos de variaciones de iluminación como sombras y cambios en la intensidad de la luz, mejorando la robustez de los algoritmos de detección de carreteras en condiciones adversas, y ofreciendo una solución eficaz para vehículos autónomos y sistemas de asistencia al conductor.
+
+\subsection{Road Detection Based on Illuminant Invariance}\label{alvarez-1}
+
+Este artículo es publicado en 2011 por José M. Álvarez y Antonio M. López, presenta un método innovador para detectar la superficie de la carretera utilizando una cámara a bordo. Este enfoque es robusto frente a variaciones de iluminación y sombras, lo cual es un desafío común en la detección de carreteras. Los autores combinan un espacio de características invariante a sombras con un clasificador basado en modelos, mejorando la adaptabilidad del algoritmo a las condiciones de iluminación actuales y la presencia de otros vehículos. Los experimentos muestran que el método propuesto es eficaz y supera a los algoritmos basados en HSI en condiciones difíciles
+
+\subsection{Illumination Invariant Imaging: Applications in Robust Vision-based Localisation, Mapping and Classification for Autonomous Vehicles}\label{maddern-1}
+
+Este artículo es publicado en 2014 por Will Maddern y colaboradores, propone una técnica que usa un espacio de color invariante a la iluminación para mejorar la localización, el mapeo y la clasificación de escenas en vehículos autónomos. La técnica se basa en propiedades espectrales de la cámara y demuestra mayor consistencia en imágenes diurnas comparado con imágenes RGB. Aplicaciones incluyen localización métrica 6-DoF, mapeo estereoscópico a largo plazo y clasificación de escenas urbanas.
+
+\subsection{Visual Road Following Using Intrinsic Images}\label{krejnik-1}
+
+Este artículo es publicado en 2015 por Tomáš Krajnık y colaboradores, presenta un método que utiliza imágenes invariantes a la iluminación para el seguimiento de caminos por robots móviles en entornos exteriores. Este enfoque combina procesamiento de imágenes para eliminar sombras con un algoritmo de seguimiento de caminos, permitiendo la navegación autónoma en diversas condiciones de iluminación. Los experimentos demostraron que el robot pudo identificar y seguir caminos en parques urbanos, incluso con sombras presentes
+
+\subsection{Lighting Invariant Urban Street Classification}\label{upcroft-1}
+
+Este artículo es publicado en 2014 por Ben Upcroft y colaboradores, propone el uso híbrido de imágenes RGB e invariantes a la iluminación para clasificar escenas urbanas a pesar de las variaciones en las condiciones de luz. La técnica mejora la robustez de la clasificación mediante la aplicación de transformaciones invariantes a la iluminación en las imágenes antes de calcular las características de los superpíxeles. La evaluación se realizó utilizando los conjuntos de datos KITTI y un conjunto de datos propio, mostrando mejoras significativas en la clasificación bajo condiciones de iluminación adversas.
+
+\subsection{The Retinex theory of color vision}\label{retinex-1}
+
+La teoría Retinex, propuesta por Edwin Land en 1964, explica cómo el sistema visual humano percibe colores consistentemente bajo diferentes condiciones de iluminación. El término "Retinex" combina "retina" y "cortex", indicando que la percepción del color es resultado de procesos en el ojo y el cerebro. Land demostró que el color percibido depende del contexto y la iluminación de la escena, no solo de la luz reflejada por un objeto. Esta teoría aunque finalmente fue descartada por no alcanzar una tasa de acierto aceptable, se ha considerado el mencionarla ya que durante gran parte del proyecto se ha estado experimentado con el ella.
+
+% Otros papers menos relevantes
+
+\section{Fortalezas y debilidades del proyecto}\label{fortalezas-y-debilidades-del-proyecto}
+
+Las principales fortalezas del proyecto son las siguientes:
+
+\begin{itemize}
+    \item Mejora significativa en la identificación de piezas metálicas: el uso de algoritmos de transformación invariante ha demostrado una mejora considerable en la correcta identificación de piezas metálicas en comparación con la aplicación de métodos de agrupamiento sobre las imágenes originales. Esta capacidad es crucial para su aplicación en entornos industriales donde la precisión es esencial.
+    \item Facilidad de instalación: la instalación de la aplicación resultante del proyecto es extremadamente sencilla. Los usuarios solo necesitan descargar la última versión compatible con su sistema operativo desde GitHub, descomprimir el archivo .zip y ejecutar el programa siguiendo las instrucciones del archivo readme.txt. Esta simplicidad reduce las barreras de entrada para nuevos usuarios.
+    \item Independencia de conexión a internet: la aplicación no requiere conexión a internet, lo que garantiza su funcionamiento en entornos laborales donde la conectividad puede ser limitada o inexistente. Esta característica asegura que la herramienta sea robusta y confiable en diversas situaciones.
+    \item Flexibilidad en métodos de análisis: la aplicación permite seleccionar entre múltiples métodos de transformación invariante y algoritmos de agrupamiento, ofreciendo a los usuarios una mayor flexibilidad para adaptar el análisis a sus necesidades específicas.
+    \item Visualización y comparación de resultados: los resultados de la ejecución se muestran en la misma ventana de la aplicación, ordenados de manera que resulta cómodo comparar los resultados obtenidos. Esta funcionalidad facilita la interpretación y el análisis de datos por parte del usuario.
+    \item Memoria caché para resultados anteriores: la aplicación cuenta con una memoria caché que se utiliza para recuperar resultados de ejecuciones anteriores, lo que disminuye en gran medida los tiempos de ejecución. Además, el usuario puede obtener información detallada de cada ejecución anterior y acceder a la imagen correspondiente si así lo desea.
+    \item Documentación integrada: la aplicación incluye documentación interna que permite a los usuarios resolver rápidamente cualquier duda que puedan tener. Esta documentación facilita el uso de la herramienta y mejora la experiencia del usuario.
+\end{itemize}
+
+Las principales debilidades del proyecto son las siguientes:
+
+\begin{itemize}
+    \item Disponibilidad limitada a sistemas operativos: actualmente, la aplicación solo está disponible para sistemas operativos Windows y Linux. La falta de soporte para Mac limita su accesibilidad a usuarios de dicho sistema operativo.
+    \item Desempeño en entornos muy complejos: en entornos altamente complejos, aunque los distintos métodos de transformación invariante logran minimizar considerablemente las reflexiones, si en la imagen hay múltiples objetos metálicos, la tasa de acierto disminuye considerablemente. Esta limitación afecta la eficacia de la herramienta en escenarios particularmente desafiantes.
+    \item Dependencia de conexión eléctrica: exceptuando los dispositivos portátiles, la aplicación requiere conexión eléctrica para su funcionamiento. Esta necesidad puede ser una limitación en entornos donde la disponibilidad de energía es un problema.
+\end{itemize}

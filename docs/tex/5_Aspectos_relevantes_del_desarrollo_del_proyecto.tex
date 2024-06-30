@@ -1,7 +1,283 @@
 \capitulo{5}{Aspectos relevantes del desarrollo del proyecto}
 
-Este apartado pretende recoger los aspectos más interesantes del desarrollo del proyecto, comentados por los autores del mismo.
-Debe incluir desde la exposición del ciclo de vida utilizado, hasta los detalles de mayor relevancia de las fases de análisis, diseño e implementación.
-Se busca que no sea una mera operación de copiar y pegar diagramas y extractos del código fuente, sino que realmente se justifiquen los caminos de solución que se han tomado, especialmente aquellos que no sean triviales.
-Puede ser el lugar más adecuado para documentar los aspectos más interesantes del diseño y de la implementación, con un mayor hincapié en aspectos tales como el tipo de arquitectura elegido, los índices de las tablas de la base de datos, normalización y desnormalización, distribución en ficheros3, reglas de negocio dentro de las bases de datos (EDVHV GH GDWRV DFWLYDV), aspectos de desarrollo relacionados con el WWW...
-Este apartado, debe convertirse en el resumen de la experiencia práctica del proyecto, y por sí mismo justifica que la memoria se convierta en un documento útil, fuente de referencia para los autores, los tutores y futuros alumnos.
+En esta sección se presentan los aspectos más destacados del desarrollo del proyecto. Esto abarca desde las decisiones tomadas hasta los desafíos que han surgido a lo largo del proceso.
+
+\section{Inicio del proyecto}\label{inicio-del-proyecto}
+
+Decidí realizar este proyecto porque me pareció muy interesante su objetivo de demostrar que las transformaciones invariantes pueden mejorar la identificación de piezas metálicas.
+
+El análisis de imágenes es un tema que me interesado durante toda la carrera especialmente en hardware de aplicación especifica donde analizábamos imágenes y su contenido especialmente una práctica que consistía en analizar el contenido de una imagen separando diferentes objetos y finalmente sumando el valor de las monedas actuales que se encontraban en ella.
+
+También tenía experiencia previa con algoritmos de agrupamiento de imágenes, gracias a mi participación en asignaturas como sistemas inteligentes. Esta familiaridad fue uno de los factores clave para elegir este proyecto. 
+
+Después una serie de reuniones con Pedro Latorre, este se ofreció a ser el tutor de mi proyecto. Me aclaró que este sería más teórico que otros y que requeriría una investigación profunda antes de comenzar.
+
+\section{Formación}\label{Formación}
+
+El proyecto requería ciertos conocimientos técnicos que inicialmente no poseía, ya que no se tratan habitualmente en la carrera. Estos conocimientos eran principalmente teóricos y estaban relacionados con el comportamiento de la luz en superficies metálicas, así como con el entendimiento de lo que es una transformación invariante, su utilidad y cuáles métodos podrían ser beneficiosos para demostrar una mejoría en los resultados.
+
+Durante el desarrollo del proyecto, también necesité familiarizarme con MATLAB App Designer para crear una aplicación que permitiera aplicar los diferentes algoritmos invariantes y de agrupamiento a imágenes propias del usuario o suministradas por la aplicación.
+
+\section{Metodologías}\label{Metodologías}
+
+Desde la primera reunión, establecimos una serie de pautas para la correcta ejecución del proyecto, las cuales se reforzaron con la llegada de Carlos López. Empleamos la metodología Scrum, aunque adaptada a la escala de nuestro proyecto educativo, dado que no se trataba de un equipo grande de programadores. Por ejemplo, en lugar de tener reuniones diarias, inicialmente programamos las reuniones cada semana. Sin embargo, debido a distintos problemas de horarios, el intervalo entre reuniones se ajustó eventualmente a cada dos semanas. En estas reuniones, revisábamos los avances logrados y planificábamos las tareas a realizar para el próximo periodo. No fue hasta que Carlos se unió al equipo que comenzamos a denominar estos periodos como "sprints" y a registrarlos en Zube para monitorear el progreso de las tareas durante cada sprint.
+
+La estrategia seguida fue de prueba y error, experimentando con numerosos algoritmos y descartando aquellos que no ofrecían mejoras significativas en la identificación precisa de las piezas metálicas dentro de imágenes. La calidad de la imagen, la cantidad de luz y las imperfecciones resultaron ser factores críticos, lo que llevó al descarte de muchos algoritmos de transformación invariante. Esta misma dinámica se aplicó a los algoritmos de agrupamiento con información espacial: se probaron muchos, pero se descartaron los que no ofrecían ventajas claras sobre técnicas de agrupamiento más simples como K-Means, Fuzzy C-Means y GMM.
+
+\section{Cambio de lenguaje y entorno de programación}\label{cambio-de-lenguaje-y-entorno-de-programación}
+
+Al inicio del proyecto, comencé utilizando Python en un archivo de Jupyter Notebook, pero debido a los largos tiempos de ejecución del algoritmo invariante y del método de agrupamiento, decidimos migrar a MATLAB. Esta plataforma es reconocida por su eficiencia en el cálculo con matrices, y en esencia, eso es lo que son las imágenes.
+
+Por esta razón, durante ese sprint, me dediqué a trasladar el código de Python a MATLAB, tarea que no resultó particularmente ardua. Para los métodos invariantes, el proceso consistió principalmente en seguir las especificaciones de las funciones detalladas en el artículo científico correspondiente. Además, los métodos de agrupamiento que estaba utilizando ya estaban implementados en las toolboxes de MATLAB, lo que facilitó aún más la migración.
+
+\section{Desarrollo de la app}\label{desarrollo-de-la-app}
+
+La idea de desarrollar una aplicación surgió después de obtener resultados satisfactorios en una etapa temprana del proyecto, lo que motivó la creación de una herramienta que cualquier persona pudiera utilizar sin necesidad de conocimientos técnicos sobre métodos de transformación invariante, segmentación de imágenes o programación.
+
+Inicialmente, se contempló el desarrollo de dos aplicaciones distintas. La primera permitía a los usuarios subir cualquier tipo de imagen, seleccionar los algoritmos que desearan utilizar de una lista de algoritmos invariantes y otra de métodos de agrupamiento, visualizar los resultados y finalmente guardarlos. La segunda aplicación era similar, pero limitada a imágenes ya proporcionadas por la propia aplicación, permitiendo a los usuarios comparar los resultados obtenidos con los ideales y evaluar así la eficacia de los métodos aplicados.
+
+Más adelante, decidimos fusionar ambas aplicaciones en una sola, al ver que era viable continuar su desarrollo. Esta aplicación final combinó las características de las dos versiones anteriores y mejoró la estructura general. Este cambio fue posible gracias a que, tras practicar con la programación de aplicaciones en MATLAB, ya tenía más fluidez con el entorno de desarrollo.
+
+Debido a los prolongados tiempos de ejecución de algunos de los métodos empleados por la aplicación, a causa de su complejidad computacional, se decidió implementar una memoria caché para almacenar los resultados de ejecuciones anteriores. De esta manera, si se procesaba la misma imagen con los mismos algoritmos, no sería necesario ejecutar sobre esta los algoritmos, sino que los datos se cargarían directamente desde la memoria, ahorrando así recursos y tiempo. Esto puede ahorrar el calculo de una o tres imágenes ya que:
+
+\begin{itemize}
+    \item Si únicamente coincidía el algoritmo de agrupamiento y la cantidad de centros, solo se ahorraría el calculo de la imagen original segmentada.
+    \item Si únicamente coincidía el algoritmo invariante, solo se ahorraría el calculo de la imagen invariante.
+    \item Si coincidía  el algoritmo invariante, el algoritmo de agrupamiento y la cantidad de centros, se ahorrarían tanto el calculo de la imagen invariante, como el de las imágenes segmentadas original e invariante.
+\end{itemize}
+
+Además, se añadió una funcionalidad que permitiría mostrar una tabla con todas las imágenes guardadas en la memoria caché. Esta tabla incluiría datos relevantes sobre cada imagen, proporcionando al usuario la opción de acceder a cualquier imagen deseada o eliminar las que considerara innecesarias. Esta característica mejoró significativamente la eficiencia y la experiencia del usuario al interactuar con la aplicación.
+
+\subsection{Estructura de la aplicación}\label{estructura-de-la-aplicación}
+
+La aplicación está diseñada de manera sencilla para evitar sobrecargar al usuario con información innecesaria además de ser responsive para de esta manera adaptarse de la mejor manera a las necesidades del usuario. Se divide en cuatro partes principales:
+
+\subsubsection{Bienvenida}\label{bienvenida}
+
+El apartado de de bienvenida el la ventana con la que primero se encuentra el usuario, esta ofrece información básica sobre el objetivo de la aplicación así como los autores, la posibilidad de elegir entre usar la aplicación en ingles o en español y una ilustración que resume el funcionamiento básico de la aplicación de algoritmos invariantes sobre imágenes de piezas metálicas. Esto se puede apreciar el la figura \ref{fig:app_bienvenida}
+
+\imagen{app_bienvenida}{Apartado de bienvenida de InvIMP.}{0.85}
+
+En esta figura se puede apreciar el aspecto de la ventana de bienvenida de InvIPM.
+
+\subsubsection{Exploración de algoritmos}\label{exploración-de-algoritmos}
+
+En este apartado, es donde el usuario puede cargar, ejecutar y visualizar los resultados de la ejecución.
+
+\imagen{app_exploracion}{Apartado de exploración de algoritmos de InvIMP.}{0.85}
+
+En esta figura se puede apreciar el aspecto de la ventana de exploración de algoritmos de InvIPM.
+
+\textbf{Selección de imagen}\label{selección-de-imagen}
+
+Mediante el botón de `Cargar imagen de pieza metálica' podremos seleccionar una imagen proporcionada por el sistema o una propia sobre la cual aplicar mas adelante.
+
+\textbf{Selección de imagen ground truth}\label{selección-de-imagen-ground-truth}
+
+En caso de no ser una imagen proporcionada por el sistema se habilitará el botón de `Cargar imagen ground truth (opcional)' para de esta manera poder proporcionar una propia. Esta imagen como indica el texto no es necesaria para la ejecución exceptuando el obtener el porcentaje de acierto.
+
+\textbf{Selección de algoritmo invariante}\label{selección-de-algoritmo-invariante}
+
+Se proporcionan los distintos métodos invariantes: Álvarez \cite{alvarez2011}, Maddern \cite{maddern2014}, Krajnık \cite{krajník2015}, Upcroft \cite{upcroft2014} y PCA \cite{pca2017}.
+
+Estos están ordenados de manera que el primero es el que mejores resultados ofrece según las pruebas realizadas. Por otro lado, PCA, aunque muestra una clara mejoría en muchas situaciones, es un enfoque más clásico que numéricamente no alcanza resultados tan buenos como los demás.
+
+\textbf{Selección de algoritmo de agrupamiento}\label{selección-de-algoritmo-de-agrupamiento}
+
+Se proporcionan los distintos métodos de agrupamiento: K-Means \cite{MATLAB:2023bKmeans}, Fuzzy C-Means \cite{MATLAB:2023bFuzzy}, Gaussian Mixtures \cite{MATLAB:2023bGMM}, Información espacial, el cual es HMRF\_EM \cite{wang2012hmrf}.
+
+Estos están ordenados de manera que el primero es el menos costoso computacionalmente, por lo que ofrecerá mejores tiempos de ejecución. El último, en cambio, tiene tiempos de ejecución más largos, ya que es un algoritmo que no solo considera el color de un píxel en particular, sino también el de los píxeles circundantes.
+
+\textbf{Selección de número de centros}\label{selección-de-número-de-centros}
+
+Mediante este cuadro de texto el usuario puede indicar el numero de centros a utilizar en los algoritmos de agrupamiento. Por defecto este numero será 2.
+
+El número de centros ha de cumplir las siguientes condiciones: ser igual o mayor que 2 y ser igual o menor que 10.
+
+Esto se debe a que, como mínimo, se necesitan dos centros para poder separar entre pieza y fondo. El máximo se establece porque, a mayor cantidad de centros, aumenta la complejidad computacional, lo cual alargaría considerablemente los tiempos de ejecución.
+
+\textbf{Ejecución}\label{ejecución}
+
+Al pulsar el botón de `Ejecutar' se dará inicio a la ejecución sobre la imagen seleccionada de los distintos algoritmos elegidos.Durante la ejecución, se proporcionará retroalimentación sobre el porcentaje de progreso y la etapa que se está calculando en ese momento.
+
+\textbf{Representación de resultados}\label{representación-de-resultados}
+
+Tras finalizar la ejecución se mostraran en la parte derecha cuatro imágenes, estas serán:
+
+\begin{itemize}
+    \item La imagen original (arriba a la izquierda).
+    \item La imagen original segmentada (arriba a la derecha).
+    \item La imagen invariante (abajo a la izquierda).
+    \item La imagen invariante segmentada (abajo a la derecha).
+\end{itemize}
+
+En el caso de que se haya utilizado una imagen proporcionada por la aplicación o que el usuario haya proporcionado una imagen de referencia (ground truth), el título tanto de la imagen original segmentada como de la imagen invariante segmentada mostrará el porcentaje de acierto. De esta manera, el usuario podrá comparar los resultados no solo visualmente, sino también numéricamente.
+
+\subsubsection{Histórico de exploraciones}\label{Histórico-de-exploraciones}
+
+En este apartado, se nos presenta una tabla en la cual aparecen a forma de lista todas aquellas ejecuciones que hemos realizado tanto en esta sesión como en sesiones previas. El contenido de las columnas de esta tabla es el siguiente:
+
+\begin{itemize}
+    \item \textbf{Nombre del fichero:} este es el nombre del archivo que el usuario seleccionó.
+    \item \textbf{Fecha:} esta es la fecha de la ejecución. Esta está en formato DD-MMM-YYY HH-MM-SS.
+    \item \textbf{Algoritmo invariante:} muestra el nombre del algoritmo invariante aplicado sobre la imagen. En el caso de no haberse aplicado ningún algoritmo invariante muestra `No aplicado'.
+    \item \textbf{Algoritmo de agrupamiento:} muestra el nombre del algoritmo de agrupamiento aplicado sobre la imagen. En el caso de no haberse aplicado ningún algoritmo de agrupamiento muestra `No aplicado'.
+    \item \textbf{Número de centros:} muestra la cantidad de centros utilizados en el algoritmo de agrupamiento aplicado sobre la imagen. En el caso de no haberse aplicado ningún algoritmo de agrupamiento muestra `-'.
+    \item \textbf{Imagen ground truth:} indica mediante `Sí' o `No' el si la ejecución de dicha imagen tenia o bien imagen asociada o el usuario había proporcionado una propia.
+    \item \textbf{Medida de calidad:} indica la tasa de acierto que se ha logrado al comparar la imagen correspondiente a dicha fila con si imagen ground truth. En caso de no tener imagen ground truth esta celda estará en blanco.
+    \item \textbf{Archivo:} muestra un checkbox el cual al pulsar sobre el abre en una nueva ventana la imagen correspondiente a dicha fila. Esta nueva ventana tiene una serie de opciones aparte de la visualización permitiendo que el usuario la guarde o imprima entre otras opciones.
+\end{itemize}
+
+El usuario también puede si lo desea ordenar la tabla por la columna que quiera.
+
+\imagen{app_historico}{Apartado de histórico de exploraciones de InvIMP.}{0.9}
+
+En esta figura se puede apreciar el aspecto de la ventana del histórico de exploraciones de InvIPM.
+
+A parte de la tabla, en la parte inferior hay dos botones, uno para ver las imágenes y otro para borrar el contenido de la memoria cache. 
+
+\textbf{Ver imágenes}\label{ver-imágenes}
+
+Al pulsar en este botón se abrirá una ventana nueva donde podremos ver y seleccionar todas aquellas imágenes que están almacenadas en la memoria caché.
+
+\textbf{Borrar datos}\label{borrar-datos}
+
+Al pulsar en este botón aparecerá una ventana emergente indicando si realmente queremos borrar de forma irreversible el contenido de la memoria caché. En caso de pulsar en el botón de `Borrar' se borrará su contenido además de actualizarse la tabla ya que dichas imágenes no se encontraran disponibles. Tras esto nos indicará que la memoria cache se ha borrado exitosamente.
+
+\subsubsection{Ayuda}\label{ayuda}
+
+En este apartado, tal y como se muestra en la figura \ref{fig:app_ayuda}, se puede obtener información sobre el funcionamiento, los algoritmos invariantes, los algoritmos de agrupamiento, la caché y la tasa de acierto. Al estar la propia documentación implementada dentro de la aplicación, resulta muy cómodo buscar información sobre cualquier tema de interés. 
+
+Además, el idioma de la documentación corresponde con el que se ha seleccionado en la bienvenida \ref{bienvenida}.
+
+\imagen{app_ayuda}{Apartado de ayuda de InvIMP.}{0.9}
+
+En esta figura se puede apreciar el aspecto de la ventana de ayuda de InvIPM.
+
+\section{Resultados de la experimentación}\label{resultados-de-la-experimentación}
+
+Para analizar los resultados, he ejecutado cada método de transformación invariante sobre las 24 imágenes de prueba, generando para cada una de ellas la imagen original segmentada, la imagen invariante y la imagen invariante segmentada. Esto se ha realizado para cada uno de los cinco métodos de transformación invariante y para cada uno de los cuatro métodos de agrupamiento, tanto para dos como para tres centros. Evitando imágenes repetidas, se han obtenido un total de 1.272 imágenes.
+
+Este análisis ha sido posible gracias a las 24 imágenes de prueba que contiene la aplicación, junto con sus correspondientes imágenes ground truth, las cuales han sido editadas manualmente para separar correctamente las piezas del fondo.
+
+Dichos resultados se pueden encontrar el siguiente directorio de el repositorio de GitHub del proyecto \cite{ejecucionTodas}.
+
+\subsection{Resultados de calidad de segmentación}\label{resultados-de-calidad-de-segmentación}
+
+Como se puede apreciar en los resultados recopilados en los dos archivos Excel que se encuentran en el repositorio \cite{ejecucionTodas} en la mayoría de casos el aplicar métodos de transformación invariante sobre las imágenes de las piezas metálicas mejora considerablemente los resultados de la posterior segmentación. Y no solo eso sino que en los resultados mas complejos donde a primera vista pueda parecer que el resultado es numéricamente peor se puede apreciar una disminución de los errores de identificación de las piezas debido a reflexiones sobre el metal, esto se expondrá mas adelante en \ref{resultados-mejores-visualmente}.
+
+Después de toda la experimentación hay un claro algoritmo que es superior a la hora de diferenciar las piezas de el fondo, este es el propuesto por Álvarez \cite{alvarez2011} el cual da los siguientes resultados tanto de media \ref{tabla:media-de-porcentajes-de-acierto} como de mediana \ref{tabla:mediana-de-porcentajes-de-acierto} utilizando los distintos algoritmos de agrupamiento.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{>{\raggedright\arraybackslash}m{3cm} | l | l l l l}
+        \hline
+        \adjustbox{width=3cm}{\diagbox{\textbf{Agrupamientos}}{\textbf{Método}}}  & \textbf{RGB} & \textbf{Álvarez}  & \textbf{Maddern}  & \textbf{Krajnık}  & \textbf{PCA}  \\
+        \hline
+        \textbf{K-Means}        & 74,91\%           & \textbf{89,49\%}           & 65,51\%           & 55,94\%           & 50,41\%       \\
+        \textbf{Fuzzy C-Means}  & 74,88\%           & \textbf{89,41\%}           & 65,50\%           & 59,84\%           & 62,16\%       \\
+        \textbf{GMM}            & 83,14\%           & \textbf{90,79\%}           & 65,16\%           & 78,63\%           & 69,35\%       \\
+        \textbf{HMRF\_EM}       & 78,46\%           & \textbf{91,29\%}           & 65,49\%           & 74,76\%           & 69,80\%       \\
+        \hline
+    \end{tabular}
+    \caption{Media de porcentajes de acierto.}\label{tabla:media-de-porcentajes-de-acierto}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{>{\raggedright\arraybackslash}m{3cm} | l | l l l l}
+        \hline
+        \adjustbox{width=3cm}{\diagbox{\textbf{Agrupamientos}}{\textbf{Método}}}  & \textbf{RGB} & \textbf{Álvarez}  & \textbf{Maddern}  & \textbf{Krajnık}  & \textbf{PCA}  \\
+        \hline
+        \textbf{K-Means}        & 76,26\%           & \textbf{98,10\%}           & 52,68\%           & 47,85\%                      & 37,51\%               \\
+        \textbf{Fuzzy C-Means}  & 76,21\%           & \textbf{98,09\%}           & 52,68\%           & 69,51\%                      & \textbf{80,83\%}      \\
+        \textbf{GMM}            & 84,86\%           & \textbf{99,15\%}           & 52,68\%           & \textbf{86,31\%}             & 83,79\%               \\
+        \textbf{HMRF\_EM}       & 79,82\%           & \textbf{98,56\%}           & 52,68\%           & \textbf{87,26\%}             & \textbf{83,99\%}      \\
+        \hline
+    \end{tabular}
+    \caption{Mediana de porcentajes de acierto.}\label{tabla:mediana-de-porcentajes-de-acierto}
+\end{table}
+
+Como se puede apreciar no se han añadido a las tablas los resultados de Upcroft, esto de debe a que los resultados entre Upcroft y Maddern son mínimos ya que comparten la estructura del algoritmo casi al 100\% y únicamente sus resultados se alejan en el caso de imágenes muy complejas.
+
+Como se puede apreciar numéricamente Álvarez supone una mejora notable frente a los demás algoritmos obteniendo resultados de una gran calidad. Si únicamente comparamos estos resultados con los originales nos da el siguiente gráfico de la figura \ref{fig:kmeans_alvarez}. Más tarde se analizara el gráfico con todos los algoritmos invariantes, pero al contener demasiada malformación se analizara el de Álvarez por separado.
+
+\imagen{kmeans_alvarez}{Tasa de acierto de los de la gemación aplicando K-Means sobre la imagen original frente a los resultados de utilizar previamente Álvarez.}{1}
+
+En la única situación en la que da resultados numéricamente menores a la segmentación sin aplicar ningún algoritmo invariante en en el caso de las dos imágenes complejas de las cuales una aparecerá mas adelante en la figura \ref{fig:gt_complicada}.
+
+\imagen{kmeans_todas}{Tasa de acierto de los de la gemación aplicando K-Means sobre la imagen original frente a los resultados de utilizar los distintos métodos invariantes.}{1}
+
+Con los resultados de todos los demás tipos de transformaciones invariantes el gráfico quedaría como el de la figura \ref{fig:kmeans_todas}.
+
+\subsection{Análisis de casos}\label{análisis-de-casos}
+
+A contención se mostrarán dos resultados de imágenes diferentes, estos suponen una caso con condiciones ideales mientras que el otro es un caso mas complejo y en cierta manera mas cercano a lo que puede llegar a ser un escenario mas realista en la industria.
+
+\subsubsection{Resultados mejores numéricamente}\label{resultados-mejores-numéricamente}
+
+En este caso se va a analizar la mejora numérica que se puede llegar a conseguir al aplicar sobre una imagen obtenida en unas condiciones óptimas, un único foco de luz, un ángulo de 90º, sin objetos metálicos o de colores parecidos en el fondo etc.
+
+La figura que se analizará es la siguiente la cual forma parte de las imágenes que ofrece la propia aplicación para probar los distintos algoritmos, esta imagen es la 3\_DIS\_1\_ACE\_TRO\_1:
+
+\imagen{original_buena_luz}{Imagen piezas metálicas en condiciones idóneas.}{0.5}
+
+La imagen ground truth que se ha creado para comparar los resultados de una segmentación perfecta es la de la figura \ref{fig:gt_buena_luz}.
+
+\imagen{gt_buena_luz}{Imagen ground truth de piezas metálicas en condiciones idóneas.}{0.5}
+
+Tras aplicar el método de transformación invariante de Álvarez \cite{alvarez2011}, la imagen que obtenemos es la siguiente:
+
+\imagen{invariante_buena_luz}{Imagen piezas metálicas en condiciones idóneas tras aplicar el algoritmo invariante de Alvarez.}{0.5}
+
+A continuación podemos ver una comparación de los resultados en la figura \ref{fig:resultado_buena_luz}, a la izquierda esta la imagen original segmentada mediante K-Means mientras que a la derecha esta la imagen segmentada de la previa transformación invariante.
+
+\imagen{resultado_buena_luz}{Comparación de resultados de piezas metálicas en condiciones idóneas.}{0.9}
+
+Como se puede apreciar numéricamente la segmentación sobre la imagen invariante tiene una mayor precisión (98,40\% frente a 81,17\%) además visualmente la mejora es apreciable ya que la forma de la pieza se distingue perfectamente mientras que en la segmentación sobre la original no se ha identificado correctamente la pieza además de contener distintos defectos dentro de la zona delimitada como pieza.
+
+\subsubsection{Resultados mejores visualmente}\label{resultados-mejores-visualmente}
+
+\textbf{Imágenes complejas}
+
+En este caso la imagen de la pieza a analizar es una imagen mas compleja, con distintos focos de luz, en un entorno que contiene mas objetos de un material metálico, en definitiva una situación mas factible en el mundo laboral.
+
+La figura que se analizará es la siguiente la cual forma parte de las imágenes que ofrece la propia aplicación para probar los distintos algoritmos, esta imagen es 1\_IGU\_2\_ACE\_LIS\_2:
+
+\imagen{original_complicada}{Imagen piezas metálicas en condiciones adversas.}{0.5}
+
+La imagen ground truth que se ha creado para comparar los resultados de una segmentación perfecta es la de la figura \ref{fig:gt_complicada}.
+
+\imagen{gt_complicada}{Imagen ground truth de piezas metálicas en condiciones adversas.}{0.5}
+
+Tras aplicar el método de transformación invariante de Álvarez \cite{alvarez2011}, la imagen que obtenemos es la siguiente:
+
+\imagen{invariante_complicada}{Imagen piezas metálicas en condiciones adversas tras aplicar el algoritmo invariante de Alvarez.}{0.5}
+
+A continuación podemos ver una comparación de los resultados en la figura \ref{fig:resultado_complicada}, a la izquierda esta la imagen original segmentada mediante K-Means mientras que a la derecha esta la imagen segmentada de la previa transformación invariante.
+
+\imagen{resultado_complicada}{Comparación de resultados de piezas metálicas en condiciones adversas.}{0.9}
+
+Esta vez, numéricamente la segmentación es mejor sin haber aplicado el algoritmo invariante (64,73\% frente a 23,20\%) pero si nos fijamos, visualmente el resultado de la transformación invariante ha conseguido eliminar una gran cantidad de brillos e imperfecciones los cuales la pieza original presentaba. Hay que mencionar además que el resultado puede parecer bajo debido a la forma de calcular el porcentaje de acierto, puesto que asigna como fondo al color de la segmentación mas común en los bordes de la imagen ya que la pieza suele estar en el centro. Esta forma de calcularlo claramente se ve que perjudica en gran medida a esta ejecución en concreto puesto que al haber mas parte de pieza en la parte inferior de la imagen incluyendo los bordes esta calculando el acierto de una forma incorrecta.
+
+\textbf{Imágenes con poca luz}
+
+En este caso la imagen de la pieza a analizar es una imagen simple en un entorno con muy poca luz.
+
+La figura que se analizará es la siguiente la cual forma parte de las imágenes que ofrece la propia aplicación para probar los distintos algoritmos, esta imagen es 1\_IGU\_1\_ACE\_TRO\_16\_ADV:
+
+\imagen{original_poca_luz}{Imagen piezas metálicas en condiciones de poca luz.}{0.5}
+
+La imagen ground truth que se ha creado para comparar los resultados de una segmentación perfecta es la de la figura \ref{fig:gt_poca_luz}.
+
+\imagen{gt_poca_luz}{Imagen ground truth de piezas metálicas en condiciones  de poca luz.}{0.5}
+
+Tras aplicar el método de transformación invariante de Álvarez \cite{alvarez2011}, la imagen que obtenemos es la siguiente:
+
+\imagen{invariante_poca_luz}{Imagen piezas metálicas en condiciones de poca luz tras aplicar el algoritmo invariante de Alvarez.}{0.5}
+
+A continuación podemos ver una comparación de los resultados en la figura \ref{fig:resultado_poca_luz}, a la izquierda esta la imagen original segmentada mediante HMRF\_EM mientras que a la derecha esta la imagen segmentada de la previa transformación invariante.
+
+\imagen{resultado_poca_luz}{Comparación de resultados de piezas metálicas en condiciones de poca luz.}{0.9}
+
+Esta vez, numéricamente la segmentación es mejor sin haber aplicado el algoritmo invariante (76,96\% frente a 74,14\%) pero si nos fijamos, visualmente el resultado de la transformación invariante ha conseguido identificar mas parte de la pieza, partes que no se alcanzaban a identificar sin haber realizado la transformación invariante. Se puede observar además que visualmente es muy fácil identificar la pieza en la imagen resultante de la segmentación tras el algoritmo de transformación invariante ya que al contrario del otro resultado esta no pierde información relevante.

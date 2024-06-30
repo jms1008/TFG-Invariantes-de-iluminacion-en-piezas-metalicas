@@ -21,9 +21,11 @@ El único programa que es necesario tener para la ejecución de este proyecto es
 
 No hay un proceso de instalación adicional aparte de las dependencias mencionadas anteriormente, ya que la aplicación es auto contenida. Esto significa que todos los archivos y bibliotecas necesarios ya están incluidos en la carpeta de la versión. Gracias a esto, la instalación y el uso se simplifican considerablemente, permitiendo que incluso los usuarios sin experiencia en MATLAB tengan una experiencia agradable.
 
-El primer paso sera ir al repositorio de GitHub y descargarse la ultima release, esto se puede hacer tal y como se muestra en la figura \ref{fig:app_release} en el menú de la derecha:
+El primer paso será ir al repositorio de GitHub y descargarse la ultima release, esto se puede hacer tal y como se muestra en la figura \ref{fig:app_release} en el menú de la derecha:
 
 \imagen{app_release}{Instalación de la release desde GitHub.}
+
+La figura \ref{fig:app_release} muestra una release en GitHub incluyendo la versión, una breve descripción de los cambios y funcionalidades nuevas respecto a la anterior y una serie de archivos binarios para la ejecución de esta. En este apartado es muy importante en descargarse la versión correspondiente al sistema operativo utilizado.
 
 Una vez descargado el archivo zip tendremos que descomprimirlo. Tras ello, nos quedaran una serie de archivos y carpetas en el directorio deseado. Estas son:
     \begin{itemize}
@@ -41,9 +43,11 @@ Sección dedicada a la redacción de un manual sencillo para que el usuario comp
 
 \subsection{Bienvenida}\label{bienvenida}
 
-Nada mas entrar en la aplicación nos encontraremos con una imagen de bienvenida donde nos explica en términos generales el objetivo de la misma además del autor y tutores del proyecto. El contenido de esta pantalla se muestra en la figura \ref{fig:app_bienvenida}
+Nada más entrar en la aplicación, se presentará una imagen de bienvenida que explica en términos generales el objetivo de la misma, además de mostrar el autor y los tutores del proyecto. El contenido de esta pantalla se muestra en la figura \ref{fig:app_bienvenida}
 
 \imagen{app_bienvenida}{Apartado de bienvenida de InvIMP.}
+
+La figura \ref{fig:app_bienvenida} se puede apreciar el aspecto de la ventana de bienvenida de InvIPM.
 
 En la parte superior derecha de esta pantalla, se encuentra un selector de idioma entre español e inglés, con sus correspondientes banderas. Esto lo hace más autoexplicativo, permitiendo al usuario identificarlo sin necesidad de leer el texto. Esto es especialmente útil cuando la aplicación está en un idioma diferente al del usuario.
 
@@ -53,9 +57,11 @@ En este apartado, es donde el usuario puede cargar, ejecutar y visualizar los re
 
 \imagen{app_exploracion}{Apartado de exploración de algoritmos de InvIMP.}
 
+La figura \ref{fig:app_exploracion} se puede apreciar el aspecto de la ventana de exploración de algoritmos de InvIPM.
+
 \subsubsection{Selección de imagen}\label{selección-de-imagen}
 
-Mediante el botón de `Cargar imagen de pieza metálica' podremos seleccionar una imagen proporcionada por el sistema o una propia sobre la cual aplicar mas adelante.
+Mediante el botón de `Cargar imagen de pieza metálica', se podrá seleccionar una imagen proporcionada por el sistema o una propia sobre la cual se aplicarán los algoritmos más adelante.
 
 \subsubsection{Selección de imagen ground truth}\label{selección-de-imagen-ground-truth}
 
@@ -69,11 +75,11 @@ Se proporcionan los distintos métodos invariantes:
     \item Álvarez.
     \item Maddern.
     \item Krajnık.
-    \item Upcrof.
+    \item Upcroft.
     \item PCA.
 \end{itemize}
 
-Estos están ordenados de manera que el primero es el que mejores resultados ofrece según las pruebas realizadas. Por otro lado, PCA, aunque muestra una clara mejoría en muchas situaciones, es un enfoque más clásico que numéricamente no alcanza resultados tan buenos como los demás.
+Estos están ordenados de manera que el primero es el que mejores resultados ofrece según las pruebas realizadas. Por otro lado, PCA, aunque muestra una clara mejoría en muchas situaciones, es un enfoque más clásico que numéricamente no alcanza resultados tan buenos como otros métodos, en concreto Álvarez.
 
 \subsubsection{Selección de algoritmo de agrupamiento}\label{selección-de-algoritmo-de-agrupamiento}
 
@@ -90,7 +96,7 @@ Estos están ordenados de manera que el primero es el menos costoso computaciona
 
 \subsubsection{Selección de número de centros}\label{selección-de-número-de-centros}
 
-Mediante este cuadro de texto el usuario puede indicar el numero de centros a utilizar en los algoritmos de agrupamiento. Por defecto este numero será 2.
+Mediante este cuadro de texto el usuario puede indicar el número de centros a utilizar en los algoritmos de agrupamiento. Por defecto este número será 2.
 
 El número de centros ha de cumplir las siguientes condiciones:
 
@@ -104,7 +110,7 @@ Esto se debe a que, como mínimo, se necesitan dos centros para poder separar en
 
 \subsubsection{Ejecución}\label{ejecución}
 
-Al pulsar el botón de `Ejecutar' se dar'a inicio a la ejecución sobre la imagen seleccionada de los distintos algoritmos elegidos.Durante la ejecución, se proporcionará retroalimentación sobre el porcentaje de progreso y la etapa que se está calculando en ese momento.
+Al pulsar el botón de `Ejecutar' se dará inicio a la ejecución sobre la imagen seleccionada de los distintos algoritmos elegidos.Durante la ejecución, se proporcionará retroalimentación sobre el porcentaje de progreso y la etapa que se está calculando en ese momento.
 
 \subsubsection{Representación de resultados}\label{representación-de-resultados}
 
@@ -121,7 +127,7 @@ En el caso de que se haya utilizado una imagen proporcionada por la aplicación 
 
 \subsection{Histórico de exploraciones}\label{histórico-de-exploraciones}
 
-En este apartado, se nos presenta una tabla en la cual aparecen a forma de lista todas aquellas ejecuciones que hemos realizado tanto en esta sesión como en sesiones previas. El contenido de las columnas de esta tabla es el siguiente:
+En este apartado, se presenta una tabla en la cual aparecen, a modo de lista, todas las ejecuciones realizadas tanto en esta sesión como en sesiones previas. El contenido de las columnas de esta tabla es el siguiente:
 
 \begin{itemize}
     \item \textbf{Nombre del fichero:} este es el nombre del archivo que el usuario seleccionó.
@@ -138,15 +144,17 @@ El usuario también puede si lo desea ordenar la tabla por la columna que quiera
 
 \imagen{app_historico}{Apartado de histórico de exploraciones de InvIMP.}
 
+La figura \ref{fig:app_historico} se puede apreciar el aspecto de la ventana de histórico de exploraciones de InvIPM.
+
 A parte de la tabla, en la parte inferior hay dos botones, uno para ver las imágenes y otro para borrar el contenido de la memoria cache. 
 
 \subsubsection{Ver imágenes}\label{ver-imágenes}
 
-Al pulsar en este botón se abrirá una ventana nueva donde podremos ver y seleccionar todas aquellas imágenes que están almacenadas en la memoria caché.
+Al pulsar en este botón se abrirá una ventana nueva donde se podrá ver y seleccionar todas aquellas imágenes que están almacenadas en la memoria caché.
 
 \subsubsection{Borrar datos}\label{borrar-datos}
 
-Al pulsar en este botón aparecerá una ventana emergente indicando si realmente queremos borrar de forma irreversible el contenido de la memoria caché. En caso de pulsar en el botón de `Borrar' se borrará su contenido además de actualizarse la tabla ya que dichas imágenes no se encontraran disponibles. Tras esto nos indicará que la memoria cache se ha borrado exitosamente.
+Al pulsar este botón, aparecerá una ventana emergente indicando si realmente se desea borrar de forma irreversible el contenido de la memoria caché. En caso de pulsar el botón `Borrar', se eliminará su contenido y se actualizará la tabla, ya que dichas imágenes no se encontrarán disponibles. Tras esto, se indicará que la memoria caché se ha borrado exitosamente.
 
 \subsection{Ayuda}\label{ayuda}
 
@@ -155,3 +163,5 @@ En este apartado, tal y como se muestra en la figura \ref{fig:app_ayuda}, se pue
 Además, el idioma de la documentación corresponde con el que se ha seleccionado en la bienvenida.
 
 \imagen{app_ayuda}{Apartado de ayuda de InvIMP.}
+
+La figura \ref{fig:app_ayuda} se puede apreciar el aspecto de la ventana de ayuda de InvIPM.

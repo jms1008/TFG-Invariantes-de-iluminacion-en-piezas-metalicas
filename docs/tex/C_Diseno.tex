@@ -6,12 +6,70 @@ En este apéndice se abordarán los aspectos relacionados con el diseño de trat
 
 \section{Diseño de datos}\label{diseño-de-datos}
 
+En esta sección, se describen las estructuras de datos utilizadas en la aplicación. Los datos de entrada son imágenes que se procesan mediante una serie de scripts. Las librerías de MATLAB gestionan operaciones específicas como la manipulación de imágenes y el análisis de datos. Las variables globales se utilizan para almacenar información clave, como parámetros de configuración y resultados intermedios.
+
 \section{Diseño procedimental}\label{diseño-procedimental}
 
 En este apartado se recogen los detalles más relevantes respecto a la ejecución de la aplicación desde que el usuario selecciona una imagen a analizar hasta que guarda los resultados.
 
 \imagen{Diagrama_de_secuencia}{Diagrama de secuencia de los distintos componentes de la aplicación.}
 
+El proceso se inicia cuando el usuario selecciona una imagen. La imagen se carga y se preprocesa eliminando el canal alpha. A continuación se le aplica sobre la imagen el algoritmo de transformación invariante seleccionado. Después se aplica sobre la imagen original y sobre la imagen invariante el método de agrupamiento. Posteriormente, en el caso de que tenga imagen ground truth, se calcula el porcentaje de acierto de las segmentaciones. Finalmente, los resultados se presentan al usuario, quien tiene la opción de guardarlos.
+
+\imagen{Diagrama_de_flujo}{Diagrama de flujo detallado del procesamiento de datos en la aplicación.}
+
+En la figura \ref{fig:Diagrama_de_flujo} se muestra de una forma esquemática los pasos a seguir desde que el usuario selecciona una imagen hasta que este la guarda.
+
 \section{Diseño arquitectónico}\label{diseño-arquitectónico}
 
+La arquitectura de la aplicación está basada en una serie de scripts interconectados que utilizan funciones específicas para diferentes tareas. A continuación se presentan los componentes principales:
 
+\begin{itemize}
+    \item \textbf{Interfaz de usuario:} permite la carga de imágenes, la selección de transformación invariante, la selección de numero de centros, la selección de algoritmo de agrupamiento y la visualización de resultados ente otras cosas.
+    \item \textbf{Módulo de procesamiento:} son todas aquellas funciones que la aplicación ejecuta de forma opaca al usuario que hacen uso de los scripts para obtener los resultados.
+    \item \textbf{Bibliotecas de MATLAB:} conjunto de funciones predefinidas utilizadas para operaciones específicas de manipulación de datos y análisis de imágenes.
+    \item \textbf{Sistema de almacenamiento:} hay de tres tipos, `/data' que guarda las imágenes de prueba y su correspondiente imagen ground truth, `/cache' que se encarga de almacenar los resultados de todos las anteriores ejecuciones exceptuando el caso de que el usuario lo desee eliminar y `/results' que es la ruta donde se almacenan por defecto las imágenes que el usuario desea guardar.
+\end{itemize}
+
+\imagen{Diagrama_de_componentes}{Diagrama de componentes mostrando la interacción entre los distintos módulos de la aplicación.}
+
+En la figura \ref{fig:Diagrama_de_componentes} se muestra la interacción que tienen los distintos componentes de la aplicación.
+
+
+\section{Estructura de directorios y archivos}\label{estructura-de-directorios-y-archivos}
+
+A continuación se muestra la estructura de directorios que conforma el proyecto
+
+\imagen{Estructura_de_directorios}{Estructura de directorios.}
+
+El contenido de dichos directorios es el siguiente:
+
+\begin{itemize}
+    \item \textbf{/experimentación:} contiene dos archivos excel con los resultados de la tasa de acierto de todas las ejecuciones. Además contiene un readme.txt.
+    \item \textbf{/experimentación/imagenes:} contiene las imagenes resultado de todas las ejecuciones para dos y tres centros.
+    \item \textbf{/app:} contiene la aplicación de MATLAB App Designer.
+    \item \textbf{/app/data/Imagenes:} contiene las imágenes de prueba que ofrece el programa.
+    \item \textbf{/app/data/Imagenes\_ground\_truth:} contiene las imágenes ground truth correspondientes a las de prueba que ofrece el programa.
+    \item \textbf{/app/src/functions:} contiene los scripts utilizados por el programa. Estos son:
+    \begin{itemize}
+        \item PCA.m
+        \item alvarez\_transform.m
+        \item calcular\_alpha.m
+        \item calcular\_coincidencia.m
+        \item calcular\_theta\_krajnik.m
+        \item convertir\_a\_blanco\_negro\_con\_bordes.m
+        \item imagen\_tres\_canales.m
+        \item krajnik\_transform.m
+        \item maddern\_transform.m
+        \item metodos\_agrupamiento.m
+        \item metodos\_invariantes.m
+        \item moda\_color.m
+        \item segmentar\_imagen\_GMM.m
+        \item segmentar\_imagen\_KMeans.m
+        \item segmentar\_imagen\_fuzzy\_CMeans.m
+        \item upcroft\_transform.m
+    \end{itemize}
+    \item \textbf{/app/src/livescripts:} contiene los livescripts y HTML utilizados por el programa.
+    \item \textbf{/app/src/livescripts/img:} contiene las imágenes utilizadas en los livescripts además de las utilizadas en el programa.
+    \item \textbf{/app/src/test:} contiene los tests de cada script con su correspondiente readme y script para ejecutar todos (run\_all\_tests.m).
+\end{itemize}

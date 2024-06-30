@@ -1,6 +1,147 @@
 \capitulo{4}{Técnicas y herramientas}
 
-Esta parte de la memoria tiene como objetivo presentar las técnicas metodológicas y las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Si se han estudiado diferentes alternativas de metodologías, herramientas, bibliotecas se puede hacer un resumen de los aspectos más destacados de cada alternativa, incluyendo comparativas entre las distintas opciones y una justificación de las elecciones realizadas. 
-No se pretende que este apartado se convierta en un capítulo de un libro dedicado a cada una de las alternativas, sino comentar los aspectos más destacados de cada opción, con un repaso somero a los fundamentos esenciales y referencias bibliográficas para que el lector pueda ampliar su conocimiento sobre el tema.
+\section{Control de versiones}\label{control-de-versiones}
 
+\subsection{Git}\label{git}
 
+Git es un sistema de control de versiones distribuido que permite trabajar de manera autónoma con copias completas del repositorio. Es ideal para utilizar múltiples ramas de desarrollo, facilitando la experimentación y el desarrollo paralelo sin interferencias. Destaca por su rapidez y eficiencia, almacenando información como cambios incrementales en lugar de archivos completos, lo que optimiza el uso del espacio y mejora el rendimiento en proyectos de cualquier tamaño.
+
+\section{Hosting del repositorio}\label{hosting-del-repositorio}
+
+\subsection{GitHub}\label{github}
+
+\begin{itemize}
+    \item Herramientas consideradas: GitHub y GitLab.
+    \item Motivo de la elección de GitHub:
+\end{itemize}
+
+GitHub es una plataforma de hosting de repositorios Git que se ha convertido en uno de los servicios más populares para la gestión colaborativa de proyectos de software. Cuenta con una interfaz de usuario intuitiva y su integración con una gran cantidad de herramientas de desarrollo, lo que lo hace accesible tanto para equipos pequeños como grandes empresas. 
+
+Es por esta mayor capacidad de integración por la cual se ha optado por usar GitHub en lugar de GitLab, además de que durante la carrera se ha utilizado siempre GitHub.
+
+\section{Metodologías ágiles}\label{metodologías-ágiles}
+
+\subsection{Scrum}\label{scrum}
+
+Scrum es una metodología ágil de gestión y planificación de proyectos de software que se centra en el trabajo en equipo, la responsabilidad y la iteración progresiva de objetivos a corto plazo, conocidos como sprints. Esto ha sido muy útil, ya que se han definido los sprints como el tiempo entre reuniones, en las cuales se revisaba el trabajo realizado y se planteaban las líneas a seguir en el siguiente periodo (sprint).
+
+\subsection{Kanban}\label{kanban}
+
+Kanban se ha implementado dentro de los sprints de Scrum en el proyecto, combinando la estructura iterativa de Scrum con la flexibilidad y visualización del flujo de trabajo de Kanban. Esta integración ha permitido gestionar y ajustar continuamente las tareas dentro de cada sprint, optimizando la entrega y la eficiencia sin adherirse estrictamente a una sola metodología.
+
+\section{Gestión del proyecto}\label{gestión-del-proyecto}
+
+\subsection{Zube}\label{zube}
+
+\begin{itemize}
+    \item Herramientas consideradas: Zube, Trello, Jira.
+    \item Motivo de la elección de Zube:
+\end{itemize}
+
+Zube es una plataforma de gestión de proyectos ágil que se integra directamente con GitHub, permitiendo una sincronización automática entre tareas e issues de GitHub. Su interfaz soporta configuraciones de tableros Kanban y Scrum, facilitando la adaptación a diferentes flujos de trabajo. Zube ofrece visibilidad del progreso del proyecto y permite gestionar y priorizar tareas eficientemente, haciendo que la planificación y el seguimiento sean más accesibles y dinámicos para los equipos de desarrollo.
+
+Esta herramienta fue elegida frente a Trello o Jira por recomendación de los tutores. Además de su excepcional integración con GitHub, ofrece una interfaz más sencilla y directa para gestionar proyectos ágiles eficazmente.
+
+\subsection{GitHub Desktop}\label{gitHub-desktop}
+
+\begin{itemize}
+    \item Herramientas consideradas: GitHub Desktop, GitKraken.
+    \item Motivo de la elección de GitHub Desktop:
+\end{itemize}
+
+GitHub Desktop es una aplicación que simplifica la manera en que los desarrolladores interactúan con Git y GitHub, proporcionando una interfaz gráfica de usuario en lugar de la línea de comandos.
+
+GitHub Desktop ofrece una mejor integración con GitHub, lo que facilita trabajar de forma más fluida y coherente dentro del ecosistema de GitHub, a diferencia de GitKraken, cuya interfaz y funcionalidades son más genéricas y menos especializadas para usuarios de GitHub.
+
+\section{Comunicación}\label{comunicación}
+
+\subsection{Microsoft Outlook}\label{microsoft-outlook}
+
+\begin{itemize}
+    \item Herramientas consideradas: Microsoft Outlook, Gmail.
+    \item Motivo de la elección de Microsoft Outlook:
+\end{itemize}
+
+Microsoft Outlook, parte de la suite de Microsoft Office, es una aplicación de gestión de información personal y cliente de correo electrónico. Es altamente valorado por su integración con el calendario, lo cual facilita a los usuarios la programación y seguimiento de citas y reuniones de manera eficiente.
+
+Se optó por utilizar Microsoft Outlook debido a su facilidad de uso y porque las reuniones eran programadas por D. Pedro Latorre Carmona. Además, la Universidad de Burgos proporciona una cuenta de Outlook a todos los miembros de la universidad, lo que facilitó la decisión de adoptar esta herramienta para la gestión de correos electrónicos y calendarios en el proyecto.
+
+\subsection{Microsoft Teams}\label{microsoft-teams}
+
+\begin{itemize}
+    \item Herramientas consideradas: Microsoft Teams, Zoom, Google Meet.
+    \item Motivo de la elección de Microsoft Teams:
+\end{itemize}
+
+Microsoft Teams es una plataforma de colaboración integrada desarrollada por Microsoft. Teams permite a los usuarios crear y unirse a espacios de trabajo compartidos, donde pueden organizar reuniones, gestionar proyectos y co-crear documentos en tiempo real de manera fácil y eficiente.
+
+La Universidad de Burgos proporciona cuentas de Microsoft Teams a todos los miembros de la universidad, lo que influyó en la decisión de utilizar esta plataforma.
+
+\section{Entorno de desarrollo integrado (IDE)}\label{ide}
+
+\subsection{MATLAB}\label{matlab}
+
+\begin{itemize}
+    \item Herramientas consideradas: Python, MATLAB.
+    \item Motivo de la elección de MATLAB:
+\end{itemize}
+
+MATLAB es un entorno de programación y lenguaje de scripting desarrollado por MathWorks, utilizado principalmente para cálculos numéricos, análisis de datos, visualización y desarrollo de algoritmos. Es especialmente eficiente en el manejo de matrices, lo que lo hace ideal para el procesamiento de imágenes, donde cada imagen se trata como una matriz de píxeles.
+
+Se eligió MATLAB sobre Python para este proyecto debido a su superior velocidad y eficiencia en el cálculo de operaciones matriciales. Inicialmente, se utilizó Python, pero los tiempos de ejecución eran muy elevados.
+
+\subsection{Overleaf}\label{overleaf}
+
+\begin{itemize}
+    \item Herramientas consideradas: Overleaf, TeXstudio.
+    \item Motivo de la elección de Overleaf:
+\end{itemize}
+
+Overleaf es una plataforma de edición y colaboración en línea para documentos LaTeX. Permite la colaboración en tiempo real y ofrece plantillas predefinidas para diversos documentos académicos. Por este motivo, al permitir la edición y revisión simultánea por varias personas, se eligió Overleaf en lugar de TeXstudio.
+
+\section{Documentación}\label{documentación}
+
+\subsection{LaTeX}\label{latex}
+
+\begin{itemize}
+    \item Herramientas consideradas: LaTeX, OpenOffice.
+    \item Motivo de la elección de LaTeX:
+\end{itemize}
+
+LaTeX es un sistema de preparación de documentos conocido por su alta calidad tipográfica, ideal para textos científicos y técnicos. Destaca en la gestión de referencias, citas y bibliografías, y ofrece un control detallado del formato.
+
+Se eligió LaTeX en lugar de OpenOffice debido a estas ventajas y con el propósito de aprender a utilizar una herramienta nueva, ya que anteriormente no se había utilizado.
+
+\subsection{Markdown}\label{markdown}
+
+Markdown es un lenguaje de marcado ligero ideal para formatear texto en la web. Su sintaxis simple permite crear documentos con encabezados, listas, enlaces e imágenes de manera rápida y eficiente.
+
+Por esta razón, se ha utilizado tanto en los README como en los distintos commits y comentarios de issues en GitHub.
+
+\section{Librerías}\label{librerías}
+
+Se ha requerido de las siguientes librerías:
+
+\subsection{Statistics and Machine Learning Toolbox}\label{statistics-and-Machine-Learning-Toolbox}
+
+Statistics and Machine Learning Toolbox de MATLAB ofrece herramientas avanzadas para clustering con K-Means y Gaussian Mixture Models (GMM). 
+
+Se eligió esta toolbox porque, además de permitir al usuario ver el resultado del algoritmo invariante, ofrece la posibilidad de analizar de manera más clara la mejora en la posterior segmentación, en este caso con K-Means y GMM.
+
+\subsection{Fuzzy Logic Toolbox}\label{fuzzy-logic-toolbox}
+
+Fuzzy Logic Toolbox de MATLAB ofrece herramientas para implementar Fuzzy C-Means.
+
+Al igual que en el caso de Statistics and Machine Learning Toolbox, Fuzzy Logic Toolbox ha sido necesario para ofrecer la posibilidad de segmentar mediante Fuzzy C-Means.
+
+\subsection{HMRF-EM-image}\label{hmrf-em-image}
+
+HMRF-EM-image es una librería en MATLAB para segmentar imágenes usando Campos Aleatorios de Markov Ocultos (HMRF) y el algoritmo Expectation-Maximization (EM).
+
+El uso de esta librería supone una mejora frente a los métodos de agrupamiento anteriores, ya que contempla la información espacial. Esto significa que no solo se analiza el valor del color del píxel, sino también los píxeles que lo rodean, lo que da lugar a segmentaciones de mejor calidad.
+
+\subsection{MATLAB Compiler}\label{matlab-compiler}
+
+MATLAB Compiler permite convertir aplicaciones MATLAB en ejecutables independientes y aplicaciones web, facilitando su distribución sin necesidad de licencias adicionales de MATLAB. 
+
+% Aun no lo he usado, pero en un futuro me gustaria mencionar a SonarQube y CodeClimate pero no estan disponibles para codigo de MATLAB asi que seguramente cuadno tenga tiempo mencionare a MATLAB Code Analyzer

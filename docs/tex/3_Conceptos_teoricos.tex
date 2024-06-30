@@ -1,14 +1,16 @@
 \capitulo{3}{Conceptos teóricos}
 
-% Introduccion
+Primero, se preprocesa la imagen seleccionada. Luego, se aplica un método de transformación invariante sobre la imagen original. Después, se segmentan tanto la imagen original como la imagen invariante. Finalmente, se clasifican los resultados para su posterior visualización.
+
+A continuación, se explican los conceptos teóricos de cada fase.
 
 \section{Preprocesado de imágenes}\label{preprocesado}
 
-% Texto
+Antes de aplicar los algoritmos de transformación invariante hay que realizar una serie de transformaciones a la imagen para poder trabajar correctamente con ella.
 
 \subsection{Eliminación del canal alpha}\label{eliminación-del-canal-alpha}
 
-El canal alpha, que representa la transparencia de los píxeles, no es relevante ya que solo nos interesa la información de color. Al eliminar este canal reducimos la complejidad de los datos, en nuestro caso imágenes para centrarnos únicamente en los tres canales RGB (rojo, verde y azul)
+El canal alpha, que representa la transparencia de los píxeles, no es relevante ya que solo interesa la información de color. Al eliminar este canal, se reduce la complejidad de los datos, en este caso las imágenes, permitiendo centrarse únicamente en los tres canales RGB (rojo, verde y azul).
 
 Para eliminar el canal alpha de una imagen con componentes de color $R$, $G$, $B$ y $\alpha$, tan solo hay que guardar en una nueva imagen lo siguiente:
 
@@ -23,7 +25,7 @@ donde:
   \item $B(i, j)$ es el valor del canal azul en el píxel $(i, j)$
 \end{itemize}
 
-Eliminamos el canal alpha $\alpha(i, j)$, que representa la transparencia, ya que no es necesario en este caso.
+Se elimina el canal alpha $\alpha(i, j)$, que representa la transparencia, ya que no es necesario en este caso.
 
 \section{Métodos de transformación invariante}\label{metodos-de-transformación-invariante}
 
@@ -67,6 +69,7 @@ Una vez obtenido el ángulo invariante, se proyectan los valores cromáticos en 
 $$I=r\cos \theta +b\sin \theta$$
 
 En la figura \ref{fig:img_ori_alv} se puede ver el resultado de aplicar este método invariante.
+
 \imagen{img_ori_alv}{Resultado de aplicar Álvarez}{1}
 
 \subsection{Maddern}\label{maddern}
@@ -186,7 +189,7 @@ donde:
 En la figura \ref{fig:img_ori_kra} se puede ver el resultado de aplicar este método invariante
 \imagen{img_ori_kra}{Resultado de aplicar Krajník}{1}
 
-\subsection{Upcroft}\label{upcrof}
+\subsection{Upcroft}\label{upcroft}
 
 La transformación invariante de Upcroft \cite{upcroft2014} es un método que genera imágenes robustas a variaciones en la iluminación, incluyendo sombras y cambios de intensidad. El método se basa en la relación logarítmica entre los canales de color y se utiliza para mejorar la clasificación de escenas urbanas en entornos cambiantes.
 
@@ -272,7 +275,7 @@ En la figura \ref{fig:img_ori_pca} se puede ver el resultado de aplicar este mé
 
 \section{Métodos de agrupamiento de imágenes}\label{metodos-de-agrupamiento-de-imagenes}
 
-Los métodos de agrupamiento son técnicas de aprendizaje no supervisado que se utilizan para dividir un conjunto de datos en grupos o clústeres, de manera que los datos en el mismo clúster tengan una mayor similitud entre sí que con los datos de otros clústeres. Estos métodos métodos los utilizaremos para separar la pieza metálica del fondo y ver realmente si una transformación invariante previa supone algún cambio significativo.
+Los métodos de agrupamiento son técnicas de aprendizaje no supervisado que se utilizan para dividir un conjunto de datos en grupos o clústeres, de manera que los datos en el mismo clúster tengan una mayor similitud entre sí que con los datos de otros clústeres. Estos métodos se utilizarán para separar la pieza metálica del fondo y determinar si una transformación invariante previa supone algún cambio significativo.
 
 \subsection{K-Means}\label{k-means}
 
@@ -299,7 +302,7 @@ donde:
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
    \item{\begin{flushleft} $C_i$ es el cluster asignado al punto $x_i$, \end{flushleft}}
-   \item{\begin{flushleft} $x_i$ es el pixel en la imagen, \end{flushleft}}
+   \item{\begin{flushleft} $x_i$ es el píxel en la imagen, \end{flushleft}}
    \item{\begin{flushleft} $\mu_j$ es el centroide del cluster $j$, \end{flushleft}}
    \item{\begin{flushleft} $k$ es el número de clusters. \end{flushleft}}
 \end{itemize}
@@ -321,9 +324,6 @@ donde:
 \subsubsection{4. Repetición}
 
 Los pasos 2 y 3 se repiten hasta que los centroides no cambian significativamente entre iteraciones, lo que indica que se ha alcanzado la convergencia. Siendo el umbral de convergencia por defecto $\epsilon =1e-4$.
-
-En la figura \ref{fig:img_ori_kme} se puede ver el resultado de aplicar este método de agrupamiento.
-\imagen{img_ori_kme}{Resultado de aplicar K-Means}{1}
 
 \subsection{Fuzzy C-Means}\label{fuzzy-c-means}
 Fuzzy C-Means (FCM) \cite{MATLAB:2023bFuzzy} es un algoritmo de clustering basado en la lógica difusa que permite a un punto de datos pertenecer a más de un grupo (o cluster) con diferentes grados de pertenencia. A diferencia de K-Means, donde cada punto pertenece exclusivamente a un solo cluster, en FCM cada punto tiene un valor de pertenencia para cada cluster, lo que indica el grado con el que un punto pertenece a un cluster específico.
@@ -354,7 +354,7 @@ donde:
 
 \subsubsection{3. Actualización de valores de pertenencia}
 
-Se actualizan los valores de pertenencia para cada pixel en cada cluster utilizando la siguiente fórmula:
+Se actualizan los valores de pertenencia para cada píxel en cada cluster utilizando la siguiente fórmula:
 
 $$u_{ij} =\frac{1}{\sum_{k=1}^c {\left(\frac{\|x_i -v_j \|}{\|x_i -v_k \|}\right)}^{\frac{2}{m-1}} }$$
 
@@ -362,7 +362,7 @@ donde:
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item{\begin{flushleft} $u_{ij}$ es el valor de pertenencia del pixel $x_i$ al cluster $j$, \end{flushleft}}
+   \item{\begin{flushleft} $u_{ij}$ es el valor de pertenencia del píxel $x_i$ al cluster $j$, \end{flushleft}}
    \item{\begin{flushleft} $v_j$ es el centroide del cluster $j$, \end{flushleft}}
    \item{\begin{flushleft} $m$ es el parámetro de difusividad, \end{flushleft}}
    \item{\begin{flushleft} $c$ es el número total de clusters. \end{flushleft}}
@@ -373,9 +373,6 @@ donde:
 Se repiten los pasos 2 y 3 hasta que la diferencia entre las actualizaciones de la matriz de pertenencias en iteraciones sucesivas sea menor que un umbral determinado.
 
 Hay que tener en cuenta que el parámetro $m$ controla la difusividad de los clusters. Si $m$=1, FCM se comporta como K-Means, mientras que valores mayores de $m$ generan clusters más difusos.
-
-En la figura \ref{fig:img_ori_fcm} se puede ver el resultado de aplicar este método de agrupamiento.
-\imagen{img_ori_fcm}{Resultado de aplicar Fuzzy C-Means}{1}
 
 \subsection{Gaussian Mixtures Models}\label{gaussian-mixtures-models}
 Gaussian Mixture Models (GMM) \cite{MATLAB:2023bGMM} es un algoritmo de clustering basado en la idea de que los datos pueden ser modelados como una combinación de múltiples distribuciones gaussianas. Cada cluster se representa como una distribución gaussiana con su media y varianza propias. GMM es una extensión más flexible de K-Means, ya que permite que los clusters tengan diferentes formas y tamaños.
@@ -397,7 +394,7 @@ Se establece el número de componentes gaussianas $k$, y se inicializan aleatori
 
 \subsubsection{2. Cálculo de probabilidades posteriores ($\gamma_i k$)}
 
-Se calcula la probabilidad de que cada pixel $x_i$ pertenezca al cluster $k$ utilizando la regla de Bayes. Esto se conoce como la responsabilidad del cluster $k$ para el pixel $x_i$:
+Se calcula la probabilidad de que cada píxel $x_i$ pertenezca al cluster $k$ utilizando la regla de Bayes. Esto se conoce como la responsabilidad del cluster $k$ para el píxel $x_i$:
 
 $$\gamma_{ik} =\frac{\pi_k \cdot \mathcal{N}(x_i \mid \mu_k ,\Sigma_k )}{\sum_{j=1}^k \pi_j \cdot \mathcal{N}(x_i \mid \mu_j ,\Sigma_j )}$$
 
@@ -429,14 +426,11 @@ donde:
 
 Se repiten los pasos 2 y 3 hasta que los cambios en los parámetros sean menores a un umbral dado, o se alcance un número máximo de iteraciones.
 
-En la figura \ref{fig:img_ori_gmm} se puede ver el resultado de aplicar este método de agrupamiento.
-\imagen{img_ori_gmm}{Resultado de aplicar Gaussian Mixtures Models}{1}
-
 \subsection{Información espacial}\label{informacion-espacial}
 
 El modelo Hidden Markov Random Field (HMRF) \cite{wang2012hmrf} es un modelo probabilístico que combina la teoría de campos aleatorios de Markov con modelos ocultos. Se utiliza ampliamente para problemas de visión computacional, como la segmentación de imágenes. El algoritmo HMRF-EM combina el modelo HMRF con el algoritmo Expectation-Maximization (EM) para la segmentación de imágenes.
 
-El modelo HMRF-EM (Hidden Markov Random Field - Expectation Maximization) es útil en segmentación de imágenes porque :
+El modelo HMRF-EM (Hidden Markov Random Field - Expectation Maximization) es útil en segmentación de imágenes porque:
 
 \begin{enumerate}
 \setlength{\itemsep}{-1ex}
@@ -515,23 +509,21 @@ Se actualizan los parámetros $\Theta^{(t+1)}$ usando las distribuciones posteri
 
 Se repiten los pasos 2 a 4 hasta que la función de energía $U(y|x,\Theta )+U(x)$ converja o se alcance el número máximo de iteraciones.
 
-En la figura \ref{fig:img_ori_spa} se puede ver el resultado de aplicar este método de agrupamiento.
-\imagen{img_ori_spa}{Resultado de aplicar Hidden Markov Random Field}{1}
-
 \section{Clasificación de resultados}\label{clasificacion-de-resultados}
 
-La clasificación de los resultados obtenidos es un paso fundamental ya que gracias a ello podemos ver de una forma objetiva si al aplicar métodos de transformación invariante mejora los resultados obtenidos. Compararemos las imágenes, tanto la original como la invariante con una imagen ``ground truth'' para de esta forma observar numéricamente el acierto de cada una de ellas.
+La clasificación de los resultados obtenidos es un paso fundamental, ya que permite evaluar de forma objetiva si la aplicación de métodos de transformación invariante mejora los resultados. Se compararán las imágenes, tanto la original como la invariante, con una imagen `ground truth' para observar numéricamente el acierto de cada una de ellas.
 
 \subsection{Imágenes ground truth}\label{imagenes-ground-truth}
 
-Las imágenes ``ground truth'' son segmentaciones realizadas manualmente mediante programas de edición de imágenes. Al haber sido segmentadas por un ser humano, representan una segmentación casi perfecta, que sirve como ideal al que aspiramos. Digo "casi perfecta" porque puede haber un mínimo error imperceptible a simple vista, pero que puede afectar matemáticamente, impidiendo alcanzar un 100\% de precisión.
+Las imágenes `ground truth' son segmentaciones realizadas manualmente mediante programas de edición de imágenes. Al haber sido segmentadas por un ser humano, representan una segmentación casi perfecta, que sirve como ideal al que se aspira. Se dice `casi perfecta' porque puede haber un mínimo error imperceptible a simple vista, pero que puede afectar matemáticamente, impidiendo alcanzar un 100\% de precisión.
 
-En la figura \ref{fig:img_ori_gt} se puede ver el la imagen original y su correspondiente imagen ``ground truth''.
-\imagen{img_ori_gt}{Resultado de crear la imagen ``ground truth''}{1}
+En la figura \ref{fig:img_ori_gt} se puede ver el la imagen original y su correspondiente imagen `ground truth'.
+
+\imagen{img_ori_gt}{Resultado de crear la imagen `ground truth'}{1}
 
 \subsection{Porcentaje de acierto}\label{porcentaje-de-acierto}
 
-El porcentaje de acierto nos permite evaluar la precisión de la segmentación realizada al compararla con una imagen en la que manualmente se ha segmentado la pieza del fondo (imagen ground truth). La fórmula para calcularlo entre dos imágenes es:
+El porcentaje de acierto permite evaluar la precisión de la segmentación realizada al compararla con una imagen en la que se ha segmentado manualmente la pieza del fondo (imagen ground truth). La fórmula para calcularlo entre dos imágenes es:
 
 $$\text{coincidencias} = \sum_{i,j} \delta(\text{img1\_bnw}(i,j), \text{img2\_bnw}(i,j))$$
 
@@ -539,7 +531,7 @@ donde:
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-    \item{\begin{flushleft}  $\text{coincidencias}$ es el numero total de píxeles que coinciden entre las dos imágenes en blanco y negro. \end{flushleft}}
+    \item{\begin{flushleft}  $\text{coincidencias}$ es el número total de píxeles que coinciden entre las dos imágenes en blanco y negro. \end{flushleft}}
     \item{\begin{flushleft} $\sum_{i,j}$ indica que se realiza una suma sobre todos los píxeles de la imagen. \end{flushleft}}
     \item{\begin{flushleft} $\text{img1\_bnw}(i,j)$ es el valor de cada posición $(i,j)$ de la primera imagen \end{flushleft}}
     \item{\begin{flushleft} $\text{img2\_bnw}(i,j)$ es el valor de cada posición $(i,j)$ de la segunda imagen \end{flushleft}}
@@ -556,3 +548,5 @@ donde:
 Finalmente la función con la que se obtiene el porcentaje de acierto entre la dos imágenes es la siguiente.
 
 $$\text{porcentaje\_coincidencia} = \left( \frac{\text{coincidencias}}{\text{numero\_pixeles}(\text{img1})} \right) \times 100$$
+
+En la futura sección \ref{análisis-de-casos}, se presentan ejemplos del resultado de aplicar este método para obtener un porcentaje de coincidencia en casos reales. En dicha sección se mostrarán análisis de imágenes con resultados numéricamente positivos, así como casos en los que este enfoque no es del todo acertado, debido a la suposición de que la pieza se encuentra en el centro de la imagen, lo cual no siempre es cierto. Finalmente, se considerarán casos más complejos en los que el resultado es visualmente mejor que numéricamente, dado que se logra minimizar las imperfecciones causadas por las reflexiones en las piezas metálicas pero alcanza porcentajes de coincidencia menores.
