@@ -358,7 +358,7 @@
 \newcommand{\nombre}{Jonás Martínez Sanllorente} %%% cambio de comando
 
 % Datos de portada
-\title{Transformaciones invariantes a la iluminación para mejora de la segmentación en imágenes. Aplicación a piezas metálicas.}
+\title{Transformaciones invariantes a la iluminación para mejora de la segmentación en imágenes. Aplicación a piezas metálicas}
 \author{\nombre}
 \tutor{Dr. Carlos López Nozal \\y Dr. Pedro Latorre Carmona}
 \date{\today}
@@ -425,16 +425,16 @@ D. Pedro Latorre Carmona
 % Abstract en castellano
 \renewcommand*\abstractname{Resumen}
 \begin{abstract}
-El proceso de análisis visual piezas metálicas en imágenes se ve influido por diversos factores. Algunos de los más importantes están directamente relacionados con las condiciones de iluminación de la escena. En concreto, la forma como se adquieren las imágenes de las propias piezas metálicas. Dado que los materiales metálicos son altamente reflectantes, se producen tanto sombras como reflexiones de tipo especular \cite{ReflexiónLuzWikipedia} que degradan sustancialmente la propia calidad visual de la imagen.
+El éxito en el procesamiento visual de imágenes con piezas metálicas está influenciado por varios factores, especialmente las condiciones de iluminación de la escena. En particular, la luz ambiental y la cantidad, posición y dirección de los focos de iluminación al capturar la imagen de la pieza metálica son cruciales. Los materiales metálicos son altamente reflectantes y generan reflejos especulares que, junto con las sombras, degradan significativamente la calidad visual de la imagen.
 
-En el caso se quisieran aplicar métodos de segmentación de imágenes sobre ellas, se producirían errores en la generación de las diferentes regiones a identificar en las mismas. Es, por tanto, necesario aplicar algún tipo de pre-procesamiento que mitigue dichas fuentes de error, en la medida de lo posible. 
+Una de las tareas en el procesamiento de imágenes con inteligencia artificial es la identificación de objetos en la imagen con \textit{técnicas de segmentación de imágenes}. La segmentación se realiza aplicando algoritmos de agrupamiento de inteligencia artificial sobre los píxeles de la imagen, como el K-Means. El éxito de esta tarea depende en gran medida de la calidad de la imagen.
 
-En este trabajo se propone analizar el rendimiento de una serie de técnicas de transformación sobre las imágenes en color adquiridas denominadas \textit{transformaciones invariantes de la iluminación}, aplicadas en forma de técnica(s) de pre-procesamiento. Por otro lado, se creará una aplicación / aplicación web para que el usuario pueda aplicar dichas transformaciones, así como métodos de segmentación (agrupamiento o \textit{clustering}) de una forma intuitiva y rápida.
+Para mejorar los resultados de la segmentación de imágenes, este trabajo propone aplicar \textit{transformaciones invariantes a la iluminación} antes de la segmentación. Se ha desarrollado una aplicación de escritorio MATLAB para Linux y Windows que permite evaluar experimentalmente esta propuesta. La aplicación está disponible públicamente en un repositorio de Github. Los resultados experimentales obtenidos con 5 algoritmos de invariantes de iluminación, 4 algoritmos de agrupamiento y 24 imágenes segmentadas manualmente, muestran que la aplicación de transformaciones invariantes de iluminación mejora significativamente los resultados de segmentación de imágenes.
 \end{abstract}
 
 \renewcommand*\abstractname{Descriptores}
 \begin{abstract}
-Piezas metálicas, reflexión metálica, identificación de piezas, métodos invariantes, segmentación de imágenes, aplicación.
+Procesamiento de imágenes con inteligencia artificial, Segmentación de imágenes, Invariantes de iluminación, Piezas metálicas, Reflexión metálica.
 \end{abstract}
 
 \clearpage
@@ -442,20 +442,16 @@ Piezas metálicas, reflexión metálica, identificación de piezas, métodos inv
 % Abstract en inglés
 \renewcommand*\abstractname{Abstract}
 \begin{abstract}
-Reflections on metal parts and the shadows that can be caused are a very common problem when it comes to correctly identifying the limits of a part.
+Successful visual imaging of metal parts is influenced by several factors, especially the lighting conditions of the scene. In particular, the ambient light and the amount, position and direction of the illuminants when capturing the image of the metal part are crucial. Metallic materials are highly reflective and generate specular reflections which, together with shadows, significantly degrade the visual quality of the image.
 
-In most cases, this means that after applying segmentation methods, erroneous identification of the parts is produced due to the fact that obtaining images in ideal conditions where neither reflections nor shadows are found is very complicated and trying to replicate a scenario of this kind can be very costly.
+One of the tasks in image processing with artificial intelligence is the identification of objects in the image with \textit{image segmentation techniques}. Segmentation is performed by applying artificial intelligence clustering algorithms on image pixels, such as K-Means. The success of this task is highly dependent on the quality of the image.
 
-This is why by applying pre-processing methods to the images taken of the pieces, it is possible to obtain a result that has these reflections, shadows and other image defects mitigated so that when the image is subsequently segmented, the result will be of a higher quality.
-
-This work proposes the demonstration of a better result when segmenting after having applied invariant methods to the initial image.
-
-In addition, an application so that the user, can apply the different algorithms in an intuitive, fast and comfortable way.
+To improve image segmentation results, this work proposes to apply \textit{illumination invariant transformations} before the segmentation. A MATLAB desktop application for Linux and Windows has been developed to experimentally evaluate this proposal. The application is publicly available in a Github repository. Experimental results obtained with 5 illumination invariant algorithms, 4 clustering algorithms and 24 manually segmented images, show that the application of illumination invariant transforms significantly improves the illumination invariance of the images.
 \end{abstract}
 
 \renewcommand*\abstractname{Keywords}
 \begin{abstract}
-Metallic parts, metallic reflection, part identification, invariant methods, image segmentation, application
+Image processing with artificial intelligence, Image segmentation, Illumination invariants, Metallic parts, Metallic reflection.
 \end{abstract}
 
 \clearpage

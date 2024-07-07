@@ -5,14 +5,14 @@
 Este anexo recoge la especificación de requisitos que define el comportamiento del sistema desarrollado. Se han seguido las recomendaciones del estándar IEEE 830-1998 \cite{ieee}, que establece que una buena especificación de requisitos software debe ser:
 
 \begin{itemize}
-    \item \textbf{Completa:} todos los requerimientos deben estar incluidos y todas las referencias definidas.
-    \item \textbf{Consistente:} debe ser coherente tanto internamente como con otros documentos de especificación.
-    \item \textbf{Inequívoca:} la redacción debe ser clara para evitar malentendidos.
-    \item \textbf{Correcta:} el software debe cumplir con los requisitos especificados.
-    \item \textbf{Trazable:} debe ser posible rastrear la historia, ubicación o aplicación de un ítem a través de su identificación documentada.
-    \item \textbf{Priorizable:} los requisitos deben poder organizarse jerárquicamente según su relevancia para el negocio, clasificándolos en esenciales, condicionales y opcionales.
-    \item \textbf{Modificable:} los requerimientos deben ser fácilmente modificables.
-    \item \textbf{Verificable:} debe existir un método finito y sin costo para probar los requisitos.
+    \item \textbf{Completa:} Todos los requerimientos deben estar incluidos y todas las referencias definidas.
+    \item \textbf{Consistente:} Debe ser coherente tanto internamente como con otros documentos de especificación.
+    \item \textbf{Inequívoca:} La redacción debe ser clara para evitar malentendidos.
+    \item \textbf{Correcta:} El software debe cumplir con los requisitos especificados.
+    \item \textbf{Trazable:} Debe ser posible rastrear la historia, ubicación o aplicación de un ítem a través de su identificación documentada.
+    \item \textbf{Priorizable:} Los requisitos deben poder organizarse jerárquicamente según su relevancia para el negocio, clasificándolos en esenciales, condicionales y opcionales.
+    \item \textbf{Modificable:} Los requerimientos deben ser fácilmente modificables.
+    \item \textbf{Verificable:} Debe existir un método finito y sin costo para probar los requisitos.
 \end{itemize}
 
 \section{Objetivos generales}\label{objetivos-generales}
@@ -20,10 +20,11 @@ Este anexo recoge la especificación de requisitos que define el comportamiento 
 El proyecto tiene los siguientes objetivos generales.
 
 \begin{itemize}
-    \item Demostrar que al aplicar métodos de transformación invariante, se consiguen mejores resultados a la hora de identificar piezas metálicas mediante métodos de segmentación de imágenes.
-    \item Desarrollar una aplicación para de escritorio que permita al usuario identificar la pieza de una imagen que introduzca ofreciendo diferentes algoritmos tanto de transformación invariante (propuestos por Álvarez \cite{alvarez2011}, Maddern \cite{maddern2014}, Krajník \cite{krajník2015}, Upcroft \cite{upcroft2014} y PCA \cite{pca2017}) como de segmentación de imágenes (K-Means \cite{MATLAB:2023bKmeans}, Fuzzy C-Means \cite{MATLAB:2023bFuzzy}, GMM \cite{MATLAB:2023bGMM} y segmentación con información espacial \cite{wang2012hmrf}).
-    \item Desarrollar una aplicación para de escritorio que permita mostrar la mejoría que suponen los métodos de transformación invariante mostrando una comparación de los resultados tanto visual como numérica.
-    \item Guardar los resultados tanto de la imagen original, la resultante del método de transformación invariante como de las correspondientes imágenes tras la segmentación.
+    \item Demostrar empíricamente que al aplicar métodos de transformación invariante de la iluminación, se consiguen mejores resultados a la hora de identificar piezas metálicas mediante métodos de agrupamiento de imágenes.
+    \item Desarrollar una aplicación de escritorio que tome como entrada una imagen y  permita al usuario evaluar los resultados de la segmentación para la identificación de piezas metálicas. La aplicación debe ofrecer diferentes algoritmos tanto de transformación invariante (propuestos por Álvarez \cite{alvarez2011}, Maddern \cite{maddern2014}, Krajník \cite{krajník2015}, Upcroft \cite{upcroft2014} y PCA \cite{pca2017}) como de agrupamiento de imágenes (K-Means \cite{MATLAB:2023bKmeans}, Fuzzy C-Means \cite{MATLAB:2023bFuzzy}, GMM \cite{MATLAB:2023bGMM} y agrupamiento con información espacial \cite{wang2012hmrf}).
+    \item Desarrollar una aplicación de escritorio que permita evaluar la mejora que supone la aplicación de los métodos de transformación invariante en procesos de segmentación de imágenes, mostrando una comparación de los resultados tanto visual como numérica.
+    \item Guardar las imágenes resultantes del método de transformación invariante y las dos imágenes  resultados de la segmentación, una aplicando la transformación de invariantes de iluminación y otra aplicando la segmentación directamente a la imagen original.
+    \item Comparar los resultados de distintos métodos de transformación invariante de imágenes y argumentar la mejora que se obtiene en la identificación de piezas metálicas.
 \end{itemize}
 
 \section{Catálogo de requisitos}\label{catalogo-de-requisitos}
@@ -35,46 +36,46 @@ En este apartado se enumeran los requisitos específicos que se derivan de los o
 A continuación, se enumerarán los requisitos funcionales.
 
 \begin{itemize}
-    \item \textbf{RF-1 Gestión de transformación invariante:} la aplicación debe ser capaz de gestionar la transformación invariante sobre imágenes.
+    \item \textbf{RF-1 Gestión de transformación invariante:} La aplicación debe ser capaz de gestionar la transformación invariante sobre imágenes.
     \begin{itemize}
-        \item \textbf{RF-1.1 Seleccionar imagen:} el usuario debe poder seleccionar una imagen sobre la cual aplicar las diferentes transformaciones.
+        \item \textbf{RF-1.1 Seleccionar imagen:} El usuario debe poder seleccionar una imagen sobre la cual aplicar las diferentes transformaciones.
         \begin{itemize}
-            \item \textbf{RF-1.1.1 Imagen del sistema:} el usuario debe poder seleccionar una imagen de prueba contenida en el programa.
+            \item \textbf{RF-1.1.1 Imagen del sistema:} El usuario debe poder seleccionar una imagen de prueba contenida en el programa.
             \begin{itemize}
-                \item \textbf{RF-1.1.1.1 Carga automática de la imagen ground truth:} al haber seleccionado una imagen contenida en el programa, esta tendrá asociada una imagen ground truth.
+                \item \textbf{RF-1.1.1.1 Carga automática de la imagen ground truth:} Al haber seleccionado una imagen contenida en el programa, esta tendrá asociada una imagen ground truth.
             \end{itemize}
-            \item \textbf{RF-1.1.2 Imagen propia del usuario:} el usuario debe poder seleccionar una imagen propia. Al no tener imagen ground truth asociada esta no se cargará automáticamente.
+            \item \textbf{RF-1.1.2 Imagen propia del usuario:} El usuario debe poder seleccionar una imagen propia. Al no tener imagen ground truth asociada esta no se cargará automáticamente.
             \begin{itemize}
-                \item \textbf{RF-1.1.2.1 Seleccionar una imagen ground truth propia:} debido a que la imagen que el usuario ha seleccionado es una imagen propia, el sistema permitirá aportar su correspondiente imagen ground truth.
-                \item \textbf{RF-1.1.2.2 Modificar imagen ground truth seleccionada:} el usuario debe poder modificar la imagen ground truth proporcionada en el caso de que se haya seleccionado una imagen propia.
+                \item \textbf{RF-1.1.2.1 Seleccionar una imagen ground truth propia:} Debido a que la imagen que el usuario ha seleccionado es una imagen propia, el sistema permitirá aportar su correspondiente imagen ground truth.
+                \item \textbf{RF-1.1.2.2 Modificar imagen ground truth seleccionada:} El usuario debe poder modificar la imagen ground truth proporcionada en el caso de que se haya seleccionado una imagen propia.
             \end{itemize}
-            \item \textbf{RF-1.1.3 Modificar imagen seleccionada:} el usuario debe poder seleccionar una imagen diferente a la seleccionada anteriormente sobre la cual aplicar las diferentes transformaciones.
+            \item \textbf{RF-1.1.3 Modificar imagen seleccionada:} El usuario debe poder seleccionar una imagen diferente a la seleccionada anteriormente sobre la cual aplicar las diferentes transformaciones.
         \end{itemize}
-        \item \textbf{RF-1.2 Seleccionar algoritmo invariante:} el usuario debe poder seleccionar el algoritmo de transformación invariante que desee de la lista de algoritmos que la aplicación ofrece.
-        \item \textbf{RF-1.3 Seleccionar algoritmo de agrupamiento:} el usuario debe poder seleccionar el algoritmo de agrupamiento invariante que desee de la lista de algoritmos que la aplicación ofrece.
-        \item \textbf{RF-1.4 Seleccionar número de centros:} el usuario debe poder seleccionar el numero de centros que desee como parámetro del algoritmo de agrupamiento seleccionado dentro de unos limites preestablecidos.
-        \item \textbf{RF-1.5 Almacenar resultados en caché:} la aplicación debe guardar en caché los resultados de la ejecución.
-        \item \textbf{RF-1.6 Recuperar resultados almacenados en caché:} la aplicación recuperar los resultados de antiguas ejecuciones con los mismos parámetros para ahorrar costes computacionales.
-        \item \textbf{RF-1.7 Guardar imágenes resultantes:} el usuario debe poder guardar los resultados de la ejecución en el directorio que desee.
+        \item \textbf{RF-1.2 Seleccionar algoritmo invariante:} El usuario debe poder seleccionar el algoritmo de transformación invariante que desee de la lista de algoritmos que la aplicación ofrece.
+        \item \textbf{RF-1.3 Seleccionar algoritmo de agrupamiento:} El usuario debe poder seleccionar el algoritmo de agrupamiento invariante que desee de la lista de algoritmos que la aplicación ofrece.
+        \item \textbf{RF-1.4 Seleccionar número de centros:} El usuario debe poder seleccionar el numero de centros que desee como parámetro del algoritmo de agrupamiento seleccionado dentro de unos limites preestablecidos.
+        \item \textbf{RF-1.5 Almacenar resultados en caché:} La aplicación debe guardar en caché los resultados de la ejecución.
+        \item \textbf{RF-1.6 Recuperar resultados almacenados en caché:} La aplicación recuperar los resultados de antiguas ejecuciones con los mismos parámetros para ahorrar costes computacionales.
+        \item \textbf{RF-1.7 Guardar imágenes resultantes:} El usuario debe poder guardar los resultados de la ejecución en el directorio que desee.
     \end{itemize}
-    \item \textbf{RF-2 Gestión de caché:} la aplicación debe ser capaz de gestionar correctamente una memoria caché donde almacenar y mostrar los resultados de as ejecuciones del usuario.
+    \item \textbf{RF-2 Gestión de caché:} La aplicación debe ser capaz de gestionar correctamente una memoria caché donde almacenar y mostrar los resultados de as ejecuciones del usuario.
     \begin{itemize}
-        \item \textbf{RF-2.1 Visualizar información de antiguas ejecuciones en formato tabla:} la aplicación debe mostrar en una tabla una lista de los resultados de las distintas ejecuciones almacenadas en caché.
+        \item \textbf{RF-2.1 Visualizar información de antiguas ejecuciones en formato tabla:} La aplicación debe mostrar en una tabla una lista de los resultados de las distintas ejecuciones almacenadas en caché.
         \begin{itemize}
-            \item \textbf{RF-2.1.1 Poder reordenar las columnas:} el usuario debe poder reordenar la tabla de la caché en función de los datos contenidos en las diferentes columnas.
-            \item \textbf{RF-2.1.2 Visualizar la imagen correspondiente a la fila seleccionada:} el usuario debe poder acceder en especifico a la imagen a la que hace alusión cada fila de la tabla caché.
+            \item \textbf{RF-2.1.1 Poder reordenar las columnas:} El usuario debe poder reordenar la tabla de la caché en función de los datos contenidos en las diferentes columnas.
+            \item \textbf{RF-2.1.2 Visualizar la imagen correspondiente a la fila seleccionada:} El usuario debe poder acceder en especifico a la imagen a la que hace alusión cada fila de la tabla caché.
         \end{itemize}
-        \item \textbf{RF-2.2 Abrir el directorio de la caché:} el usuario debe poder acceder al directorio de la caché.
-        \item \textbf{RF-2.3 Borrar contenido de la caché:} el usuario debe poder borrar el contenido de la caché.
+        \item \textbf{RF-2.2 Abrir el directorio de la caché:} El usuario debe poder acceder al directorio de la caché.
+        \item \textbf{RF-2.3 Borrar contenido de la caché:} El usuario debe poder borrar el contenido de la caché.
     \end{itemize}
-    \item \textbf{RF-3 Configuración:} el usuario debe poder configurar los parámetros disponibles de la aplicación. 
+    \item \textbf{RF-3 Configuración:} El usuario debe poder configurar los parámetros disponibles de la aplicación. 
     \begin{itemize}
-        \item \textbf{RF-3.1 Seleccionar el idioma:} el usuario debe poder seleccionar el idioma de la aplicación dependiendo si desea trabajar con esta en español o en inglés. 
+        \item \textbf{RF-3.1 Seleccionar el idioma:} El usuario debe poder seleccionar el idioma de la aplicación dependiendo si desea trabajar con esta en español o en inglés. 
     \end{itemize}
-    \item \textbf{RF-4 Ayuda:} el usuario debe poder obtener ayuda sobre los distintos elementos de la aplicación.
+    \item \textbf{RF-4 Ayuda:} El usuario debe poder obtener ayuda sobre los distintos elementos de la aplicación.
     \begin{itemize}
-        \item \textbf{RF-4.1 Documentación dentro de la aplicación:} la aplicación debe contener distintos apartados dedicados a documentar el funcionamiento y métodos aplicados en la aplicación. 
-        \item \textbf{RF-4.2 Tooltips:} la aplicación debe proporcionar información sobre la funcionalidad de las distintas acciones dentro de esta.
+        \item \textbf{RF-4.1 Documentación dentro de la aplicación:} La aplicación debe contener distintos apartados dedicados a documentar el funcionamiento y métodos aplicados en la aplicación. 
+        \item \textbf{RF-4.2 Tooltips:} La aplicación debe proporcionar información sobre la funcionalidad de las distintas acciones dentro de esta.
     \end{itemize}
 \end{itemize}
 
@@ -83,14 +84,15 @@ A continuación, se enumerarán los requisitos funcionales.
 A continuación, se enumerarán los requisitos no funcionales.
 
 \begin{itemize}
-    \item \textbf{RNF-1 Usabilidad:} la aplicación debe tener una interfaz de usuario intuitiva y fácil de usar, con una curva de aprendizaje mínima.
-    \item \textbf{RNF-2 Mensajes de error explicativos:} la aplicación debe proporcionar mensajes de error claros y explicativos que ayuden al usuario a entender y resolver el problema.
-    \item \textbf{RNF-3 Rendimiento:} la aplicación debe tener unos tiempos de carga aceptables.
-    \item \textbf{RNF-4 Disponibilidad:} la aplicación debe estar preparada para funcionar en cualquier localización y sin acceso a internet.
-    \item \textbf{RNF-5 Soporte:} la aplicación debe dar soporte a versiones de iguales o superiores a MATLAB 2023b.
-    \item \textbf{RNF-6 Uso de recursos:} la aplicación debe ser eficiente en el uso de recursos del sistema, reutilizando los resultados de ejecuciones anteriores para reducir costes computacionales.
-    \item \textbf{RNF-7 Modularidad:} la aplicación debe estar diseñada de manera modular, permitiendo la fácil adición o modificación de funcionalidades sin afectar otras partes del sistema.
-    \item \textbf{RNF-8 Internacionalización:} la aplicación debe estar preparada para soportar varios idiomas.
+    \item \textbf{RNF-1 Usabilidad:} La aplicación debe tener una interfaz de usuario intuitiva y fácil de usar, con una curva de aprendizaje mínima.
+    \item \textbf{RNF-2 Mensajes de error explicativos:} La aplicación debe proporcionar mensajes de error claros y explicativos que ayuden al usuario a entender y resolver el problema.
+    \item \textbf{RNF-3 Rendimiento:} La aplicación debe tener unos tiempos de carga aceptables.
+    \item \textbf{RNF-4 Disponibilidad:} La aplicación debe estar preparada para funcionar en cualquier localización y sin acceso a internet.
+    \item \textbf{RNF-5 Soporte:} La aplicación debe dar soporte a versiones de iguales o superiores a MATLAB 2023b.
+    \item \textbf{RNF-6 Uso de recursos:} La aplicación debe ser eficiente en el uso de recursos del sistema, reutilizando los resultados de ejecuciones anteriores para reducir costes computacionales.
+    \item \textbf{RNF-7 Modularidad:} La aplicación debe estar diseñada de manera modular, permitiendo la fácil adición o modificación de funcionalidades sin afectar otras partes del sistema.
+    \item \textbf{RNF-8 Internacionalización:} La aplicación debe estar preparada para soportar varios idiomas.
+    \item \textbf{RNF-9 Compatibilidad:} La aplicación debe poderse ejecutar en distintos sistemas operativos. Por lo menos en Linux y en Windows.
 \end{itemize}
 
 \section{Especificación de requisitos}\label{especificación-de-requisitos}
@@ -99,15 +101,19 @@ En esta sección se mostrará el diagrama de casos de uso resultante de los requ
 
 \subsection{Diagrama de casos de uso}\label{diagrama-de-casos-de-uso}
 
-A continuación, se mostrara en la figura \ref{fig:Diagrama_de_casos_de_uso} el diagrama de casos de uso.
+A continuación, se muestra en la figura \ref{fig:Diagrama_de_casos_de_uso} el diagrama de casos de uso.
 
-\imagen{Diagrama_de_casos_de_uso}{Diagrama de casos de uso.}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{Diagrama_de_casos_de_uso}
+    \caption{Diagrama de casos de uso de la aplicación InvIPM.}\label{fig:Diagrama_de_casos_de_uso}
+\end{figure}
 
-En esta figura se puede apreciar el diagrama de casos de uso de InvIPM.
+\newpage
 
 \subsection{Actores}\label{actores}
 
-Solo interactuará con el sistema un actor, que se corresponderá con la figura del usuario.
+El sistema está diseñado para la interacción de un único actor, identificado como el usuario. Este usuario idealmente será personal especializado en el análisis de la calidad de piezas metálicas a través de imágenes, generalmente asociado a una empresa. No obstante, la aplicación ha sido desarrollada con la capacidad de instruir a usuarios que no posean los conocimientos necesarios, a través de una documentación integrada y accesible dentro de la propia aplicación.
 
 \subsection{Casos de uso}\label{casos-de-uso}
 
@@ -178,7 +184,7 @@ A continuación, se definirán los casos de uso.
                 \item En el caso de seleccionar una imagen del programa, la aplicación busca su correspondiente imagen ground truth.
                 \item En el caso de seleccionar una imagen propia, se notifica al usuario de que al no ser una imagen del programa esta no tiene imagen ground truth asociada.
             \end{itemize}
-            \item Si no hay ningún error: se guardan en memoria la imagen y se muestra en sus correspondiente plot y si es una imagen del programa también la imagen ground truth.
+            \item Si no hay ningún error: Se guardan en memoria la imagen y se muestra en sus correspondiente plot y si es una imagen del programa también la imagen ground truth.
 		\end{enumerate}\\
 		\textbf{Postcondición}        & 
            \begin{enumerate}

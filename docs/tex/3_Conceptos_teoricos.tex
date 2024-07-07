@@ -1,6 +1,6 @@
 \capitulo{3}{Conceptos teóricos}
 
-Primero, se preprocesa la imagen seleccionada. Luego, se aplica un método de transformación invariante sobre la imagen original. Después, se segmentan tanto la imagen original como la imagen invariante. Finalmente, se clasifican los resultados para su posterior visualización.
+El conjunto de pasos involucrados en el procesamiento de las imágenes metálicas sería el siguiente: (1) Conversión de la imagen a imagen RGB; (2) Aplicación de un método de transformación invariante sobre la imagen original; (3) Segmentación tanto de la imagen original como de la imagen transformada; (4) Clasificación de los resultados para su posterior visualización.
 
 A continuación, se explican los conceptos teóricos de cada fase.
 
@@ -14,7 +14,7 @@ El canal alpha, que representa la transparencia de los píxeles, no es relevante
 
 Para eliminar el canal alpha de una imagen con componentes de color $R$, $G$, $B$ y $\alpha$, tan solo hay que guardar en una nueva imagen lo siguiente:
 
-$$\text{imagen\_sin\_alpha}(i, j) = 
+$$\text{I}(i, j) = 
 \begin{bmatrix} R(i, j) \\ G(i, j) \\ B(i, j)\end{bmatrix}$$
 
 donde:
@@ -29,7 +29,7 @@ Se elimina el canal alpha $\alpha(i, j)$, que representa la transparencia, ya qu
 
 \section{Métodos de transformación invariante}\label{metodos-de-transformación-invariante}
 
-Los métodos de transformación invariante son distintos algoritmos utilizados para mitigar o incluso eliminar las variaciones en la iluminación en una imagen. Aunque comúnmente suelen ser usados para obtener resultados similares en un mismo escenario pero variando la cantidad de luz ambiental o la cantidad de focos de luz, también son muy útiles para mitigar los efectos de las sombras y reflejos que comúnmente se ocasionan al fotografiar piezas metálicas. 
+Los métodos de transformación invariante son distintos algoritmos utilizados para mitigar o incluso eliminar variaciones en el color (RGB) de una imagen producidas por efectos de la adquisición de la misma y el material con el que están formados los objetos. Estas variaciones pueden deberse a reflexión especular, sombras, etc. Aunque comúnmente suelen ser usados para obtener resultados similares en un mismo escenario pero variando la cantidad de luz ambiental o la cantidad de focos de luz, también son muy útiles para mitigar los efectos de las sombras y reflejos que comúnmente se ocasionan al fotografiar piezas metálicas. 
 
 A continuación se presentan cinco métodos distintos de transformación invariante para poder comparar los resultados.
 
@@ -64,17 +64,20 @@ donde:
    \item{\begin{flushleft} $H_{\alpha }$ es el histograma de proyección en una dirección de pendiente $\alpha$. \end{flushleft}}
 \end{itemize}
 
+La \textit{dirección} en este contexto se refiere a un vector en el espacio de color que define cómo se proyectan los valores cromáticos. El ángulo $\theta$ determina esta dirección de proyección. Al encontrar 
+$\theta$ que minimiza la entropía, se logra una representación más uniforme de la imagen, independientemente de las variaciones en la iluminación. Este ángulo es invariante porque proporciona una consistencia en la representación de la imagen bajo diferentes condiciones de luz.
+
 Una vez obtenido el ángulo invariante, se proyectan los valores cromáticos en la dirección $\theta$ para obtener la imagen invariante:
 
 $$I=r\cos \theta +b\sin \theta$$
 
 En la figura \ref{fig:img_ori_alv} se puede ver el resultado de aplicar este método invariante.
 
-\imagen{img_ori_alv}{Resultado de aplicar Álvarez}{1}
+\imagen{img_ori_alv}{Resultado de aplicar el método de Álvarez et al sobre la imagen 3\_DIS\_1\_ACE\_TRO\_1}{1}
 
 \subsection{Maddern}\label{maddern}
 
-La transformación invariante de Maddern \cite{maddern2014} es un método que genera imágenes invariantes a cambios en la iluminación, reduciendo la influencia de sombras y variaciones en la intensidad de la luz. Se basa en un modelo de espectro del sensor de la cámara y la luz incidente.
+La transformación invariante de Maddern \cite{maddern2014} es un método que genera imágenes invariantes a cambios en la iluminación, reduciendo la influencia de sombras y variaciones en la intensidad de la luz. Se basa en un modelo espectral lineal de sensor y respuesta (reflectancia) del objeto.
 
 El funcionamiento básico de la transformación invariante de Maddern es el siguiente:
 
@@ -88,10 +91,10 @@ donde:
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item{\begin{flushleft} $a^x$ y $n^x$: vectores que representan la dirección de la luz y la normal de la superficie. \end{flushleft}}
-   \item{\begin{flushleft} $I^x$: intensidad de la luz en el punto $x$. \end{flushleft}}
-   \item{\begin{flushleft} $S^x (\lambda )$: reflectancia espectral de la superficie. \end{flushleft}}
-   \item{\begin{flushleft} $E(\lambda )$: espectro de la fuente de luz. \end{flushleft}}
+   \item{\begin{flushleft} $a^x$ y $n^x$: Vectores que representan la dirección de la luz y la dirección normal (perpendicular) a la superficie \end{flushleft}}
+   \item{\begin{flushleft} $I^x$: Intensidad de la luz en el punto $x$. \end{flushleft}}
+   \item{\begin{flushleft} $S^x (\lambda )$: Reflectancia espectral de la superficie. \end{flushleft}}
+   \item{\begin{flushleft} $E(\lambda )$: Espectro de la fuente de luz. \end{flushleft}}
 \end{itemize}
 
 \subsubsection{2. Espacio logarítmico-cromático}
@@ -117,17 +120,23 @@ donde:
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item{\begin{flushleft} $R_1 ,R_2 ,R_3$: respuestas espectrales de tres canales de color (e.g. $R,G,B$). \end{flushleft}}
-   \item{\begin{flushleft} $\alpha$: parámetro determinado por las sensibilidades espectrales de los canales. \end{flushleft}}
+   \item{\begin{flushleft} $R_1 ,R_2 ,R_3$: Respuestas espectrales de tres canales de color (e.g. $R,G,B$). \end{flushleft}}
+   \item{\begin{flushleft} $\alpha$: Parámetro determinado por las sensibilidades espectrales de los canales. \end{flushleft}}
 \end{itemize}
 
 $$I=\log (R_2 )-\alpha \log (R_1 )-(1-\alpha )\log (R_3 )$$
 
 \subsubsection{4. Cálculo del parámetro $\alpha$}
 
-El parámetro $\alpha$ se calcula para garantizar que la proyección sea independiente de la temperatura de color $T$ de la luz:
+El parámetro $\alpha$ se calcula para garantizar que la proyección sea independiente de la temperatura de color $T$ de la luz. Esto asegura la consistencia en las imágenes bajo diferentes condiciones de iluminación.
+
+La dirección de la luz, representada por un vector, indica la dirección y sentido de la luz incidente sobre una superficie. Este vector es fundamental para modelar cómo la luz interactúa y se refleja hacia la cámara, afectando la percepción del color y la intensidad.
+
+La fórmula es:
 
 $$\frac{1}{\lambda_2 }=\frac{\alpha }{\lambda_1 }+\frac{1-\alpha }{\lambda_3 }$$
+
+donde $\lambda_1$ y $\lambda_2$ son las longitudes de onda de los picos de sensibilidad del sensor. El parámetro $\alpha$ se ajusta para mantener la invariancia frente a variaciones en la temperatura de color $T$.
 
 \subsubsection{5. Transformación invariante de Maddern}
 
@@ -136,11 +145,12 @@ Finalmente, se aplica la siguiente transformación para obtener una imagen invar
 $$I_{Maddern} =0.5+\log (G)-\alpha \log (B)-(1-\alpha )\log (R)$$
 
 En la figura \ref{fig:img_ori_mad} se puede ver el resultado de aplicar este método invariante.
-\imagen{img_ori_mad}{Resultado de aplicar Maddern}{1}
+
+\imagen{img_ori_mad}{Resultado de aplicar el método de Maddern et al sobre la imagen 3\_DIS\_1\_ACE\_TRO\_1}{1}
 
 \subsection{Krajník}\label{krajník}
 
-La transformación invariante de Krajník \cite{krajník2015} es un método para obtener imágenes invariantes a cambios de iluminación. Se basa en el uso de imágenes intrínsecas, que separan las propiedades intrínsecas de la superficie (reflectancia) de las propiedades extrínsecas (iluminación). Este enfoque permite reducir la influencia de sombras y variaciones de iluminación en la imagen.
+La transformación invariante de Krajník \cite{krajník2015} es un método para obtener imágenes invariantes a cambios de iluminación. Se basa en el uso de imágenes intrínsecas (o propias), que separan las propiedades intrínsecas de la superficie (reflectancia) de las propiedades extrínsecas (iluminación). Este enfoque permite reducir la influencia de sombras y variaciones de iluminación en la imagen.
 
 El funcionamiento básico de la transformación invariante de Krajník es el siguiente:
 
@@ -154,11 +164,11 @@ donde:
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item{\begin{flushleft} $\sigma$: factor constante que denota el sombreado de Lambert. \end{flushleft}}
-   \item{\begin{flushleft} $E(\lambda )$: iluminación incidente en el elemento de superficie percibida. \end{flushleft}}
-   \item{\begin{flushleft} $S(\lambda )$: reflectancia espectral de la superficie. \end{flushleft}}
-   \item{\begin{flushleft} $Q(\lambda )$: sensibilidad espectral del canal $k$. \end{flushleft}}
-   \item{\begin{flushleft} $\lambda$: longitud de onda. \end{flushleft}}
+   \item{\begin{flushleft} $\sigma$: Factor constante que denota el sombreado de Lambert. \end{flushleft}}
+   \item{\begin{flushleft} $E(\lambda )$: Iluminación incidente en el elemento de superficie percibida. \end{flushleft}}
+   \item{\begin{flushleft} $S(\lambda )$: Reflectancia espectral de la superficie. \end{flushleft}}
+   \item{\begin{flushleft} $Q(\lambda )$: Sensibilidad espectral del canal $k$. \end{flushleft}}
+   \item{\begin{flushleft} $\lambda$: Longitud de onda. \end{flushleft}}
 \end{itemize}
 
 \subsubsection{2. Transformación Logarítmica}
@@ -183,11 +193,11 @@ donde:
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item{\begin{flushleft} $H_{\theta } (i)$: histograma proyectado en una dirección $\theta$. \end{flushleft}}
+   \item{\begin{flushleft} $H_{\theta } (i)$: Histograma proyectado en una dirección $\theta$. \end{flushleft}}
 \end{itemize}
 
 En la figura \ref{fig:img_ori_kra} se puede ver el resultado de aplicar este método invariante
-\imagen{img_ori_kra}{Resultado de aplicar Krajník}{1}
+\imagen{img_ori_kra}{Resultado de aplicar el método de Krajník et al sobre la imagen 3\_DIS\_1\_ACE\_TRO\_1}{1}
 
 \subsection{Upcroft}\label{upcroft}
 
@@ -197,7 +207,7 @@ El funcionamiento básico de la transformación invariante de Upcroft es el sigu
 
 \subsubsection{1. Modelo espectral $RGB$}
 
-Aunque no aparece explícitamente en el artículo, se menciona que el método de transformación invariante se basa en la relación logarítmica entre los canales $RGB$ y hace referencia a trabajos anteriores como los de Ratnasingam y Collins. La respuesta espectral de un canal específico $\rho_k$ (con $k=\{r,g,b\}$) se define como:
+Aunque no aparece explícitamente en el artículo, se menciona que el método de transformación invariante se basa en la relación logarítmica entre los canales $RGB$ y hace referencia a trabajos anteriores como los de Ratnasingam y Collins \cite{Ratnasingam&Collins}. La respuesta espectral de un canal específico $\rho_k$ (con $k=\{r,g,b\}$) se define como:
 
 $$\rho_k =\sigma \int E(\lambda )S(\lambda )Q_k (\lambda )d\lambda$$
 
@@ -205,11 +215,11 @@ donde:
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item{\begin{flushleft} $\sigma$: factor constante que denota el sombreado de Lambert. \end{flushleft}}
-   \item{\begin{flushleft} $E(\lambda )$: iluminación incidente en el elemento de superficie percibida. \end{flushleft}}
-   \item{\begin{flushleft} $S(\lambda )$: reflectancia espectral de la superficie. \end{flushleft}}
-   \item{\begin{flushleft} $Q(\lambda )$: sensibilidad espectral del canal $k$. \end{flushleft}}
-   \item{\begin{flushleft} $\lambda$: longitud de onda. \end{flushleft}}
+   \item{\begin{flushleft} $\sigma$: Factor constante que denota el sombreado de Lambert. \end{flushleft}}
+   \item{\begin{flushleft} $E(\lambda )$: Iluminación incidente en el elemento de superficie percibida. \end{flushleft}}
+   \item{\begin{flushleft} $S(\lambda )$: Reflectancia espectral de la superficie. \end{flushleft}}
+   \item{\begin{flushleft} $Q(\lambda )$: Sensibilidad espectral del canal $k$. \end{flushleft}}
+   \item{\begin{flushleft} $\lambda$: Longitud de onda. \end{flushleft}}
 \end{itemize}
 
 \subsubsection{2. Transformación logarítmica}
@@ -225,7 +235,7 @@ El parámetro $\alpha$ se calcula para minimizar la variabilidad de la fuente de
 $$\frac{1}{\lambda_G }=\frac{\alpha }{\lambda_B }+\frac{1-\alpha }{\lambda_R }$$
 
 En la figura \ref{fig:img_ori_upc} se puede ver el resultado de aplicar este método invariante.
-\imagen{img_ori_upc}{Resultado de aplicar Upcroft}{1}
+\imagen{img_ori_upc}{Resultado de aplicar el método de Upcroft et al sobre la imagen 3\_DIS\_1\_ACE\_TRO\_1}{1}
 
 \subsection{PCA}\label{pca}
 El método basado en PCA (Análisis de Componentes Principales) \cite{pca2017} propuesto por Kim genera un espacio invariante a la iluminación que permite reducir el efecto de sombras y variaciones en la intensidad de la luz. El algoritmo busca la proyección óptima en el espacio logarítmico-cromático para minimizar la variabilidad causada por la iluminación.
@@ -242,11 +252,11 @@ donde:
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item{\begin{flushleft} $\sigma$: factor constante que denota el sombreado de Lambert. \end{flushleft}}
-   \item{\begin{flushleft} $E(\lambda )$: iluminación incidente en el elemento de superficie percibida. \end{flushleft}}
-   \item{\begin{flushleft} $S(\lambda )$: reflectancia espectral de la superficie. \end{flushleft}}
-   \item{\begin{flushleft} $Q(\lambda )$: sensibilidad espectral del canal $k$. \end{flushleft}}
-   \item{\begin{flushleft} $\lambda$: longitud de onda. \end{flushleft}}
+   \item{\begin{flushleft} $\sigma$: Factor constante que denota el sombreado de Lambert. \end{flushleft}}
+   \item{\begin{flushleft} $E(\lambda )$: Iluminación incidente en el elemento de superficie percibida. \end{flushleft}}
+   \item{\begin{flushleft} $S(\lambda )$: Reflectancia espectral de la superficie. \end{flushleft}}
+   \item{\begin{flushleft} $Q(\lambda )$: Sensibilidad espectral del canal $k$. \end{flushleft}}
+   \item{\begin{flushleft} $\lambda$: Longitud de onda. \end{flushleft}}
 \end{itemize}
 
 \subsubsection{2. Transformación logarítmica}
@@ -259,7 +269,7 @@ donde:
 
 \begin{itemize}
 \setlength{\itemsep}{-1ex}
-   \item{\begin{flushleft} $(RGB)^{1/3}$: media geométrica de los tres canales. \end{flushleft}}
+   \item{\begin{flushleft} $(RGB)^{1/3}$: Media geométrica de los tres canales. \end{flushleft}}
 \end{itemize}
 
 \subsubsection{3. Proyección basada en PCA}
@@ -271,11 +281,11 @@ $$I_{\theta } =r\cos \theta +b\sin \theta$$
 Esto se logra aplicando el Análisis de Componentes Principales a los valores calculados.
 
 En la figura \ref{fig:img_ori_pca} se puede ver el resultado de aplicar este método invariante.
-\imagen{img_ori_pca}{Resultado de aplicar PCA}{1}
+\imagen{img_ori_pca}{Resultado de aplicar PCA sobre la imagen 3\_DIS\_1\_ACE\_TRO\_1}{1}
 
 \section{Métodos de agrupamiento de imágenes}\label{metodos-de-agrupamiento-de-imagenes}
 
-Los métodos de agrupamiento son técnicas de aprendizaje no supervisado que se utilizan para dividir un conjunto de datos en grupos o clústeres, de manera que los datos en el mismo clúster tengan una mayor similitud entre sí que con los datos de otros clústeres. Estos métodos se utilizarán para separar la pieza metálica del fondo y determinar si una transformación invariante previa supone algún cambio significativo.
+Los métodos de agrupamiento son técnicas de aprendizaje no supervisado que se utilizan para dividir un conjunto de datos en grupos o clústeres, de manera que los datos en el mismo clúster tengan una mayor similitud entre sí que con los datos de otros clústeres. Estos métodos se utilizarán para separar la pieza metálica del fondo y determinar si una transformación invariante permite mejorar la calidad de la segmentación.
 
 \subsection{K-Means}\label{k-means}
 
@@ -511,11 +521,11 @@ Se repiten los pasos 2 a 4 hasta que la función de energía $U(y|x,\Theta )+U(x
 
 \section{Clasificación de resultados}\label{clasificacion-de-resultados}
 
-La clasificación de los resultados obtenidos es un paso fundamental, ya que permite evaluar de forma objetiva si la aplicación de métodos de transformación invariante mejora los resultados. Se compararán las imágenes, tanto la original como la invariante, con una imagen `ground truth' para observar numéricamente el acierto de cada una de ellas.
+La clasificación de los resultados obtenidos es un paso fundamental, ya que permite evaluar de forma objetiva si la aplicación de métodos de transformación invariante supone una mejora en la calidad de la segmentación. Se compararán las imágenes, tanto la original como la invariante, con una imagen `ground truth' para observar numéricamente el acierto de cada una de ellas.
 
 \subsection{Imágenes ground truth}\label{imagenes-ground-truth}
 
-Las imágenes `ground truth' son segmentaciones realizadas manualmente mediante programas de edición de imágenes. Al haber sido segmentadas por un ser humano, representan una segmentación casi perfecta, que sirve como ideal al que se aspira. Se dice `casi perfecta' porque puede haber un mínimo error imperceptible a simple vista, pero que puede afectar matemáticamente, impidiendo alcanzar un 100\% de precisión.
+Una imagen `ground truth' sería una imagen resultado ideal de aquello que se quiere evaluar. En el caso de la segmentación de imágenes, sería el resultado ideal o perfecto que un método de segmentación `perfecto' daría. Las imágenes `ground truth' de este proyecto al haber sido segmentadas por un ser humano, representan una segmentación casi perfecta ya que puede haber un mínimo error imperceptible a simple vista, pero que puede afectar matemáticamente, impidiendo alcanzar un 100\% de precisión.
 
 En la figura \ref{fig:img_ori_gt} se puede ver el la imagen original y su correspondiente imagen `ground truth'.
 

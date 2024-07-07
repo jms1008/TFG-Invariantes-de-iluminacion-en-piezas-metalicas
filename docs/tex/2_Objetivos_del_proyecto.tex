@@ -7,13 +7,15 @@ El proyecto tiene los siguientes objetivos generales:
 \begin{itemize}
     \tightlist
         \item
-            Demostrar que al aplicar métodos de transformación invariante, se consiguen mejores resultados a la hora de identificar piezas metálicas mediante métodos de agrupamiento de imágenes.
+            Demostrar empíricamente que al aplicar métodos de transformación invariante de la iluminación, se consiguen mejores resultados a la hora de identificar piezas metálicas mediante métodos de agrupamiento de imágenes.
         \item
-            Desarrollar una aplicación de escritorio que permita al usuario identificar la pieza de una imagen que introduzca ofreciendo diferentes algoritmos tanto de transformación invariante (propuestos por Álvarez \cite{alvarez2011}, Maddern \cite{maddern2014}, Krajník \cite{krajník2015}, Upcroft \cite{upcroft2014} y PCA \cite{pca2017}) como de agrupamiento de imágenes (K-Means \cite{MATLAB:2023bKmeans}, Fuzzy C-Means \cite{MATLAB:2023bFuzzy}, GMM \cite{MATLAB:2023bGMM} y agrupamiento con información espacial \cite{wang2012hmrf}).
+            Desarrollar una aplicación de escritorio que tome como entrada una imagen y  permita al usuario evaluar los resultados de la segmentación para la identificación de piezas metálicas. La aplicación debe ofrecer diferentes algoritmos tanto de transformación invariante (propuestos por Álvarez \cite{alvarez2011}, Maddern \cite{maddern2014}, Krajník \cite{krajník2015}, Upcroft \cite{upcroft2014} y PCA \cite{pca2017}) como de agrupamiento de imágenes (K-Means \cite{MATLAB:2023bKmeans}, Fuzzy C-Means \cite{MATLAB:2023bFuzzy}, GMM \cite{MATLAB:2023bGMM} y agrupamiento con información espacial \cite{wang2012hmrf}).
         \item
-            Desarrollar una aplicación de escritorio que permita mostrar la mejoría que suponen los métodos de transformación invariante mostrando una comparación de los resultados tanto visual como numérica.
+            Desarrollar una aplicación de escritorio que permita evaluar la mejora que supone la aplicación de los métodos de transformación invariante en procesos de segmentación de imágenes, mostrando una comparación de los resultados tanto visual como numérica.
         \item
-            Guardar las imágenes resultantes del método de transformación invariante y las correspondientes imágenes tras el agrupamiento, tanto de la original como de la invariante.
+            Guardar las imágenes resultantes del método de transformación invariante y las dos imágenes  resultados de la segmentación, una aplicando la transformación de invariante de iluminación y otra aplicando la segmentación directamente a la imagen original.
+        \item
+            Comparar los resultados de distintos métodos de transformación invariante de imágenes y argumentar la mejora que se obtiene en la identificación de piezas metálicas.
 \end{itemize}
 
 \section{Objetivos técnicos}\label{objetivos-tecnicos}
@@ -23,15 +25,11 @@ El proyecto tiene los siguientes objetivos técnicos:
 \begin{itemize}
     \tightlist
         \item
-            Comparar los resultados de distintos métodos de transformación invariante de imágenes y argumentar la mejora que se obtiene en la identificación de piezas metálicas.
+            Desarrollar una aplicación de escritorio en MATLAB en un repositorio de Github, utilizando sus sistemas de control de versiones, sistemas de control de tareas y de distribución de  aplicaciones con releases.
         \item
-            Utilizar la plataforma GitHub como sistema de control de versiones.
+            Aplicar un proceso de desarrollo de software iterativo e incremental aplicando Scrum con la herramienta Zube.
         \item
-            Utilizar Zube como herramienta de gestión de proyectos.
-        \item
-            Realizar tests para los distintos scripts utilizados.
-        \item
-            Utilizar un sistema de documentación.
+            Diseñar e implementar pruebas unitarias para comprender y evaluar mejor las implementaciones de los métodos de invariancia de la iluminación y segmentación de imágenes disponibles en las bibliotecas de MATLAB.
 \end{itemize}
 
 \section{Objetivos personales}\label{objetivos-personales}
@@ -43,9 +41,9 @@ El proyecto tiene los siguientes objetivos personales:
         \item
             Realizar una aportación a la modernización de la industria.
         \item
-            Profundizar en el uso de MATLAB, el cual tiene una gran potencia computacional, destacando en cálculos matriciales.
+            Profundizar en el desarrollo de aplicaciones con MATLAB y en el conocimiento de sus bibliotecas de implementación de métodos de inteligencia artificial. Analizar su eficiencia computacional basada en cálculos matricilaes frente a otras alternativas como Python.
         \item
-            Explorar métodos de visión artificial.
+            Explorar métodos de procesamiento de imágenes con inteligencia artificial.
         \item 
             La creación de sistemas que permitan la automatización y mejoren el control de calidad en diversos entornos.
 \end{itemize}

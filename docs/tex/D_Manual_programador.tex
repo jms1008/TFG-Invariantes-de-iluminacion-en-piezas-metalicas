@@ -9,21 +9,21 @@ En este anexo se detalla la documentación técnica de programación, incluyendo
 El repositorio del proyecto tiene la siguiente estructura:
 
 \begin{itemize}
-    \item \textbf{/:} directorio raíz del repositorio. Es este se encuentra todos los directorios del proyecto además de una README.
-    \item \textbf{/app:} directorio de la aplicación. Este contiene tanto la propia aplicación como aquellos directorios necesarios para la correcta ejecución de la misma.
-    \item \textbf{/app/src:} directorio del código fuente de la aplicación.
-    \item \textbf{/app/src/functions:} directorio de los scripts utilizados por el sistema.
-    \item \textbf{/app/src/livescripts:} directorio de los livescripts y sus correspondientes HTML de la documentación de dentro de la aplicación tanto en español como en inglés.
-    \item \textbf{/app/src/livescripts/img:} directorio de las imágenes utilizadas en la documentación de los livescripts.
-    \item \textbf{/app/src/test:} directorio de los tests unitarios de los scripts de `/functions'. Cuentan con un README para poderlos ejecutar correctamente.
-    \item \textbf{/app/data:} directorio de las imágenes proporcionadas y sus respectivas imágenes ground truth, además contiene un README para explicar la nomenclatura utilizada en las imágenes.
-    \item \textbf{/app/data/Imagenes:} directorio de las imágenes proporcionadas por la aplicación.
-    \item \textbf{/app/data/Imagenes\_ground\_truth:} directorio de las imágenes ground truth correspondientes a las imágenes proporcionadas por la aplicación.
-    \item \textbf{/app/cache:} directorio de la memoria caché de la aplicación. En el se guardaran las imágenes generadas durante la ejecución.
-    \item \textbf{/app/results:} directorio donde se almacenaran las imágenes por defecto si el usuario decide guardar los resultados de la ejecución.
-    \item \textbf{/docs:} directorio de la documentación del proyecto.
-    \item \textbf{/docs/img:} directorio de las imágenes utilizadas en la documentación.
-    \item \textbf{/docs/tex:} directorio de las fuentes en formato \LaTeX para memoria y anexos.
+    \item \textbf{/:} Directorio raíz del repositorio. Es este se encuentra todos los directorios del proyecto además de una README.
+    \item \textbf{/app:} Directorio de la aplicación. Este contiene tanto la propia aplicación como aquellos directorios necesarios para la correcta ejecución de la misma.
+    \item \textbf{/app/src:} Directorio del código fuente de la aplicación.
+    \item \textbf{/app/src/functions:} Directorio de los scripts utilizados por el sistema.
+    \item \textbf{/app/src/livescripts:} Directorio de los livescripts y sus correspondientes HTML de la documentación de dentro de la aplicación tanto en español como en inglés.
+    \item \textbf{/app/src/livescripts/img:} Directorio de las imágenes utilizadas en la documentación de los livescripts.
+    \item \textbf{/app/src/test:} Directorio de los tests unitarios de los scripts de `/functions'. Cuentan con un README para poderlos ejecutar correctamente.
+    \item \textbf{/app/data:} Directorio de las imágenes proporcionadas y sus respectivas imágenes ground truth, además contiene un README para explicar la nomenclatura utilizada en las imágenes.
+    \item \textbf{/app/data/Imagenes:} Directorio de las imágenes proporcionadas por la aplicación.
+    \item \textbf{/app/data/Imagenes\_ground\_truth:} Directorio de las imágenes ground truth correspondientes a las imágenes proporcionadas por la aplicación.
+    \item \textbf{/app/cache:} Directorio de la memoria caché de la aplicación. En el se guardaran las imágenes generadas durante la ejecución.
+    \item \textbf{/app/results:} Directorio donde se almacenaran las imágenes por defecto si el usuario decide guardar los resultados de la ejecución.
+    \item \textbf{/docs:} Directorio de la documentación del proyecto.
+    \item \textbf{/docs/img:} Directorio de las imágenes utilizadas en la documentación.
+    \item \textbf{/docs/tex:} Directorio de las fuentes en formato \LaTeX para memoria y anexos.
 \end{itemize}
 
 \section{Manual del programador}\label{manual-del-programador}
@@ -137,9 +137,9 @@ La figura \ref{fig:aplicacion_compilada} muestra ventana que se crea automática
 Tras realizar las pertinentes modificaciones o añadir nuevas funcionalidades a la aplicación, el siguiente paso será compartir la aplicación. MATLAB para ello tiene tres opciones:
 
 \begin{itemize}
-    \item \textbf{MATLAB App:} esta opción permite crear una archivo de instalación para compartir la aplicación con otros usuarios de MATLAB. Si el objetivo es que estos puedan modificar o ver el funcionamiento del código, esta es la mejor opción.
-    \item \textbf{Web App:} esta opción permite crear y desplegar aplicaciones web utilizando MATLAB Compiler, facilitando su distribución y uso en diferentes entornos. Esto ha sido desestimado ya que esta funcionalidad la ofrece pero es de pago.
-    \item \textbf{Standalone Desktop App:} esta opción permite crear aplicaciones de escritorio independientes usando MATLAB Compiler, que requieren tener MATLAB instalado para su ejecución. Esta es la opción que se ha utilizado y que se desarrollará con más detalle a continuación.
+    \item \textbf{MATLAB App:} Esta opción permite crear una archivo de instalación para compartir la aplicación con otros usuarios de MATLAB. Si el objetivo es que estos puedan modificar o ver el funcionamiento de la aplicación, esta es la mejor opción.
+    \item \textbf{Web App:} Esta opción permite crear y desplegar aplicaciones web utilizando MATLAB Compiler, facilitando su distribución y uso en diferentes entornos. Esto ha sido desestimado ya que esta funcionalidad la ofrece pero es de pago.
+    \item \textbf{Standalone Desktop App:} Esta opción permite crear aplicaciones de escritorio independientes usando MATLAB Compiler, que requieren tener MATLAB instalado para su ejecución. Esta es la opción que se ha utilizado y que se desarrollará con más detalle a continuación.
 \end{itemize}
 
 \subsubsection{MATLAB Standalone Application}\label{matlab-standalone-application}
@@ -178,7 +178,7 @@ Al abrir el archivo `InvIPM.exe', se accederá a la aplicación, la cual ejecuta
 
 \section{Pruebas del sistema}\label{pruebas-del-sistema}
 
-A continuación, se desarrollarán las distintas pruebas del sistema.
+A continuación, se describen las distintas pruebas del sistema.
 
 \subsection{Casos de prueba}\label{casos-de-prueba}
 

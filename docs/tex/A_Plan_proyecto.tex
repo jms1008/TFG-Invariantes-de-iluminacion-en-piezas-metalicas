@@ -7,17 +7,17 @@ La fase de planificación es esencial en cualquier proyecto. Durante esta etapa,
 La fase de planificación se puede dividir en dos partes:
 
 \begin{itemize}
-  \item \textbf{La planificación temporal:} se crea un calendario o cronograma. Aquí se calcula el tiempo necesario para completar cada una de las partes del proyecto. Se debe establecer una fecha de inicio fija y una fecha de finalización estimada, considerando la importancia de cada tarea y los requisitos necesarios para comenzar a trabajar en ellas.
-  \item \textbf{El estudio de viabilidad:} se enfoca en la factibilidad del proyecto y se divide en dos apartados. 
+  \item \textbf{La planificación temporal:} Se crea un calendario o cronograma. Aquí se calcula el tiempo necesario para completar cada una de las partes del proyecto. Se debe establecer una fecha de inicio fija y una fecha de finalización estimada, considerando la importancia de cada tarea y los requisitos necesarios para comenzar a trabajar en ellas.
+  \item \textbf{El estudio de viabilidad:} Se enfoca en la factibilidad del proyecto y se divide en dos apartados. 
   \begin{itemize}
-    \item \textbf{La viabilidad económica:} en esta parte se estiman los costos y los beneficios que podría traer la realización del proyecto. 
-    \item \textbf{La viabilidad legal:} aquí es donde se tiene en cuenta el contexto del proyecto y toca aquella ley que le afecta. Se deben analizar todas aquellas que afecten al proyecto.
+    \item \textbf{La viabilidad económica:} En esta parte se estiman los costos y los beneficios que podría traer la realización del proyecto. 
+    \item \textbf{La viabilidad legal:} Aquí es donde se tiene en cuenta el contexto del proyecto y toca aquella ley que le afecta. Se deben analizar todas aquellas que afecten al proyecto.
   \end{itemize}
 \end{itemize}
 
 \section{Planificación temporal}\label{planificacion-temporal}
 
-En líneas generales, se ha seguido la metodología Scrum, aunque de manera adaptada a la situación de ser el único desarrollador, manteniendo ciertos principios clave.
+En líneas generales, se ha seguido el marco de trabajo Scrum, aunque de manera adaptada a la situación de ser el único desarrollador, manteniendo ciertos principios clave.
 
 \begin{itemize}
   \item Se aplicó una estrategia de desarrollo incremental mediante iteraciones (sprints) y revisiones.
@@ -40,9 +40,9 @@ En este momento del proyecto, simplemente se crearon una serie de tareas a compl
 
 \subsection{Sprint 1 (11/03/2024 - 25/03/2024)}\label{sprint-1}
 
-Este sprint tuvo como objetivos: mostrar la representación del histograma de los valores de los píxeles de cada canal en la imagen resultante, determinar los valores mínimos y máximos de los píxeles, y visualizar la matriz resultante utilizando imshow. Se discutió que, aunque imshow(M, []) normaliza la imagen para visualización, imwrite guarda la imagen sin normalizar. Se acordó guardar la imagen utilizando el método saveas para conservar el rango dinámico y almacenar la matriz en un archivo .mat con el resultado de la transformación. También se destacó la importancia de guardar una imagen que se pueda visualizar fácilmente y familiarizarse con los resultados de cada método aplicado.
+Este sprint tuvo como objetivos: mostrar la representación del histograma de los valores de los píxeles de cada canal en la imagen resultante, determinar los valores mínimos y máximos de los píxeles, y visualizar la matriz resultante utilizando a función de MATLAB `imshow'. Se discutió que, aunque `imshow(M, [])' normaliza la imagen para visualización, `imwrite' guarda la imagen sin normalizar. Se acordó guardar la imagen utilizando el método `saveas' para conservar el rango dinámico y almacenar la matriz en un archivo `.mat' con el resultado de la transformación. También se destacó la importancia de guardar una imagen que se pueda visualizar fácilmente y familiarizarse con los resultados de cada método aplicado.
 
-Se decidió añadir los métodos de agrupamiento FUZZY C-Means y GMM, y probar otros métodos de agrupamiento que tengan en cuenta el contexto y no solo el valor del píxel. Además, se acordó buscar información sobre Geoffrey Machlachlan para profundizar en el tema.
+Se decidió añadir los métodos de agrupamiento Fuzzy C-Means y GMM, y probar otros métodos de agrupamiento que tengan en cuenta el contexto y no solo el valor del píxel. Además, se acordó buscar información sobre Geoffrey Machlachlan para profundizar en el tema.
 
 Al igual que en el sprint 0, simplemente se crearon una serie de tareas a completar antes de la próxima semana, por lo que no se tiene un registro temporal en Zube y en GitHub. Las tareas fueron añadidas el 26/03/2024. Estas issues tienen en el nombre [S2].
 
@@ -58,7 +58,7 @@ Al igual que en el sprint 0 y sprint 1, simplemente se crearon una serie de tare
 
 En la reunión de preparación de este sprint, Carlos López se unió como cotutor al proyecto a solicitud de Pedro Latorre. En el futuro, Carlos López pasaría a ser el tutor del proyecto de fin de grado.
 
-Este sprint tuvo como objetivo familiarizarse con Overleaf y comenzar a rellenar los tres primeros apartados del documento. Además, se acordó crear una cuenta en Zube para organizar las tareas en milestones y reorganizar los directorios del proyecto. La nueva estructura incluirá un directorio "doc" con la plantilla de Ubuvirtual y un directorio para el programa MATLAB, que contendrá todos los métodos utilizados, separados en distintos scripts para mejorar la modularidad, reutilización y mantenibilidad del código.
+Este sprint tuvo como objetivo familiarizarse con Overleaf y comenzar a rellenar las secciones de introducción, objetivos del proyecto y conceptos teóricos de la memoria del TFG. Además, se acordó crear una cuenta en Zube para organizar las tareas en milestones y reorganizar los directorios del proyecto. La nueva estructura incluirá un directorio `doc' con la plantilla de documentación de TFG disponible en UBUVirtual y un directorio para el programa MATLAB, que contendrá todos los métodos utilizados, separados en distintos scripts para mejorar la modularidad, reutilización y mantenibilidad del código.
 
 Otro objetivo fue la integración de MATLAB con una aplicación web, iniciando un pequeño proyecto en GitHub para gestionar esta integración. También se planteó el desarrollo de una pequeña aplicación de escritorio de MATLAB, que servirá para probar distintos algoritmos sobre diferentes imágenes. De esta manera, además de demostrar numéricamente que hay una mejora notable tras la aplicación de métodos invariantes sobre piezas metálicas, permitirá probar distintos métodos sobre imágenes propias de forma sencilla y visual.
 
@@ -83,7 +83,7 @@ Como se puede ver en el gráfico burndown \ref{fig:sprint4}, las issues de este 
 
 \subsection{Sprint 5 (02/05/2024 - 23/05/2024)}\label{sprint-5}
 
-Este sprint tuvo como objetivo mejorar la experiencia del usuario y optimizar la funcionalidad de la aplicación. Se implementaron notificaciones periódicas sobre el estado de la ejecución, indicando que podría tomar mucho tiempo, además de añadir la funcionalidad de borrar resultados anteriores. También se realizaron pequeños cambios en la interfaz, como eliminar el "-" de los porcentajes y añadir un botón para guardar imágenes.
+Este sprint tuvo como objetivo mejorar la experiencia del usuario y optimizar la funcionalidad de la aplicación. Se implemento una waitbar que periódicamente informaba sobre el estado de la ejecución, indicando que podría tomar mucho tiempo, además de añadir la funcionalidad de borrar resultados anteriores. También se realizaron pequeños cambios en la interfaz, como eliminar el `-' de los porcentajes y añadir un botón para guardar imágenes.
 
 Se realizaron distintas modificaciones en la estructura de la interfaz, añadiendo menús de ayuda, una lista de nombres de imágenes en caché, un menú de bienvenida y ayuda contextual. Se actualizó el nombre de los archivos de resultados, añadiendo la fecha de ejecución al inicio. Además, se corrigieron errores en la selección de imágenes desde rutas diferentes a /data y se mejoró la gestión de errores.
 
@@ -120,9 +120,9 @@ Como se puede ver en el gráfico burndown \ref{fig:sprint7}, las issues de este 
 
 \subsection{Sprint 8 (11/06/2024 - 27/06/2024)}\label{sprint-8}
 
-En este sprint, se implementaron mejoras y se preparó la aplicación para su versión oficial. Se mejoraron los tooltips, especialmente el de centros, y se añadió la opción de imprimir y visualizar imágenes en la caché, además de modificar el botón "Abrir directorio" por "Ver imágenes". Se habilitó la ordenación por filas en la caché y se actualizó la imagen de bienvenida.
+En este sprint, se implementaron mejoras y se preparó la aplicación para su versión oficial. Se mejoraron los tooltips, especialmente el de centros, y se añadió la opción de imprimir y visualizar imágenes en la caché, además de modificar el botón `Abrir directorio' por `Ver imágenes'. Se habilitó la ordenación por filas en la caché y se actualizó la imagen de bienvenida.
 
-Para garantizar compatibilidad, la aplicación se adaptó a Linux y Mac, y se realizaron pruebas unitarias. Se creó un README detallado y se reorganizaron los directorios, eliminando los obsoletos. También se subió la versión anterior con mejoras en el manejo de errores y adaptación al inglés.
+Para garantizar compatibilidad, la aplicación se adaptó a Linux, y se realizaron pruebas unitarias. Se creó un README detallado y se reorganizaron los directorios, eliminando los obsoletos. También se subió la versión anterior con mejoras en el manejo de errores y adaptación al inglés.
 
 En la documentación, se añadieron citas y se revisaron correcciones en la memoria, y se redactaron el plan de proyecto, especificaciones de requisitos y diseño en los anexos.
 
@@ -142,9 +142,9 @@ A continuación se muestra un resumen del tiempo dedicado a la realización del 
 
 \begin{table}[h!]
     \centering
-    \begin{tabular}{l l}
+    \begin{tabular}{c c}
         \hline
-        \textbf{Categoría}      & \textbf{Tiempo (h)} \\
+        \textbf{Categoría}      & \textbf{Tiempo (horas)} \\
         \hline
         \textbf{Sprint 0}       & 20    \\
         \textbf{Sprint 1}       & 32    \\
@@ -157,7 +157,7 @@ A continuación se muestra un resumen del tiempo dedicado a la realización del 
         \textbf{Sprint 8}       & 71    \\
         \textbf{Sprint 9}       & 22    \\
         \hline
-        \textbf{Total}          & \textbf{364}\\
+        \textbf{Total}          & \textbf{364 horas}\\
         \hline
     \end{tabular}
     \caption{Desglose de tiempo dedicado al proyecto.}\label{tabla:tiempo-dedicado-al-proyecto}
@@ -216,7 +216,7 @@ Hay que destacar que la licencia de MATLAB utilizada ha sido la Academic que la 
 
 \textbf{Costes de personal:}
 
-El proyecto lo ha llevado a cabo un ingeniero informático recién graduado a tiempo completo durante cuatro meses. Se considera que el salario bruto anual es de 24.000,00€ \cite{sueldoIIespaña}, el IRPF sobre el salario bruto es del 13,55\% y la Seguridad Social es del 6,35\% respectivamente como se puede ver en la figura \ref{tabla:costes-de-personal}.
+El proyecto lo ha llevado a cabo un ingeniero informático recién graduado a tiempo completo durante cuatro meses. Se considera que el salario bruto anual es de 24.000,00€ \cite{sueldoIIespaña}, el IRPF sobre el salario bruto es del 13,55\% y la Seguridad Social es del 6,35\% respectivamente como se puede ver en la figura \ref{tabla:costes-de-personal}. Se considera que la cantidad de horas de trabajo anuales en España a tiempo completo es de 1820 \cite{horasAnuales}.
 
 \begin{table}[h!]
     \centering
@@ -228,8 +228,9 @@ El proyecto lo ha llevado a cabo un ingeniero informático recién graduado a ti
         \textbf{IRPF}                       & 3.251,04€             \\
         \textbf{Seguridad Social}           & 1.524,00€             \\
         \textbf{Salario anual neto}         & 19.224,96€            \\
+        \textbf{Salario neto por hora}      & 10,56€                \\
         \hline
-        \textbf{Total 4 meses}              & \textbf{8.000,00€}    \\
+        \textbf{Salario 364 horas}          & \textbf{3.844,99€}    \\
         \hline
     \end{tabular}
     \caption{Costes de personal.}\label{tabla:costes-de-personal}
@@ -247,9 +248,9 @@ El sumatorio de todos los distintos tipos de costes se encuentra en la figura \r
         \hline
         \textbf{Hardware}   & 60,00€                \\
         \textbf{Software}   & 104,60€               \\
-        \textbf{Personal}   & 8.000,00€             \\
+        \textbf{Personal}   & 3.844,99€             \\
         \hline
-        \textbf{Total}      & \textbf{8.164,60€}    \\
+        \textbf{Total}      & \textbf{4.009,59€}    \\
         \hline
     \end{tabular}
     \caption{Costes totales.}\label{tabla:costes-de-totales}
@@ -267,12 +268,33 @@ Apartado dedicado al marco legal que envuelve el proceso de desarrollo del proye
   \item \textbf{MATLAB Academic:} Al tratarse de un desarrollador individual, el uso de la licencia MATLAB Academic está justificado. Esta licencia es distribuida de forma gratuita por la Universidad de Burgos a sus alumnos.
 \end{itemize}
 
-El proyecto actual ha sido asignado bajo una licencia Creative Commons \cite{cc4}. Esto implica que cualquier usuario es libre de compartir, redistribuir y adaptar la aplicación, siempre y cuando se cumplan las siguientes condiciones:
+Debido al uso de distintos papers y toolboxes de MATLAB la aplicación esta limitada por las licencias de estos. Las licencias son las siguientes:
+
+\newpage
+
+\tabla{Licencias}{p{0.56\columnwidth}|p{0.39\columnwidth}}{2}{licencias}{
+  \textbf{Elemento} & \textbf{Licencia} \\
+}{
+  Statistics and Machine Learning Toolbox & MathWorks Software License Agreement (MWL) \\
+  Fuzzy Logic Toolbox & MathWorks Software License Agreement (MWL) \\
+  MATLAB Compiler & MathWorks Software License Agreement (MWL) \\
+  HMRF-EM-image & BSD 3-Clause License \\
+  Road Detection Based on Illuminant Invariance & IEEE Terms and Conditions \\
+  Illumination Invariant Imaging: Applications in Robust Vision-based Localisation, Mapping and Classification for Autonomous Vehicles & IEEE Terms and Conditions \\
+  Visual Road Following Using Intrinsic Images & IEEE Terms and Conditions \\
+  Lighting Invariant Urban Street Classification & IEEE Terms and Conditions \\
+  PCA based Computation of Illumination-Invariant Space for Road Detection & IEEE Terms and Conditions \\
+}
+
+El proyecto actual ha sido asignado bajo la licencia BSD 3-Clause. Esto implica que cualquier usuario es libre de compartir, redistribuir y adaptar la aplicación, siempre y cuando se cumplan las siguientes condiciones:
 
 \begin{itemize}
-  \item \textbf{Atribución:} Se debe dar crédito apropiado al autor original, proporcionando un enlace a la licencia e indicando si se han realizado cambios.
-  \item \textbf{NoComercial:} No se puede utilizar el material para fines comerciales.
-  \item \textbf{CompartirIgual:} Si se remezcla, transforma, o crea a partir del material, se debe distribuir el material modificado bajo la misma licencia que el original.
+  \item \textbf{Atribución:} Se debe dar crédito apropiado al autor original, manteniendo el aviso de copyright, la lista de condiciones y la exención de responsabilidad en todas las distribuciones.
+  \item \textbf{Redistribución:} Las redistribuciones en formato de código fuente deben incluir el aviso de copyright, esta lista de condiciones y la exención de responsabilidad.
+  \item \textbf{Restricción de Uso de Nombre:} Ni el nombre de los autores ni los nombres de sus colaboradores pueden ser utilizados para apoyar o promocionar productos derivados sin un permiso específico por escrito.
 \end{itemize}
 
-Esta licencia asegura que la aplicación mantenga su accesibilidad y flexibilidad, fomentando la colaboración y el desarrollo comunitario mientras protege los derechos del autor original.
+Además, el uso de MATLAB Runtime y ciertas herramientas de MATLAB en este proyecto está sujeto al MathWorks Software License Agreement (MWL). Los usuarios deben tener una licencia válida de MathWorks para ejecutar este software. La redistribución de MATLAB Runtime o cualquier toolbox de MathWorks no está permitida. Los usuarios deben descargar e instalar MATLAB Runtime desde el sitio oficial de MathWorks de acuerdo con los términos de su licencia segun se indica en \url{https://www.mathworks.com/company/aboutus/policies_statements/}.
+
+Esta combinación de licencias asegura que la aplicación mantenga su accesibilidad y flexibilidad, fomentando la colaboración y el desarrollo comunitario mientras protege los derechos del autor original y cumple con las restricciones de las herramientas utilizadas.
+

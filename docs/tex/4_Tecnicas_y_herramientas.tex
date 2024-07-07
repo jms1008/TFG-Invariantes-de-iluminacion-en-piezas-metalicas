@@ -1,10 +1,35 @@
 \capitulo{4}{Técnicas y herramientas}
 
+En esta sección se presentan todas las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Esto abarca desde bibliotecas MATLAB hasta herramientas de control de versiones como Git. Además de una breve introducción, se documentan sus funciones más destacadas y los beneficios que aportan al desarrollo del proyecto.
+
+\section{Metodologías ágiles}\label{metodologías-ágiles}
+
+\subsection{Scrum}\label{scrum}
+
+Scrum es una metodología ágil de gestión y planificación de proyectos de software que se centra en el trabajo en equipo, la responsabilidad y la iteración progresiva de objetivos a corto plazo, conocidos como sprints. Esto ha sido muy útil, ya que se han definido los sprints como el tiempo entre reuniones, en las cuales se revisaba el trabajo realizado y se planteaban las líneas a seguir en el siguiente periodo (sprint).
+
+\subsection{Kanban}\label{kanban}
+
+Kanban es una metodología ágil que mejora la eficiencia visualizando el flujo de trabajo en tableros. Utiliza tarjetas y columnas para gestionar tareas, limita el trabajo en progreso y promueve la mejora continua.
+
+Kanban se ha implementado dentro de los sprints de Scrum en el proyecto, combinando la estructura iterativa de Scrum con la flexibilidad y visualización del flujo de trabajo de Kanban. Esta integración ha permitido gestionar y ajustar continuamente las tareas dentro de cada sprint, optimizando la entrega y la eficiencia sin adherirse estrictamente a una sola metodología.
+
 \section{Control de versiones}\label{control-de-versiones}
 
 \subsection{Git}\label{git}
 
 Git es un sistema de control de versiones distribuido que permite trabajar de manera autónoma con copias completas del repositorio. Es ideal para utilizar múltiples ramas de desarrollo, facilitando la experimentación y el desarrollo paralelo sin interferencias. Destaca por su rapidez y eficiencia, almacenando información como cambios incrementales en lugar de archivos completos, lo que optimiza el uso del espacio y mejora el rendimiento en proyectos de cualquier tamaño.
+
+\subsection{GitHub Desktop}\label{gitHub-desktop}
+
+\begin{itemize}
+    \item Herramientas consideradas: GitHub Desktop, GitKraken.
+    \item Motivo de la elección de GitHub Desktop:
+\end{itemize}
+
+GitHub Desktop es una aplicación que simplifica la manera en que los desarrolladores interactúan con Git y GitHub, proporcionando una interfaz gráfica de usuario en lugar de la línea de comandos.
+
+GitHub Desktop ofrece una mejor integración con GitHub, lo que facilita trabajar de forma más fluida y coherente dentro del ecosistema de GitHub, a diferencia de GitKraken, cuya interfaz y funcionalidades son más genéricas y menos especializadas para usuarios de GitHub.
 
 \section{Hosting del repositorio}\label{hosting-del-repositorio}
 
@@ -19,17 +44,7 @@ GitHub es una plataforma de hosting de repositorios Git que se ha convertido en 
 
 Es por esta mayor capacidad de integración por la cual se ha optado por usar GitHub en lugar de GitLab, además de que durante la carrera se ha utilizado siempre GitHub.
 
-\section{Metodologías ágiles}\label{metodologías-ágiles}
-
-\subsection{Scrum}\label{scrum}
-
-Scrum es una metodología ágil de gestión y planificación de proyectos de software que se centra en el trabajo en equipo, la responsabilidad y la iteración progresiva de objetivos a corto plazo, conocidos como sprints. Esto ha sido muy útil, ya que se han definido los sprints como el tiempo entre reuniones, en las cuales se revisaba el trabajo realizado y se planteaban las líneas a seguir en el siguiente periodo (sprint).
-
-\subsection{Kanban}\label{kanban}
-
-Kanban se ha implementado dentro de los sprints de Scrum en el proyecto, combinando la estructura iterativa de Scrum con la flexibilidad y visualización del flujo de trabajo de Kanban. Esta integración ha permitido gestionar y ajustar continuamente las tareas dentro de cada sprint, optimizando la entrega y la eficiencia sin adherirse estrictamente a una sola metodología.
-
-\section{Gestión del proyecto}\label{gestión-del-proyecto}
+\section{Gestión ágil del proyecto}\label{gestión-ágil-del-proyecto}
 
 \subsection{Zube}\label{zube}
 
@@ -42,29 +57,7 @@ Zube es una plataforma de gestión de proyectos ágil que se integra directament
 
 Esta herramienta fue elegida frente a Trello o Jira por recomendación de los tutores. Además de su excepcional integración con GitHub, ofrece una interfaz más sencilla y directa para gestionar proyectos ágiles eficazmente.
 
-\subsection{GitHub Desktop}\label{gitHub-desktop}
-
-\begin{itemize}
-    \item Herramientas consideradas: GitHub Desktop, GitKraken.
-    \item Motivo de la elección de GitHub Desktop:
-\end{itemize}
-
-GitHub Desktop es una aplicación que simplifica la manera en que los desarrolladores interactúan con Git y GitHub, proporcionando una interfaz gráfica de usuario en lugar de la línea de comandos.
-
-GitHub Desktop ofrece una mejor integración con GitHub, lo que facilita trabajar de forma más fluida y coherente dentro del ecosistema de GitHub, a diferencia de GitKraken, cuya interfaz y funcionalidades son más genéricas y menos especializadas para usuarios de GitHub.
-
 \section{Comunicación}\label{comunicación}
-
-\subsection{Microsoft Outlook}\label{microsoft-outlook}
-
-\begin{itemize}
-    \item Herramientas consideradas: Microsoft Outlook, Gmail.
-    \item Motivo de la elección de Microsoft Outlook:
-\end{itemize}
-
-Microsoft Outlook, parte de la suite de Microsoft Office, es una aplicación de gestión de información personal y cliente de correo electrónico. Es altamente valorado por su integración con el calendario, lo cual facilita a los usuarios la programación y seguimiento de citas y reuniones de manera eficiente.
-
-Se optó por utilizar Microsoft Outlook debido a su facilidad de uso y porque las reuniones eran programadas por D. Pedro Latorre Carmona. Además, la Universidad de Burgos proporciona una cuenta de Outlook a todos los miembros de la universidad, lo que facilitó la decisión de adoptar esta herramienta para la gestión de correos electrónicos y calendarios en el proyecto.
 
 \subsection{Microsoft Teams}\label{microsoft-teams}
 
@@ -77,7 +70,7 @@ Microsoft Teams es una plataforma de colaboración integrada desarrollada por Mi
 
 La Universidad de Burgos proporciona cuentas de Microsoft Teams a todos los miembros de la universidad, lo que influyó en la decisión de utilizar esta plataforma.
 
-\section{Entorno de desarrollo integrado (IDE)}\label{ide}
+\section{Lenguaje de programación}\label{lenguaje-de-programación}
 
 \subsection{MATLAB}\label{matlab}
 
@@ -90,14 +83,9 @@ MATLAB es un entorno de programación y lenguaje de scripting desarrollado por M
 
 Se eligió MATLAB sobre Python para este proyecto debido a su superior velocidad y eficiencia en el cálculo de operaciones matriciales. Inicialmente, se utilizó Python, pero los tiempos de ejecución eran muy elevados.
 
-\subsection{Overleaf}\label{overleaf}
+\subsubsection{MATLAB Compiler}\label{matlab-compiler}
 
-\begin{itemize}
-    \item Herramientas consideradas: Overleaf, TeXstudio.
-    \item Motivo de la elección de Overleaf:
-\end{itemize}
-
-Overleaf es una plataforma de edición y colaboración en línea para documentos LaTeX. Permite la colaboración en tiempo real y ofrece plantillas predefinidas para diversos documentos académicos. Por este motivo, al permitir la edición y revisión simultánea por varias personas, se eligió Overleaf en lugar de TeXstudio.
+MATLAB Compiler \cite{matlabRuntime} permite convertir aplicaciones MATLAB en ejecutables independientes y aplicaciones web, facilitando su distribución sin necesidad de licencias adicionales de MATLAB. 
 
 \section{Documentación}\label{documentación}
 
@@ -118,7 +106,16 @@ Markdown es un lenguaje de marcado ligero ideal para formatear texto en la web. 
 
 Por esta razón, se ha utilizado tanto en los README como en los distintos commits y comentarios de issues en GitHub.
 
-\section{Librerías}\label{librerías}
+\subsection{Overleaf}\label{overleaf}
+
+\begin{itemize}
+    \item Herramientas consideradas: Overleaf, TeXstudio.
+    \item Motivo de la elección de Overleaf:
+\end{itemize}
+
+Overleaf es una plataforma de edición y colaboración en línea para documentos LaTeX. Permite la colaboración en tiempo real y ofrece plantillas predefinidas para diversos documentos académicos. Por este motivo, al permitir la edición y revisión simultánea por varias personas, se eligió Overleaf en lugar de TeXstudio.
+
+\section{Bibliotecas MATLAB}\label{bibliotecas-matlab}
 
 Se ha requerido de las siguientes librerías:
 
@@ -139,9 +136,5 @@ Al igual que en el caso de Statistics and Machine Learning Toolbox, Fuzzy Logic 
 HMRF-EM-image es una librería en MATLAB para segmentar imágenes usando Campos Aleatorios de Markov Ocultos (HMRF) y el algoritmo Expectation-Maximization (EM).
 
 El uso de esta librería supone una mejora frente a los métodos de agrupamiento anteriores, ya que contempla la información espacial. Esto significa que no solo se analiza el valor del color del píxel, sino también los píxeles que lo rodean, lo que da lugar a segmentaciones de mejor calidad.
-
-\subsection{MATLAB Compiler}\label{matlab-compiler}
-
-MATLAB Compiler permite convertir aplicaciones MATLAB en ejecutables independientes y aplicaciones web, facilitando su distribución sin necesidad de licencias adicionales de MATLAB. 
 
 % Aun no lo he usado, pero en un futuro me gustaria mencionar a SonarQube y CodeClimate pero no estan disponibles para codigo de MATLAB asi que seguramente cuadno tenga tiempo mencionare a MATLAB Code Analyzer
